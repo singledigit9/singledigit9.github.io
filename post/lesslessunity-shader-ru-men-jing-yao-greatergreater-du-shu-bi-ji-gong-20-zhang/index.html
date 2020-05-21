@@ -1,0 +1,579 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>《Unity Shader 入门精要》读书笔记（基础篇共4章） - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="《Unity Shader 入门精要》读书笔记（基础篇共4章） - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="写在前面
+这本书一样是好多次看了一半就丢下的书。这次就完整的看完&amp;amp;&amp;amp;试验完吧。
+最近玩的《怪物猎人》《中土世界》游戏里面，有不少很酷炫的效果，书看完了要试着做一下。算是给自己的毕业考核。
+此外，也是猎头啊HR啊问对图形学有没..." />
+  <meta property="og:title" content="《Unity Shader 入门精要》读书笔记（基础篇共4章） - 资料库">
+  <meta property="og:description" content="写在前面
+这本书一样是好多次看了一半就丢下的书。这次就完整的看完&amp;amp;&amp;amp;试验完吧。
+最近玩的《怪物猎人》《中土世界》游戏里面，有不少很酷炫的效果，书看完了要试着做一下。算是给自己的毕业考核。
+此外，也是猎头啊HR啊问对图形学有没..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-gong-20-zhang/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="《Unity Shader 入门精要》读书笔记（基础篇共4章） - 资料库">
+  <meta name="twitter:description" content="写在前面
+这本书一样是好多次看了一半就丢下的书。这次就完整的看完&amp;amp;&amp;amp;试验完吧。
+最近玩的《怪物猎人》《中土世界》游戏里面，有不少很酷炫的效果，书看完了要试着做一下。算是给自己的毕业考核。
+此外，也是猎头啊HR啊问对图形学有没...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-gong-20-zhang/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-github.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          《Unity Shader 入门精要》读书笔记（基础篇共4章）
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-04-30 · 9 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/UjKOtFN6l/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              读书笔记
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/dk8wleA28S/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Shader
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h3 id="写在前面">写在前面</h3>
+<p>这本书一样是好多次看了一半就丢下的书。这次就完整的看完&amp;&amp;试验完吧。<br>
+最近玩的《怪物猎人》《中土世界》游戏里面，有不少很酷炫的效果，书看完了要试着做一下。算是给自己的毕业考核。<br>
+此外，也是猎头啊HR啊问对图形学有没有研究。其实一般的Shader效果什么的自己是可以搞出来的，但因为一些细节问题不清楚的只能蛋疼的说了解，实在有些不爽啊。</p>
+<!-- more -->
+<hr>
+<h3 id="第二章-渲染流水线">第二章 渲染流水线</h3>
+<h4 id="总体渲染流水线">总体渲染流水线</h4>
+<ol>
+<li>应用阶段（CPU）：
+<ol>
+<li>准备场景数据；粗粒度剔除；设置每个模型的渲染状态（就是什么模型用什么Shader什么材质球之类的）；输出 <strong>渲染图元</strong>。</li>
+<li>将上面概括一下：数据加载到显存；设置渲染状态；调用DrawCall</li>
+</ol>
+</li>
+<li>几何阶段（GPU）。</li>
+<li>光栅化阶段（GPU）。</li>
+</ol>
+<h4 id="gpu中的渲染流水线几何阶段和光栅化阶段">GPU中的渲染流水线（几何阶段和光栅化阶段）</h4>
+<ol>
+<li>顶点数据</li>
+<li>几何阶段
+<ol>
+<li>顶点着色器：可编程。主要功能是：坐标变换（将模型空间转换到齐次裁剪空间），逐顶点光照，输出后续阶段所需要的数据（这个可选）。</li>
+<li>曲面细分着色器和几何着色器：可编程，但基本上用不到，可以先忽略</li>
+<li>裁剪：可配置</li>
+<li>屏幕映射：不可操作。将齐次裁剪空间映射到屏幕上。（<strong>NDC</strong>：归一化设备坐标）</li>
+</ol>
+</li>
+<li>光栅化阶段：计算图元覆盖的像素，计算每个像素的颜色值。
+<ol>
+<li>三角形设置：不可操作。由顶点信息计算出三角形的边界信息</li>
+<li>三角形遍历（也叫扫描变换）：不可操作。检查像素是否被三角形覆盖，被覆盖的话则生成一个片元。（片元并不是像素，它包含了其他诸如深度坐标等信息）</li>
+<li>片元着色器：可编程</li>
+<li>逐片元操作（也叫输出合并阶段）：可配置。决定片元的可见性（需要一系列测试）；将该片元与颜色缓冲区的颜色进行混合，从而显示最终的颜色。
+<ol>
+<li>流程：模版测试--》深度测试（深度测试--》深度写入测试））--》混合</li>
+<li>上面的测试，通不过的片元就会被丢弃。</li>
+<li>混合需要明确的一个概念：<strong>源颜色</strong>指的是片元着色器的颜色，<strong>目标颜色</strong>指的是颜色缓冲区里面的颜色。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>屏幕图像</li>
+</ol>
+<h4 id="gpu渲染流水线的一些补充说明">GPU渲染流水线的一些补充说明</h4>
+<ol>
+<li>如果片元没有通过测试，那么对该片元之前的一些操作就浪费掉了。所以往往会将深度测试提前，这种技术叫做Early-Z技术。</li>
+<li>GPU会判断片元着色器中的操作是否与提前测试冲突，如果有冲突就会禁用掉提前测试。这就会导致需要处理的片元增多==》性能下降。这也是透明度测试会影响性能的原因。</li>
+</ol>
+<h4 id="drawcall相关">DrawCall相关</h4>
+<ol>
+<li>DrawCall影响性能的是CPU而不是GPU。</li>
+<li>DrawCall数量太多，就会导致CPU将更多的性能和时间用在提交DrawCall上，从而造成游戏卡顿。</li>
+<li>减少DrawCall的方法。静态物体批处理；减少网格数；避免使用多材质。</li>
+</ol>
+<hr>
+<h3 id="第三章-unity-shader-基础">第三章 Unity Shader 基础</h3>
+<p>这里记录一些基础知识。至于关键字之类的写在另一篇文章上，方便查阅。</p>
+<h4 id="unity-shader的几种模版">Unity Shader的几种模版。</h4>
+<ol>
+<li>Standard Surface Shader 包含了标准光照模型的着色器模版。
+<ol>
+<li>需要代码量很少</li>
+<li>渲染代价较大</li>
+<li>实际上Unity会将这个Shader转换成顶点片元Shader</li>
+</ol>
+</li>
+<li>Unlit Shader 不含光照包含雾效的基本顶点片元着色器
+<ol>
+<li>复杂</li>
+<li>灵活度高</li>
+<li>控制渲染实现的细节</li>
+</ol>
+</li>
+<li>Image Effect Shader 屏幕后期效果Shader模版</li>
+<li>Compute Shader 利用GPU性能来进行与渲染无关的计算</li>
+</ol>
+<h4 id="unity-shader的模版示例">Unity Shader的模版示例</h4>
+<pre><code class="language-ShaderLab">Shader &quot;Shader名字&quot;
+{
+    Properties
+    {
+        //属性
+        [Shader中使用的字段名字] (&quot;[材质球上显示的名字]&quot;，[属性类型]) = [默认值]
+    }
+
+    SubShader
+    {
+        [Tags]//可选。&amp;&amp;一些标签设置是特定的。
+        Tags { &quot;TagName1&quot; =  &quot;TagValue1&quot;, &quot;TagName2&quot; = &quot;TagValue2&quot;}
+
+        [RenderSetUp]//可选
+        Cull Back
+
+        Pass
+        {
+            [Name]
+            Name &quot;Pass的名字&quot;
+
+            [Tags]
+            [RenderSetUp]
+        }
+        Pass
+        {
+        }
+    }
+    SubShader
+    {
+    }
+    Fallback &quot;备用的默认Shader&quot;
+    //或者 FallBack Off
+}
+</code></pre>
+<h4 id="一些补充说明">一些补充说明</h4>
+<ol>
+<li>Pass 数目过多，会造成渲染性能下降。</li>
+<li>SubShader中的设置会作用在当前SubShader的所有Pass上</li>
+<li>Pass中定义了Name以后，其他的SubShader可以使用<code>UsePass &quot;Shader名字/Pass名字&quot;</code>来进行 代码复用。需要注意的是，因为Unity内部会将Pass的名字转换成大写，所以UsePass中Pass的名字要大写。</li>
+<li>GrabPass：特殊的Pass，抓取当前屏幕并将其存储在一张纹理中，以供后续的Pass处理。</li>
+</ol>
+<hr>
+<h3 id="第四章-数学基础">第四章 数学基础</h3>
+<p>这里主要写一些原理公式之类的东西，涉及到API写到另一篇文章里，方便查阅。</p>
+<h4 id="坐标系">坐标系</h4>
+<ol>
+<li>坐标系中的坐标轴：基矢量。基矢量相互垂直：正交基。正交基的每个矢量长度为1：标准正交基。</li>
+<li>3维坐标系分类：左手坐标系，右手坐标系。<br>
+<img src="https://singledigit9.github.io/post-images/1588314875844.jpeg" alt="" loading="lazy"></li>
+<li>左手坐标系和右手坐标系中的旋转正方向不同。对应依照左手法则和右手法则判断即可。<br>
+<img src="https://singledigit9.github.io/post-images/1588314927623.jpeg" alt="" loading="lazy"></li>
+<li>Unity世界坐标系和模型坐标系使用的是左手坐标系。摄像机使用的是右手坐标系（摄像机的前方是-z方向）</li>
+</ol>
+<h4 id="矢量">矢量</h4>
+<ol>
+<li>矢量的特殊计算：点积和叉积</li>
+<li>只想比较两个矢量的模大小时，可以直接比较两个矢量的自我点击而不用酸楚具体的长度。</li>
+</ol>
+<h4 id="矩阵">矩阵</h4>
+<ol>
+<li>矩阵和矩阵的乘法
+<ol>
+<li>满足乘法的要求：左行等于右列</li>
+<li>具体计算：左行a点乘右列b，作为结果[a, b]位置的元素</li>
+<li>矩阵乘法的一些性质
+<ol>
+<li>AB != BA</li>
+<li>(AB)C = A(BC)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>特殊矩阵
+<ol>
+<li>方块矩阵（方阵）：行列数相等</li>
+<li>对角矩阵：只有对角线上有元素的方阵。（[0,0]--&gt;[n,n]）</li>
+<li>单位矩阵<strong>I</strong>：对角元素全为1的对角矩阵
+<ol>
+<li>IM = MI</li>
+</ol>
+</li>
+<li>转置矩阵：A矩阵行列互换得到B，则A，B互为转置矩阵。
+<ol>
+<li>公式描述：A[i,j] = B[j,i]</li>
+<li>$ (M<sup>T)</sup>T = M $</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>A</mi><mi>B</mi><msup><mo>)</mo><mi>T</mi></msup><mo>=</mo><msup><mi>B</mi><mi>T</mi></msup><msup><mi>A</mi><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">(AB)^T = B^TA^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span></li>
+</ol>
+</li>
+<li>逆矩阵：两个矩阵相乘等于单位矩阵，则这两个矩阵互为逆矩阵
+<ol>
+<li>公式描述：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>M</mi><mo>=</mo><mi>M</mi><msup><mi>M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">M^{-1}M = MM^{-1} = I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span></li>
+<li>并不是所有的矩阵都有逆矩阵。只有矩阵行列式不为0的矩阵才有其对应的逆矩阵。</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msup><mi>M</mi><mi>T</mi></msup><msup><mo>)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mo>(</mo><msup><mi>M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mo>)</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">(M^T)^{-1} = (M^{-1})^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>A</mi><mi>B</mi><msup><mo>)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><msup><mi>B</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(AB)^{-1} = B^{-1}A^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></li>
+</ol>
+</li>
+<li>正交矩阵：矩阵和它的转置矩阵相乘等于单位矩阵。则这个矩阵为正交矩阵
+<ol>
+<li>公式描述：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><msup><mi>M</mi><mi>T</mi></msup><mo>=</mo><msup><mi>M</mi><mi>T</mi></msup><mi>M</mi><mo>=</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">MM^T= M^TM = I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span></li>
+<li>重要公式 <strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>M</mi><mi>T</mi></msup><mo>=</mo><msup><mi>M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M^T = M^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></strong></li>
+<li>几何意义：正交矩阵构成的是<strong>标准正交基</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Unity中常规做法是将矢量专程列矩阵来进行。</li>
+</ol>
+<h4 id="变换">变换</h4>
+<ol>
+<li>变换
+<ol>
+<li>线性变换：缩放，旋转，错切，镜像，正交投影等
+<ol>
+<li>公式描述：
+<ol>
+<li>f(x) + f(y) = f(x  + y)</li>
+<li>f(kx) = kf(x)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>放射变换：将线性变换和平移变换合并。可以用4X4的矩阵表示，这个矩阵空间也叫<strong>齐次坐标空间</strong>。</li>
+<li>各种变换的性质<br>
+<img src="https://singledigit9.github.io/post-images/1588317459699.jpeg" alt="" loading="lazy"></li>
+</ol>
+</li>
+<li>齐次坐标
+<ol>
+<li>形式<br>
+M<sub>3X3</sub>         t<sub>3X1</sub><br>
+0<sub>1X3</sub>           1</li>
+<li>说明
+<ol>
+<li>t<sub>3X1</sub>：平移矩阵</li>
+<li>0<sub>1X3</sub>：0矩阵</li>
+<li>M<sub>3X3</sub>：旋转和缩放矩阵</li>
+<li>1：标量</li>
+</ol>
+</li>
+<li>平移矩阵：M部分为单位矩阵，t部分为平移坐标</li>
+<li>缩放矩阵：M部分为沿着各个轴方向的缩放值</li>
+<li>旋转矩阵：旋转部分要按照坐标轴一个一个旋转
+<ol>
+<li><strong>在Unity中，旋转顺序为zxy。</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>坐标系变换：
+<ol>
+<li>一个点P在A坐标系中坐标(x,  y, z)已知，A坐标系在B坐标系的原点(<strong>O</strong>)已知，A坐标系基底用B坐标系表示(<strong>a</strong>, <strong>b</strong>, <strong>c</strong>)已知，求P点在B坐标系中的坐标(<strong>O</strong> + x<strong>a</strong> + y<strong>b</strong> + z<strong>c</strong>)。这个结果可以经过计算，转换成矩阵的形式 M<sub>A-&gt;B</sub> = [<strong>a</strong>, <strong>b</strong>, <strong>c</strong>]，其中<strong>a</strong>, <strong>b</strong>, <strong>c</strong>为列向量</li>
+<li>如果转换矩阵是正交矩阵，则可以用M<sup>T</sup> = M<sup>-1</sup>来得到反向转换矩阵。<strong>一般而言，Unity下的坐标系转换都是满足的。</strong></li>
+<li>渲染的坐标系变换过程<br>
+<img src="https://singledigit9.github.io/post-images/1588320124318.jpeg" alt="" loading="lazy"></li>
+</ol>
+</li>
+<li>法线变换
+<ol>
+<li>如果变换不包含非统一缩放，设统一缩放系数为k，矩阵M<sub>A-&gt;B</sub>则可以直接用 M<sub>A-&gt;B</sub>/k矩阵直接对法线进行变换</li>
+<li>如果包含非统一缩放，则需要求M<sub>A-&gt;B</sub>的逆转矩阵</li>
+</ol>
+</li>
+<li>Unity内置的转换矩阵是列存储的，所以通常使用右乘来进行坐标转换（[MVP][Point]）。有时候也会为了避免转置操作而左乘。</li>
+<li>CG中的矩阵是按照行填充的。M[行Index][列Index]</li>
+</ol>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2">写在前面</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF">第二章 渲染流水线</a>
+<ul>
+<li><a href="#%E6%80%BB%E4%BD%93%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF">总体渲染流水线</a></li>
+<li><a href="#gpu%E4%B8%AD%E7%9A%84%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%87%A0%E4%BD%95%E9%98%B6%E6%AE%B5%E5%92%8C%E5%85%89%E6%A0%85%E5%8C%96%E9%98%B6%E6%AE%B5">GPU中的渲染流水线（几何阶段和光栅化阶段）</a></li>
+<li><a href="#gpu%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E">GPU渲染流水线的一些补充说明</a></li>
+<li><a href="#drawcall%E7%9B%B8%E5%85%B3">DrawCall相关</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-unity-shader-%E5%9F%BA%E7%A1%80">第三章 Unity Shader 基础</a>
+<ul>
+<li><a href="#unity-shader%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A8%A1%E7%89%88">Unity Shader的几种模版。</a></li>
+<li><a href="#unity-shader%E7%9A%84%E6%A8%A1%E7%89%88%E7%A4%BA%E4%BE%8B">Unity Shader的模版示例</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E">一些补充说明</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80">第四章 数学基础</a>
+<ul>
+<li><a href="#%E5%9D%90%E6%A0%87%E7%B3%BB">坐标系</a></li>
+<li><a href="#%E7%9F%A2%E9%87%8F">矢量</a></li>
+<li><a href="#%E7%9F%A9%E9%98%B5">矩阵</a></li>
+<li><a href="#%E5%8F%98%E6%8D%A2">变换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

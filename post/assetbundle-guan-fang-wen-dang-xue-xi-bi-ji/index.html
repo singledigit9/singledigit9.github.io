@@ -1,0 +1,846 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>AssetBundle官方文档学习笔记 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="AssetBundle官方文档学习笔记 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="文档版本&amp;amp;地址
+2019.3 https://docs.unity3d.com/Manual/AssetBundlesIntro.html
+官方工具
+Unity Addressable Asset system
+Unity Asse..." />
+  <meta property="og:title" content="AssetBundle官方文档学习笔记 - 资料库">
+  <meta property="og:description" content="文档版本&amp;amp;地址
+2019.3 https://docs.unity3d.com/Manual/AssetBundlesIntro.html
+官方工具
+Unity Addressable Asset system
+Unity Asse..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/assetbundle-guan-fang-wen-dang-xue-xi-bi-ji/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="AssetBundle官方文档学习笔记 - 资料库">
+  <meta name="twitter:description" content="文档版本&amp;amp;地址
+2019.3 https://docs.unity3d.com/Manual/AssetBundlesIntro.html
+官方工具
+Unity Addressable Asset system
+Unity Asse...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/assetbundle-guan-fang-wen-dang-xue-xi-bi-ji/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-github.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          AssetBundle官方文档学习笔记
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-05-13 · 14 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/UjKOtFN6l/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              读书笔记
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/iHLk7fHQm9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Unity3D
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h1 id="文档版本地址">文档版本&amp;地址</h1>
+<p>2019.3 <a href="https://docs.unity3d.com/Manual/AssetBundlesIntro.html">https://docs.unity3d.com/Manual/AssetBundlesIntro.html</a></p>
+<h1 id="官方工具">官方工具</h1>
+<p><a href="https://docs.unity3d.com/Packages/com.unity.addressables@1.8/manual/index.html">Unity Addressable Asset system</a><br>
+<a href="https://github.com/Unity-Technologies/AssetBundles-Browser">Unity Asset Bundle Browser tool</a><br>
+<a href="https://docs.unity3d.com/Manual/AssetBundles-Browser.html">Unity Asset Bundle Browser tool文档</a></p>
+<h1 id="基础介绍">基础介绍</h1>
+<h2 id="assetbundle的特性">AssetBundle的特性</h2>
+<ul>
+<li>AssetBundle能够互相依赖。例如，一个AssetBundle中的材质球能够引用另一个AssetBundle上的贴图。</li>
+<li>AssetBundle能够使用Unity内置的算法进行压缩，以提高传输效率。</li>
+</ul>
+<h2 id="assetbundle能够做什么">AssetBundle能够做什么</h2>
+<ul>
+<li>DLC的更新</li>
+<li>减少初始安装包大小</li>
+<li>减小运行时内存压力</li>
+<li>针对用户的终端（手机）加载优化资源</li>
+</ul>
+<h2 id="assetbundle文件和assetbundle对象">AssetBundle文件和AssetBundle对象</h2>
+<ul>
+<li>AssetBundle文件中包含的是打入其中的各种资源。</li>
+<li>AssetBundle对象中有一个Key值为路径，Value值为对应资源的字典。</li>
+</ul>
+<h1 id="工作流程">工作流程</h1>
+<h2 id="资源的设置">资源的设置</h2>
+<ol>
+<li>选中要打包的资源，在检视面板的最下面可以看到AssetBundle配置选项。</li>
+<li>第一个配置：要将这个资源打进哪一个AssetBundle<strong>待测试</strong></li>
+<li>第二个配置：这个资源的变体<strong>待测试</strong></li>
+</ol>
+<h2 id="资源的打包">资源的打包</h2>
+<p>官网提供了示例代码<strong>待测试</strong></p>
+<pre><code>using UnityEditor;
+using System.IO;
+
+public class CreateAssetBundles
+{
+    [MenuItem(&quot;Assets/Build AssetBundles&quot;)]
+    static void BuildAllAssetBundles()
+    {
+        string assetBundleDirectory = &quot;Assets/AssetBundles&quot;;
+        if(!Directory.Exists(assetBundleDirectory))
+        {
+            Directory.CreateDirectory(assetBundleDirectory);
+        }
+        BuildPipeline.BuildAssetBundles(assetBundleDirectory, 
+                                        BuildAssetBundleOptions.None, 
+                                        BuildTarget.StandaloneWindows);
+    }
+}
+</code></pre>
+<h2 id="加载assetbundle和assetbundle里面的资源">加载AssetBundle和AssetBundle里面的资源</h2>
+<h3 id="加载本地文件">加载本地文件</h3>
+<p>官网示例代码<strong>待测试</strong></p>
+<pre><code>public class LoadFromFileExample : MonoBehaviour {
+    function Start() {
+        var myLoadedAssetBundle 
+            = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, &quot;myassetBundle&quot;));
+        if (myLoadedAssetBundle == null) {
+            Debug.Log(&quot;Failed to load AssetBundle!&quot;);
+            return;
+        }
+        var prefab = myLoadedAssetBundle.LoadAsset&lt;GameObject&gt;(&quot;MyObject&quot;);
+        Instantiate(prefab);
+    }
+}
+</code></pre>
+<h3 id="加载网络文件">加载网络文件</h3>
+<pre><code>IEnumerator InstantiateObject()
+{
+    string url = &quot;file:///&quot; + Application.dataPath + &quot;/AssetBundles/&quot; + assetBundleName;        
+    UnityEngine.Networking.UnityWebRequest request 
+        = UnityEngine.Networking.UnityWebRequest.GetAssetBundle(url, 0);
+    yield return request.Send();
+    AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
+    GameObject cube = bundle.LoadAsset&lt;GameObject&gt;(&quot;Cube&quot;);
+    GameObject sprite = bundle.LoadAsset&lt;GameObject&gt;(&quot;Sprite&quot;);
+    Instantiate(cube);
+    Instantiate(sprite);
+}
+</code></pre>
+<h1 id="打包策略">打包策略</h1>
+<ul>
+<li>开发人员应该明确知道在什么时候什么位置使用什么资源。明确了这个问题后才能够决定使用什么打包策略。</li>
+</ul>
+<h2 id="依据实体打包">依据实体打包</h2>
+<ul>
+<li>举例：
+<ul>
+<li>将一个UIPrefab和它所用到的贴图打包在一起</li>
+<li>将一个模型和这个模型的材质球，贴图，动画文件打包在一起</li>
+<li>将一个场景和这个场景所用到的资源打包在一起</li>
+</ul>
+</li>
+<li>特点
+<ul>
+<li>每个实体的AssetBundle是分开的，更新单独的实体时不用更新其他没有改变的资源</li>
+</ul>
+</li>
+</ul>
+<h2 id="依据资源类型打包">依据资源类型打包</h2>
+<ul>
+<li>特点
+<ul>
+<li>不同平台下压缩格式相同的资源AssetBundle可以在不同平台下重用</li>
+</ul>
+</li>
+</ul>
+<h2 id="选择正确的打包策略">选择正确的打包策略</h2>
+<ul>
+<li>AssetBundle是有依赖关系的。如果你的AssetBundle打包策略不好，可能会出现想加载一个GameObject而需要加载多个AssetBundle的情况。</li>
+<li>上面两种策略当然也可以混合使用。这需要根据具体的项目需求来进行选择。</li>
+</ul>
+<h3 id="关键点">关键点</h3>
+<ul>
+<li>将经常变化的资源和很少变化的资源分开打包。</li>
+<li>理清资源依赖关系，避免复杂的相互依赖。比如将通用的依赖资源移到Common中。</li>
+<li>不可能同时加载使用的资源不要打进一个AssetBundle里</li>
+<li>如果一个AssetBundle中只有一部分资源被频繁的加载，那么需要把这个AssetBundle进行拆分</li>
+<li>将同时频繁加载的小（资源数少于5-10）的AssetBundle合并到一起。</li>
+<li>不同版本的同一物体，可以考虑使用变体 <strong>变体具体是什么待测试</strong></li>
+</ul>
+<h1 id="打包assetbundle">打包AssetBundle</h1>
+<h2 id="buildassetbundleoptions">BuildAssetBundleOptions</h2>
+<ul>
+<li>关于打AssetBundle的各种设置  <strong>待测试</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>没有特殊设置。使用LZMA进行压缩</td>
+</tr>
+<tr>
+<td>UncompressedAssetBundle</td>
+<td>不对AssetBundle进行压缩</td>
+</tr>
+<tr>
+<td>DisableWriteTypeTree</td>
+<td>AssetBundle中不包含类型信息</td>
+</tr>
+<tr>
+<td>DeterministicAssetBundle</td>
+<td>确保相同的资源打进AssetBundle里面后，哈希值不会变化</td>
+</tr>
+<tr>
+<td>ForceRebuildAssetBundle</td>
+<td>强制重新打AssetBundle</td>
+</tr>
+<tr>
+<td>IgnoreTypeTreeChanges</td>
+<td>增量打包时忽略类型树变化</td>
+</tr>
+<tr>
+<td>AppendHashToAssetBundleName</td>
+<td>将Hash值添加到AssetBundle名字之后，能够从名字直接看出AssetBundle是否有变化</td>
+</tr>
+<tr>
+<td>ChunkBasedCompression</td>
+<td>使用LZ4格式压缩</td>
+</tr>
+<tr>
+<td>StrictMode</td>
+<td>打包过程中报错则中断打包</td>
+</tr>
+<tr>
+<td>DryRunBuild</td>
+<td>Do a dry run build.</td>
+</tr>
+<tr>
+<td>DisableLoadAssetByFileName</td>
+<td>不允许使用文件名字加载资源</td>
+</tr>
+<tr>
+<td>DisableLoadAssetByFileNameWithExtension</td>
+<td>不允许使用带后缀的文件名字加载资源</td>
+</tr>
+<tr>
+<td>AssetBundleStripUnityVersion</td>
+<td>构建时删除Unity版本号</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关于压缩格式">关于压缩格式</h2>
+<ul>
+<li>默认情况下，使用LZMA格式创建，使用LZ4格式缓存</li>
+</ul>
+<h3 id="压缩格式类型">压缩格式类型</h3>
+<ul>
+<li>LZMA：
+<ul>
+<li>打出的AssetBundle最小，但加载时间也会更长（加载资源之前需要先将资源所在的AssetBundle整个进行解压）。</li>
+<li>资源解压后，会使用LZ4格式重新压缩。</li>
+<li>推荐在初始资源下载时使用这个格式。</li>
+<li>通过<code>UnityWebRequestAssetBundle</code>加载的LZMA格式的AssetBundle会自动解压并重新压缩为LZ4，缓存到本地。如果是使用其他方式下载的Assetbundle,则可以使用<code>AssetBundle.RecompressAssetBundleAsync</code>对其进行重新压缩</li>
+</ul>
+</li>
+<li>LZ4：
+<ul>
+<li>加载资源前不必对整个AssetBundle进行解压</li>
+<li>允许以块的形式加载资源。解压单个块，即使当前AssetBund中其他的块没有解压，也能使用当前块中的资源</li>
+<li>这种压缩模式下<code>AssetBundle.LoadFromFile</code>只在内存里加载Bundle的资源目录，而不是Bundle本身</li>
+</ul>
+</li>
+<li>完全不压缩：
+<ul>
+<li>文件大，加载快</li>
+</ul>
+</li>
+</ul>
+<h2 id="打包生成的文件">打包生成的文件</h2>
+<ul>
+<li>
+<p>AssetBundle文件</p>
+<ul>
+<li>场景Bundle和其他一般资源Bundle里面的结构略有不同。场景的Bundle有一些特殊优化。<br>
+<img src="https://singledigit9.github.io/post-images/1589379363606.png" alt="" loading="lazy"></li>
+</ul>
+</li>
+<li>
+<p>Manifest文件</p>
+<ul>
+<li>包含了当前AssetBundle的资源信息以及资源的依赖信息</li>
+</ul>
+</li>
+</ul>
+<h1 id="assetbundle依赖">AssetBundle依赖</h1>
+<ul>
+<li>一个Bundle中的资源引用另一个Bundle中的资源会产生依赖；一个Bundle中的资源引用一个不在Bundle中的资源不会产生依赖。</li>
+<li>如果Bundle中资源A引用不在Bundle中的资源B，则资源B会被复制并打进A的Bundle中。</li>
+<li>如果多个Bundle中的资源引用不在Bundle中的资源B，则资源B会被复制并打进每一个Bundle中。</li>
+<li>如果要加载的Bundle A中的资源依赖Bundle B，那么加载这个资源前要先将Bundle B加载好。</li>
+</ul>
+<h2 id="跨assetbundle的重复信息">跨AssetBundle的重复信息</h2>
+<ul>
+<li>如果一个Bundle中有一个预制，都引用了不在Bundle中的材质球和贴图
+<ul>
+<li>影响最终打出来的Bundle大小增加</li>
+<li>运行时内存占用增加</li>
+<li>影响Unity自动批处理。Unity把不同Bundle中的材质球都看作是唯一的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="编辑器下依赖关系的查询">编辑器下依赖关系的查询</h2>
+<ul>
+<li><code>AssetDatabase</code>：查询依赖关系</li>
+<li><code>AssetImporter</code>：查询资源分配到了哪个AssetBundle</li>
+</ul>
+<h2 id="几种依赖关系的处理方法">几种依赖关系的处理方法</h2>
+<ul>
+<li>共同的依赖资源集中到一个Bundle里面（不适用于复杂交叉依赖的情况）</li>
+<li>确保同一时间，不会有任何一个Bundle有多重被依赖。（适用于基于Level的游戏，但这样做仍然会增加AssetBundle的文件大小）</li>
+<li>确保所有依赖的资源都在自己的AssetBundle里面。但这样做机制比较复杂。</li>
+</ul>
+<h1 id="assetbundle的使用">AssetBundle的使用</h1>
+<h2 id="加载assetbundle">加载AssetBundle</h2>
+<ul>
+<li><code>AssetBundle.LoadFromMemoryAsync</code>
+<ul>
+<li>从内存异步加载AssetBundle</li>
+<li>参数为Bundle文件的字节流</li>
+<li>使用示例：</li>
+</ul>
+</li>
+</ul>
+<pre><code>using UnityEngine;
+using System.Collections;
+using System.IO;
+
+public class Example : MonoBehaviour
+{
+    IEnumerator LoadFromMemoryAsync(string path)
+    {
+        AssetBundleCreateRequest createRequest = AssetBundle.LoadFromMemoryAsync(File.ReadAllBytes(path));
+        yield return createRequest;
+        AssetBundle bundle = createRequest.assetBundle;
+        var prefab = bundle.LoadAsset&lt;GameObject&gt;(&quot;MyObject&quot;);
+        Instantiate(prefab);
+    }
+}
+</code></pre>
+<ul>
+<li><code>AssetBundle.LoadFromFile</code>
+<ul>
+<li>未压缩和LZ4格式压缩的AssetBundle，会直接从硬盘中加载。加载LZMA格式的AssetBundle时，会先解压，然后再加载。</li>
+<li>加载本地的未压缩资源效率很高。</li>
+<li>Unity5.3以及以前版本，Android平台使用这个API加载StreamingAssets文件夹中的AssetBundle会失败。因为StreamingAssets文件夹中的内容会在一个压缩的.jar文件中。</li>
+<li>Unity5.4以及更新的版本能够正常的使用这个API.</li>
+<li>使用示例：</li>
+</ul>
+</li>
+</ul>
+<pre><code>public class LoadFromFileExample : MonoBehaviour {
+    function Start() {
+        var myLoadedAssetBundle 
+            = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, &quot;myassetBundle&quot;));
+        
+        if (myLoadedAssetBundle == null) {
+            Debug.Log(&quot;Failed to load AssetBundle!&quot;);
+            return;
+        }
+        var prefab = myLoadedAssetBundle.LoadAsset.&lt;GameObject&gt;(&quot;MyObject&quot;);
+        Instantiate(prefab);
+    }
+}
+</code></pre>
+<ul>
+<li><code>UnityWebRequest</code>
+<ul>
+<li>相当于原来的<code>WWW</code>类的升级版。</li>
+<li>能够方便的处理下载以及HTTP的Get/POST请求。</li>
+<li>使用示例：</li>
+</ul>
+</li>
+</ul>
+<pre><code>IEnumerator InstantiateObject()
+{
+    string uri = &quot;file:///&quot; + Application.dataPath + &quot;/AssetBundles/&quot; + assetBundleName; 
+    UnityEngine.Networking.UnityWebRequest request 
+        = UnityEngine.Networking.UnityWebRequest.GetAssetBundle(uri, 0);
+    yield return request.Send();
+    AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
+    GameObject cube = bundle.LoadAsset&lt;GameObject&gt;(&quot;Cube&quot;);
+    GameObject sprite = bundle.LoadAsset&lt;GameObject&gt;(&quot;Sprite&quot;);
+    Instantiate(cube);
+    Instantiate(sprite);
+}
+</code></pre>
+<ul>
+<li><code>WWW.LoadFromCacheOrDownload</code>[已淘汰，直接跳过]</li>
+</ul>
+<h2 id="加载assetbundle中的资源">加载AssetBundle中的资源</h2>
+<ul>
+<li><code>T objectFromBundle = bundleObject.LoadAsset&lt;T&gt;(assetName);</code></li>
+<li><code>Unity.Object[] objectArray = loadedAssetBundle.LoadAllAssets();</code></li>
+<li></li>
+</ul>
+<pre><code>AssetBundleRequest request = loadedAssetBundleObject.LoadAssetAsync&lt;GameObject&gt;(assetName);
+yield return request;
+var loadedAsset = request.asset;
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<pre><code>AssetBundleRequest request = loadedAssetBundle.LoadAllAssetsAsync();
+yield return request;
+var loadedAssets = request.allAssets;
+</code></pre>
+<h2 id="加载manifest文件">加载Manifest文件</h2>
+<ul>
+<li>加载Manifest文件是为了解决依赖问题</li>
+<li>加载Manifest文件的示例代码</li>
+</ul>
+<pre><code>AssetBundle assetBundle = AssetBundle.LoadFromFile(manifestFilePath);
+AssetBundleManifest manifest = assetBundle.LoadAsset&lt;AssetBundleManifest&gt;(&quot;AssetBundleManifest&quot;);
+</code></pre>
+<ul>
+<li>查询并加载依赖的示例代码</li>
+</ul>
+<pre><code>AssetBundle assetBundle = AssetBundle.LoadFromFile(manifestFilePath);
+AssetBundleManifest manifest = assetBundle.LoadAsset&lt;AssetBundleManifest&gt;(&quot;AssetBundleManifest&quot;);
+string[] dependencies = manifest.GetAllDependencies(&quot;assetBundle&quot;); //Pass the name of the bundle you want the dependencies for.
+foreach(string dependency in dependencies)
+{
+    AssetBundle.LoadFromFile(Path.Combine(assetBundlePath, dependency));
+}
+</code></pre>
+<h1 id="管理加载的assetbundle">管理加载的AssetBundle</h1>
+<ul>
+<li>不正确的卸载AssetBundle可能导致复制内存中的object或者其他问题，比如贴图丢失。</li>
+</ul>
+<h2 id="assetbundleunloadbool"><code>AssetBundle.Unload(bool)</code></h2>
+<ul>
+<li>卸载AssetBundle的头部信息</li>
+</ul>
+<h3 id="参数详细说明">参数详细说明</h3>
+<ul>
+<li>参数为true时 也卸载AssetBundle所有的实例化对象，这个实例化对象不包含对象的复制（复制的资源不是AssetBundle里面的资源）。</li>
+<li>多数情况下，会使用true来保证内存中没有重复的对象</li>
+<li>如果参数必须为false的话，内存中无法访问的资源只能通过以下方式卸载
+<ul>
+<li>手动调用<code>Resources.UnloadUnusedAssets</code></li>
+<li>非添加方式加载场景，会自动调用<code>Resources.UnloadUnusedAssets</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="详细例子">详细例子</h4>
+<ul>
+<li>从AssetBundle中加载的一个GameObject资源，true卸载时，会把这个GameObject资源卸载掉，而不会把Instantiate的GameObject也卸载掉。</li>
+<li>现在从AssetBundle中加载一个材质球在活动场景中使用
+<ul>
+<li>使用Unload(true)卸载时，材质球在场景中的所有实例一样会被卸载和销毁。<strong>这里有个疑问待测试：Instantiate的材质球会不会也被销毁</strong></li>
+<li>使用Unload(false)卸载时，会打断当前材质球和AssetBundle的链接。如果AssetBundle重新加载，它并不会链接到已经存在的材质球。此时加载该材质球时，会复制一个新的。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://singledigit9.github.io/post-images/1589379410371.png" alt="" loading="lazy"><br>
+<img src="https://singledigit9.github.io/post-images/1589379417761.png" alt="" loading="lazy"><br>
+<img src="https://singledigit9.github.io/post-images/1589379424865.png" alt="" loading="lazy"></p>
+<h2 id="保证资源不重复的方法">保证资源不重复的方法</h2>
+<ul>
+<li>在恰当的时机卸载暂时加载的AssetBundle，比如Loading时</li>
+<li>记录资源加载的引用计数，避免重复加载资源和异常卸载资源</li>
+</ul>
+<h1 id="assetbundle缓存">AssetBundle缓存</h1>
+<ul>
+<li>Unity维护两个缓存，分别是内存缓存和硬盘缓存。</li>
+<li>将AssetBundle中加载到内存中，会消耗大量的内存空间。除非有特别频繁快速访问AssetBundle中内容的需求，否则请使用磁盘缓存。</li>
+<li>如果你向<code>UnityWebRequest</code>提供了一个版本参数（版本号挥着Hash），Unity会将AssetBundle数据存储到本地硬盘。如果不提供参数，Unity将会使用内存缓存。</li>
+<li><code>Caching.compressionEnabled</code>设置为true时，存储到本地的AssetBundle文件会以LZ4的格式进行压缩；设置为false时，则存储到本地的文件不会压缩。</li>
+<li>使用LZMA格式初始加载会耗费比较长的时间。因为它需要先解压，然后以指定格式存储到硬盘缓存。之后加载会直接使用缓存来加载。</li>
+<li>推荐使用<code>UnityWebRequest</code>，因为<code>AssetBundle.LoadFromFile</code>和<code>AssetBundle.LoadFromFileAsync</code>加载LZMA后会使用内存中的缓存。如果不能使用<code>UnityWebRequest</code>，可以使用<code>AssetBundle.RecompressAssetBundleAsync</code>手动将AssetBundle数据写到硬盘缓存上。</li>
+<li>内部测试表明，使用磁盘缓存和内存缓存存在着一个数量级的差异。需要根据项目的需求自己权衡。</li>
+</ul>
+<h2 id="缓存类型">缓存类型</h2>
+<ol>
+<li>内存缓存：AssetBundle为不压缩格式</li>
+<li>硬盘缓存：在可写空间以指定格式压缩保存AssetBundle文件</li>
+</ol>
+<h1 id="assetbundle补丁">AssetBundle补丁</h1>
+<ul>
+<li>下载一个新的AssetBundle来替换现有的AssetBundle</li>
+<li>使用<code>UnityWebRequest</code>API时，会根据传入的版本参数自动触发下载新的AssetBundle</li>
+<li>Unity使用固定方式生成AssetBundle文件，也就是说，资源不变，生成的AssetBundle也是不变的。正因为这样，可以自定义下载器来区分补丁差异。</li>
+<li>Unity内部并没有实现差分补丁的功能，如果有差分补丁的需求的话，需要手动实现。（差分补丁：新AssetBundle和旧AssetBundle进行比较生成补丁。客户端下载补丁并经过处理生成新AssetBundle）</li>
+</ul>
+<h2 id="如何确定要替换的assetbundle">如何确定要替换的AssetBundle</h2>
+<ul>
+<li>从服务器获取要下载的资源列表和版本信息。和本地的资源列表版本信息做对比。如果本地资源缺失或者版本号不对，则需要下载替换这个AssetBundle。</li>
+<li>也可以自定义系统来检测AssetBundle变化，比如MD5，JSON等。</li>
+</ul>
+<h1 id="常见问题">常见问题</h1>
+<h2 id="自动生成的图集">自动生成的图集</h2>
+<ul>
+<li>如果一个图集的所有sprite都打进同一个Bundle，则自动生成的图集将会打进这个Bundle。</li>
+<li>如果sprite被打进多个Bundle，那么图集会复制多分分别打进对应的Bundle。</li>
+<li>如果sprite没有被打进Bundle，那么图集也不会被打进Bundle</li>
+<li>Unity5.2.2p3以及以前的版本对图集打Bundle的支持有问题。</li>
+</ul>
+<h2 id="android-texture">Android Texture</h2>
+<ul>
+<li>Android设备碎片化问题严重，需要将贴图压缩成对应的格式。</li>
+<li>ETC1没有透明通道，但基本上所有设备都支持</li>
+<li>ETC2，旧设备可能不支持</li>
+<li>可以使用变体，将不同变体的贴图分别打在一个AssetBundle里面，根据情况进行加载。（需要贴图设置正确）</li>
+<li><code>SystemInfo.SupportedTextureFormat</code>可以使用这个API来检测设备支持什么格式的贴图</li>
+</ul>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%9C%B0%E5%9D%80">文档版本&amp;地址</a></li>
+<li><a href="#%E5%AE%98%E6%96%B9%E5%B7%A5%E5%85%B7">官方工具</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D">基础介绍</a>
+<ul>
+<li><a href="#assetbundle%E7%9A%84%E7%89%B9%E6%80%A7">AssetBundle的特性</a></li>
+<li><a href="#assetbundle%E8%83%BD%E5%A4%9F%E5%81%9A%E4%BB%80%E4%B9%88">AssetBundle能够做什么</a></li>
+<li><a href="#assetbundle%E6%96%87%E4%BB%B6%E5%92%8Cassetbundle%E5%AF%B9%E8%B1%A1">AssetBundle文件和AssetBundle对象</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">工作流程</a>
+<ul>
+<li><a href="#%E8%B5%84%E6%BA%90%E7%9A%84%E8%AE%BE%E7%BD%AE">资源的设置</a></li>
+<li><a href="#%E8%B5%84%E6%BA%90%E7%9A%84%E6%89%93%E5%8C%85">资源的打包</a></li>
+<li><a href="#%E5%8A%A0%E8%BD%BDassetbundle%E5%92%8Cassetbundle%E9%87%8C%E9%9D%A2%E7%9A%84%E8%B5%84%E6%BA%90">加载AssetBundle和AssetBundle里面的资源</a>
+<ul>
+<li><a href="#%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6">加载本地文件</a></li>
+<li><a href="#%E5%8A%A0%E8%BD%BD%E7%BD%91%E7%BB%9C%E6%96%87%E4%BB%B6">加载网络文件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%89%93%E5%8C%85%E7%AD%96%E7%95%A5">打包策略</a>
+<ul>
+<li><a href="#%E4%BE%9D%E6%8D%AE%E5%AE%9E%E4%BD%93%E6%89%93%E5%8C%85">依据实体打包</a></li>
+<li><a href="#%E4%BE%9D%E6%8D%AE%E8%B5%84%E6%BA%90%E7%B1%BB%E5%9E%8B%E6%89%93%E5%8C%85">依据资源类型打包</a></li>
+<li><a href="#%E9%80%89%E6%8B%A9%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%89%93%E5%8C%85%E7%AD%96%E7%95%A5">选择正确的打包策略</a>
+<ul>
+<li><a href="#%E5%85%B3%E9%94%AE%E7%82%B9">关键点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%89%93%E5%8C%85assetbundle">打包AssetBundle</a>
+<ul>
+<li><a href="#buildassetbundleoptions">BuildAssetBundleOptions</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8E%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F">关于压缩格式</a>
+<ul>
+<li><a href="#%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F%E7%B1%BB%E5%9E%8B">压缩格式类型</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%93%E5%8C%85%E7%94%9F%E6%88%90%E7%9A%84%E6%96%87%E4%BB%B6">打包生成的文件</a></li>
+</ul>
+</li>
+<li><a href="#assetbundle%E4%BE%9D%E8%B5%96">AssetBundle依赖</a>
+<ul>
+<li><a href="#%E8%B7%A8assetbundle%E7%9A%84%E9%87%8D%E5%A4%8D%E4%BF%A1%E6%81%AF">跨AssetBundle的重复信息</a></li>
+<li><a href="#%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E7%9A%84%E6%9F%A5%E8%AF%A2">编辑器下依赖关系的查询</a></li>
+<li><a href="#%E5%87%A0%E7%A7%8D%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95">几种依赖关系的处理方法</a></li>
+</ul>
+</li>
+<li><a href="#assetbundle%E7%9A%84%E4%BD%BF%E7%94%A8">AssetBundle的使用</a>
+<ul>
+<li><a href="#%E5%8A%A0%E8%BD%BDassetbundle">加载AssetBundle</a></li>
+<li><a href="#%E5%8A%A0%E8%BD%BDassetbundle%E4%B8%AD%E7%9A%84%E8%B5%84%E6%BA%90">加载AssetBundle中的资源</a></li>
+<li><a href="#%E5%8A%A0%E8%BD%BDmanifest%E6%96%87%E4%BB%B6">加载Manifest文件</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AE%A1%E7%90%86%E5%8A%A0%E8%BD%BD%E7%9A%84assetbundle">管理加载的AssetBundle</a>
+<ul>
+<li><a href="#assetbundleunloadbool"><code>AssetBundle.Unload(bool)</code></a>
+<ul>
+<li><a href="#%E5%8F%82%E6%95%B0%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E">参数详细说明</a>
+<ul>
+<li><a href="#%E8%AF%A6%E7%BB%86%E4%BE%8B%E5%AD%90">详细例子</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%BF%9D%E8%AF%81%E8%B5%84%E6%BA%90%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%96%B9%E6%B3%95">保证资源不重复的方法</a></li>
+</ul>
+</li>
+<li><a href="#assetbundle%E7%BC%93%E5%AD%98">AssetBundle缓存</a>
+<ul>
+<li><a href="#%E7%BC%93%E5%AD%98%E7%B1%BB%E5%9E%8B">缓存类型</a></li>
+</ul>
+</li>
+<li><a href="#assetbundle%E8%A1%A5%E4%B8%81">AssetBundle补丁</a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E8%A6%81%E6%9B%BF%E6%8D%A2%E7%9A%84assetbundle">如何确定要替换的AssetBundle</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a>
+<ul>
+<li><a href="#%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E7%9A%84%E5%9B%BE%E9%9B%86">自动生成的图集</a></li>
+<li><a href="#android-texture">Android Texture</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

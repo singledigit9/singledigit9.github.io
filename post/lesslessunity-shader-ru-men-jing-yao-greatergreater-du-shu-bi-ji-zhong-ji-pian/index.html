@@ -1,0 +1,656 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>《Unity Shader 入门精要》读书笔记（中级篇共三章） - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="《Unity Shader 入门精要》读书笔记（中级篇共三章） - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="写在前面
+有不少地方不好理解，需要仔细研究
+
+第九章 更复杂的光照
+Shader中的渲染路径设置写在另一篇文章里面，方便查阅。
+Unity中的渲染路径
+
+
+Unity中渲染路径的设置
+
+全局的渲染路径设置：Other Setting--&amp;g..." />
+  <meta property="og:title" content="《Unity Shader 入门精要》读书笔记（中级篇共三章） - 资料库">
+  <meta property="og:description" content="写在前面
+有不少地方不好理解，需要仔细研究
+
+第九章 更复杂的光照
+Shader中的渲染路径设置写在另一篇文章里面，方便查阅。
+Unity中的渲染路径
+
+
+Unity中渲染路径的设置
+
+全局的渲染路径设置：Other Setting--&amp;g..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-zhong-ji-pian/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="《Unity Shader 入门精要》读书笔记（中级篇共三章） - 资料库">
+  <meta name="twitter:description" content="写在前面
+有不少地方不好理解，需要仔细研究
+
+第九章 更复杂的光照
+Shader中的渲染路径设置写在另一篇文章里面，方便查阅。
+Unity中的渲染路径
+
+
+Unity中渲染路径的设置
+
+全局的渲染路径设置：Other Setting--&amp;g...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-zhong-ji-pian/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-github.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          《Unity Shader 入门精要》读书笔记（中级篇共三章）
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-05-04 · 11 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/UjKOtFN6l/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              读书笔记
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/iHLk7fHQm9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Unity3D
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/dk8wleA28S/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Shader
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h3 id="写在前面">写在前面</h3>
+<p>有不少地方不好理解，需要仔细研究</p>
+<!-- more -->
+<h3 id="第九章-更复杂的光照">第九章 更复杂的光照</h3>
+<p>Shader中的渲染路径设置写在另一篇文章里面，方便查阅。</p>
+<h4 id="unity中的渲染路径">Unity中的渲染路径</h4>
+<ol>
+<li>
+<p>Unity中渲染路径的设置</p>
+<ol>
+<li>全局的渲染路径设置：Other Setting--&gt;Rendering Path</li>
+<li>特殊的渲染路径设置：Camera的检视面板上的Rendering Path</li>
+<li>需要注意的是，如果当前显卡不支持当前的渲染路径，Unity则会自动使用更低一级的渲染路径。比如，一个GPU不支持延迟路径，则Unity会自动使用前向路径。</li>
+</ol>
+</li>
+<li>
+<p>渲染路径的类型</p>
+<ol>
+<li>
+<p>前向渲染：传统的渲染方式，也是最常用的渲染方式。当场景中有大量的实时光源时，性能会极速下降。</p>
+<ol>
+<li>基本任务：渲染每个渲染图元，并且计算颜色缓冲区和深度缓冲区的信息。</li>
+<li>大致步骤：每次前向渲染，对于每一个片元，都会进行深度测试。如果没有通过测试，则直接将该片元丢弃；如果通过深度测试，则片元进行正常的一系列计算最终更新颜色缓冲区。</li>
+<li>每一个逐像素光源，都会执行上面的步骤。如果一个物体在多个逐像素光源下，那么这个物体就要执行多个 Pass，每个Pass的光照结果进行混合，来得到最终的颜色值。</li>
+<li>一般而言引擎会限制逐像素光照的数目。</li>
+<li>Unity中前向渲染光照的3种处理方式
+<ol>
+<li>逐顶点</li>
+<li>逐像素</li>
+<li>球协函数（SH）：拓展文章<a href="https://huailiang.github.io/blog/2019/harmonics/"><em>球谐光照</em></a></li>
+</ol>
+</li>
+<li>Unity中光源使用哪种渲染方式的依据
+<ol>
+<li>最亮的平行光按照逐像素处理</li>
+<li>RenderMode设置成Important的光源会逐像素处理</li>
+<li>RenderMode设置成Not Important的光源会逐顶点或者SH处理</li>
+<li>如果根据以上规则得到的逐像素处理的光源数量少于QualitySetting中Pixel Light Count，则会有更多的光源按照逐像素处理。</li>
+</ol>
+</li>
+<li>前向渲染的Shader实现<br>
+<img src="https://singledigit9.github.io/post-images/1588580937528.jpeg" alt="" loading="lazy">
+<ol>
+<li>上图中两个编译指令必不可少，否则可能得到光照相关的值不正确。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>延迟渲染：</p>
+<ol>
+<li>原理：
+<ol>
+<li>第一个Pass不进行任何光照计算，仅仅计算那些片元是可见的。当一个片元是可见的，就将那个片元的颜色，平滑度，法线，自发光等信息存储到G缓冲区中。对于每个 物体来说，这个Pass只会执行一次。</li>
+<li>第二个Pass，读取G缓冲区中的片元信息，比如表面法线，视角方向等，来进行光照计算。</li>
+</ol>
+</li>
+<li>优点：
+<ol>
+<li>适合场景中光源很多，前向渲染会造成性能瓶颈的时候使用。</li>
+<li>每个光源 都能够逐像素渲染</li>
+</ol>
+</li>
+<li>缺点：
+<ol>
+<li>不支持真正的抗锯齿功能</li>
+<li>不能处理半透明物体</li>
+<li>对显卡有要求，要求支持MRT（Multiple Render Targets），Shader  Model 3.0以及以上，深度渲染纹理以及双面的模版缓冲。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>顶点照明渲染（这个新版Unity逐渐不再支持，暂时不研究了 。）</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="光源">光源</h4>
+<ol>
+<li>光源的5个属性：位置，方向，颜色，强度，衰减</li>
+<li>Unity中实时光源的几种类型
+<ol>
+<li>平行光</li>
+<li>点光源</li>
+<li>聚光灯</li>
+</ol>
+</li>
+<li>Shader中区分光源
+<ol>
+<li>平行光：<code>#ifdef USING_DIRECTIONAL_LIGHT</code></li>
+<li>点光源：<code>#if defined (POINT)</code></li>
+<li>聚光灯：<code>defined (SPOT)</code></li>
+</ol>
+</li>
+</ol>
+<h4 id="unity的光照衰减">Unity的光照衰减</h4>
+<ol>
+<li>使用衰减纹理：Unity默认方式。一般而言，性能提升，效果大部分是良好的。
+<ol>
+<li>优点：计算简单</li>
+<li>缺点：
+<ol>
+<li>需要预先采样纹理，&amp;纹理大小也会影响衰减精度</li>
+<li>不直观，且一旦使用就无发使用其他的公式</li>
+</ol>
+</li>
+<li>Shader中纹理的关键字：_LightTexture0（如果光源使用了cookies，那么应该使用_LightTextureB0）</li>
+</ol>
+</li>
+</ol>
+<h4 id="阴影">阴影</h4>
+<ol>
+<li>阴影是如何实现的
+<ol>
+<li>Shadow Map：将摄像机位置与 光源位置重合，那么摄像机看不到的地方就是应该显示阴影的地方。（Unity使用的是这种技术）</li>
+</ol>
+</li>
+<li>前向渲染中，如果平行光开启了阴影，则Unity会为光源计算它的阴影映射纹理。这个纹理是一张 深度图，记录了从光源位置出发，能看到的场景中最近的表面位置（深度信息）。
+<ol>
+<li>如何记录表面位置信息
+<ol>
+<li>将摄像机放到光源位置，然后走正常的渲染流，得到深度信息。（但这种方式有性能浪费）</li>
+<li>使用特殊的Pass，Tag标记LightMode为ShadowCaster。</li>
+</ol>
+</li>
+<li>如何判定一个点在阴影里面：将点转换到光源空间下，对阴影纹理进行采样，如果采样的深度小于该点的深度，则这个点在阴影里面。</li>
+</ol>
+</li>
+<li>Unity是如何显示最终的阴影的
+<ol>
+<li>屏幕空间的阴影映射技术（需要显卡支持，有些移动平台不支持这种特性）（原本是延迟渲染的阴影方法）</li>
+<li>步骤：
+<ol>
+<li>调用ShadowCaster的Pass，生成光源的阴影纹理和摄像机的深度纹理</li>
+<li>根据上面两个纹理生成屏幕空间的阴影图。如果摄像机的深度图中记录的表面深度大于转换到阴影映射纹理中的深度值，则说明表面虽然是可见的，但处于阴影中。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>物体之间阴影的显示
+<ol>
+<li>想要接收：需要对阴影映射纹理进行采样，将采样的结果与最后的光照结果相乘。</li>
+<li>想要投射：将物体加入到光源的阴影映射纹理计算中。（ShadowCaster的Pass）</li>
+</ol>
+</li>
+<li>Unity中阴影的设置
+<ol>
+<li>Light检视面板：ShadowType选项，可以决定当前光源是否开启阴影</li>
+<li>MeshRenderer检视面板：CastShadows和ReceiveShadows，决定是否产生和接收阴影。其中CastShadows还有TwoSided选项，可以决定该模型是否双面都产生阴影。</li>
+</ol>
+</li>
+<li>UnityShader中阴影的三个关键字
+<ol>
+<li>SHADOW_COORDS(x)：用于Struct v2f中定义阴影深度纹理。其中x要看我们的TEXCOORD使用了几个，比如我已经用了TEXCOORD0，TEXCOORD1，那么x就写2</li>
+<li>TRANSFER_SHADOW(o)：用于顶点着色器中生成阴影深度纹理</li>
+<li>SHADOW_ATTENUATION(i)：用于片元着色器中读取阴影颜色（用来和最终颜色相乘）</li>
+</ol>
+</li>
+<li>默认Shader中已经实现了阴影深度纹理的采集，可以直接使用Fallback来避免重复代码</li>
+<li>半透明物体的阴影
+<ol>
+<li>Unity默认半透明物体不产生阴影。</li>
+<li>可以设置FallBack上的Shader，将其改为不透明物体使用的Shader，来让它强制产生阴影。</li>
+</ol>
+</li>
+</ol>
+<h3 id="第十章-高级纹理">第十章 高级纹理</h3>
+<h4 id="立方体纹理">立方体纹理</h4>
+<ol>
+<li>使用原理：使用立方体纹理需要一个三维矢量。这个矢量以立方体中心为原点，发出的射线与立方体面相交的点即为采样点。</li>
+<li>优点：实现简单快速，效果也比较好</li>
+<li>缺点：当场景中光源，物体发生变化时，往往需要重新生成立方体纹理。用于反射时，立方体不能模拟多次反射的效果。（因此尽量不要对凹面的物体使用立方体纹理）</li>
+<li>应用：
+<ol>
+<li>天空盒子：
+<ol>
+<li>Unity中可在LightSetting中设置当前场景的天空盒子</li>
+<li>如果摄像机想使用自己的天空盒子，可以往摄像机上添加SkyBox组建，再将天空盒子拖到对应的位置。</li>
+</ol>
+</li>
+<li>反射：基本算法就是根据视线方向和顶点法线，计算光线方向，然后使用入射方向在立方体纹理上采样，将采样后的颜色与原来光照的颜色进行混合/覆盖等操作。
+<ol>
+<li>立方纹理的采样方法：texCUBE(_TexName, i.xyz)</li>
+</ol>
+</li>
+<li>折射：
+<ol>
+<li>物理依据：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub><mi>s</mi><mi>i</mi><mi>n</mi><msub><mi>b</mi><mn>1</mn></msub><mo>=</mo><msub><mi>a</mi><mn>2</mn></msub><mi>s</mi><mi>i</mi><mi>n</mi><msub><mi>b</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">a_1sinb_1 = a_2sinb_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+<ol>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">a_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">a_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：各自材质中的折射率</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>b</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">b_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>b</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">b_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：光与法线的夹角</li>
+</ol>
+</li>
+<li>对透明物体来说，计算完折射方向直接采样是符合物理实际的，因为光线入射有折射，出射还以折射。但在实时计算中，计算二次折射比较复杂 ，所以通常只计算一次折射。</li>
+<li>使用：<code>refract(-normalize(o.worldViewDir), normalize(o.worldNormal), _RefractRatio)</code>可以计算折射，其中<code>_refractRatio</code>为折射率。</li>
+</ol>
+</li>
+<li>菲涅尔反射
+<ol>
+<li>物理现象：低头看水面，能看到水底；看水的远处，只能看到倒影</li>
+<li>近似公式：
+<ol>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>v</mi><mo separator="true">,</mo><mi>n</mi><mo>)</mo><mo>=</mo><msub><mi>F</mi><mn>0</mn></msub><mo>+</mo><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>F</mi><mn>0</mn></msub><mo>)</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>v</mi><mo separator="true">⋅</mo><mi>n</mi><msup><mo>)</mo><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">F(v, n) = F_0 + (1 - F_0)(1 - v·n)^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>
+<ol>
+<li>v：视角方向</li>
+<li>n：表面法线</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">F_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：反射系数</li>
+</ol>
+</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>v</mi><mo separator="true">,</mo><mi>n</mi><mo>)</mo><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><mn>1</mn><mo separator="true">,</mo><mi>b</mi><mi>i</mi><mi>a</mi><mi>s</mi><mo>+</mo><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo separator="true">⋅</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>v</mi><mo separator="true">⋅</mo><mi>n</mi><msup><mo>)</mo><mrow><mi>p</mi><mi>o</mi><mi>w</mi><mi>e</mi><mi>r</mi></mrow></msup><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">F(v, n) = max(0, min(1,bias + scale·(1 - v · n)^{power}))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
+</ol>
+</li>
+<li>公式使用方法：
+<ol>
+<li><code>lerp(diffuse, reflection, saturate(fresnel)</code></li>
+<li>有些实现也会把fresnel与反射结果相乘，饭后叠加到漫反射上。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>立方体纹理的创建
+<ol>
+<li>使用特殊布局的纹理（比如立方体的展开图），然后将TextureShape设置成Cube，并在里面下拉出的选项进行相应设置。</li>
+<li>使用脚本来生成CubeMap。调用<code>Camera.RenderToCubeMap()</code>（经过测试，Mac上2018版本的Unity，一勾CubeMap的Readable就崩溃了）</li>
+<li>创建一个CubeMap（这个是旧版本方法），将6张图按顺序拖进去。</li>
+</ol>
+</li>
+</ol>
+<h4 id="渲染纹理中间缓冲">渲染纹理（中间缓冲）</h4>
+<ol>
+<li>Unity获取渲染纹理的方式
+<ol>
+<li>创建RenderTexture</li>
+<li>使用GrabPass或者OnRenderImage获取当前屏幕图像</li>
+</ol>
+</li>
+<li>应用：
+<ol>
+<li>镜子效果：使用一个新相机和RenderTexture实现。Shader里面UV的x进行一下左右翻转。</li>
+<li>玻璃效果：
+<ol>
+<li>使用GrabPass，抓取所有不透明的图像</li>
+<li>计算偏移，取折射值<pre><code class="language-shader">i.scrPos.xy = offset * i.scrPos.z + i.scrPos.xy;//离屏幕越远，偏移越大
+fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除法得到真正的屏幕坐标。
+</code></pre>
+</li>
+<li>计算反射方向，采样，得到反射颜色值</li>
+<li>反射和折射进行混合。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>RenderTexture和GrabPass的对比
+<ol>
+<li>GrabPass：实现简单，但抓取的图像和设备分辨率一样，高分辨率设备影响尤其严重。</li>
+<li>RenderTexture：效率高。尽管需要额外的摄像机进行渲染，但我们可以设置渲染的层级，RenderTexture的质量等方式来减少消耗 。</li>
+</ol>
+</li>
+</ol>
+<h4 id="程序纹理">程序纹理</h4>
+<p>实际上就是代码创建Texture并且向其中每个像素填充颜色。</p>
+<h3 id="第11章-让画面动起来">第11章 让画面动起来</h3>
+<h4 id="应用">应用</h4>
+<ol>
+<li>序列帧动画</li>
+<li>滚动背景</li>
+<li>顶点动画
+<ol>
+<li>模型空间内坐标进行偏移</li>
+<li>需要额外设置标签&quot;DisableBatching&quot;，防止Unity批处理导致顶点动画不正确</li>
+</ol>
+</li>
+<li>广告牌：让它看起来总是对着摄像机。（比如角色血条）
+<ol>
+<li>视角方向和表面法线方向总有一个是固定的</li>
+<li>通过公式计算出变换矩阵
+<ol>
+<li>right = up X  normal</li>
+<li>up' = normal X right<br>
+<img src="https://singledigit9.github.io/post-images/1588677932028.jpeg" alt="" loading="lazy"></li>
+</ol>
+</li>
+<li>转换模型空间中顶点坐标</li>
+<li>需要额外设置标签&quot;DisableBatching&quot;，防止Unity批处理导致顶点动画不正确</li>
+</ol>
+</li>
+</ol>
+<h4 id="unity和批导致顶点动画不正确的原因">Unity和批导致顶点动画不正确的原因</h4>
+<p>Unity和批后，模型各自的模型空间会丢失。</p>
+<h4 id="一些注意事项">一些注意事项</h4>
+<ol>
+<li>尽量避免使用模型空间下的一些绝对位置做计算。</li>
+<li>有顶点动画的阴影效果往往需要自己额外实现</li>
+</ol>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2">写在前面</a></li>
+<li><a href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E6%9B%B4%E5%A4%8D%E6%9D%82%E7%9A%84%E5%85%89%E7%85%A7">第九章 更复杂的光照</a>
+<ul>
+<li><a href="#unity%E4%B8%AD%E7%9A%84%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84">Unity中的渲染路径</a></li>
+<li><a href="#%E5%85%89%E6%BA%90">光源</a></li>
+<li><a href="#unity%E7%9A%84%E5%85%89%E7%85%A7%E8%A1%B0%E5%87%8F">Unity的光照衰减</a></li>
+<li><a href="#%E9%98%B4%E5%BD%B1">阴影</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E9%AB%98%E7%BA%A7%E7%BA%B9%E7%90%86">第十章 高级纹理</a>
+<ul>
+<li><a href="#%E7%AB%8B%E6%96%B9%E4%BD%93%E7%BA%B9%E7%90%86">立方体纹理</a></li>
+<li><a href="#%E6%B8%B2%E6%9F%93%E7%BA%B9%E7%90%86%E4%B8%AD%E9%97%B4%E7%BC%93%E5%86%B2">渲染纹理（中间缓冲）</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E7%BA%B9%E7%90%86">程序纹理</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC11%E7%AB%A0-%E8%AE%A9%E7%94%BB%E9%9D%A2%E5%8A%A8%E8%B5%B7%E6%9D%A5">第11章 让画面动起来</a>
+<ul>
+<li><a href="#%E5%BA%94%E7%94%A8">应用</a></li>
+<li><a href="#unity%E5%92%8C%E6%89%B9%E5%AF%BC%E8%87%B4%E9%A1%B6%E7%82%B9%E5%8A%A8%E7%94%BB%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%8E%9F%E5%9B%A0">Unity和批导致顶点动画不正确的原因</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">一些注意事项</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

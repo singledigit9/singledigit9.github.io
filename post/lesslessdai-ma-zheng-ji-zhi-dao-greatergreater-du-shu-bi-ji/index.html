@@ -1,0 +1,523 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>《代码整洁之道》读书笔记 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="《代码整洁之道》读书笔记 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="写在前面
+这本书很早就看了，但看的断断续续的。这次疫情严重，在家无聊，打游戏工作之余重新完整看一遍，算是复习吧。另外也是工作了不少时间了，也算是总结一下自己的经验吧。
+
+笔记内容
+第一章 整洁代码
+书中通过各种举例，来告诉我们一件事：时时保..." />
+  <meta property="og:title" content="《代码整洁之道》读书笔记 - 资料库">
+  <meta property="og:description" content="写在前面
+这本书很早就看了，但看的断断续续的。这次疫情严重，在家无聊，打游戏工作之余重新完整看一遍，算是复习吧。另外也是工作了不少时间了，也算是总结一下自己的经验吧。
+
+笔记内容
+第一章 整洁代码
+书中通过各种举例，来告诉我们一件事：时时保..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/lesslessdai-ma-zheng-ji-zhi-dao-greatergreater-du-shu-bi-ji/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="《代码整洁之道》读书笔记 - 资料库">
+  <meta name="twitter:description" content="写在前面
+这本书很早就看了，但看的断断续续的。这次疫情严重，在家无聊，打游戏工作之余重新完整看一遍，算是复习吧。另外也是工作了不少时间了，也算是总结一下自己的经验吧。
+
+笔记内容
+第一章 整洁代码
+书中通过各种举例，来告诉我们一件事：时时保...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/lesslessdai-ma-zheng-ji-zhi-dao-greatergreater-du-shu-bi-ji/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-github.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          《代码整洁之道》读书笔记
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-02-14 · 19 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/UjKOtFN6l/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              读书笔记
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h3 id="写在前面">写在前面</h3>
+<p>这本书很早就看了，但看的断断续续的。这次疫情严重，在家无聊，打游戏工作之余重新完整看一遍，算是复习吧。另外也是工作了不少时间了，也算是总结一下自己的经验吧。</p>
+<!-- more -->
+<h3 id="笔记内容">笔记内容</h3>
+<h4 id="第一章-整洁代码">第一章 整洁代码</h4>
+<p>书中通过各种举例，来告诉我们一件事：<strong>时时保持代码整洁</strong>。</p>
+<p>从15年年末开始做游戏客户端程序，自己写过不少烂代码，也写了些还算能看的代码。<br>
+个人觉得，最最基本的就是要让自己的代码尽可能的<strong>干净</strong>——先不谈方法封装之类的问题，只说格式——代码的缩进是不是保持一致了，空行用的对不对，没用的注释代码是不是可以删掉，功能相近的函数方法是不是应该放在一起……<br>
+我们写的代码不可避免的会有bug，但最起码的，是不是应该让我们的代码看起来像好代码呢。操作难度也不大，写完新代码检查一遍，剪切粘贴几下就好了，修改的代码提交之前看下修改记录，有没用的代码顺手删一删，几分钟的事。<br>
+代码干净了，看起来也舒服，查bug也相对来说更好查一些。</p>
+<h4 id="第二章-有意义的命名">第二章 有意义的命名</h4>
+<p>命名算是程序中基础中的基础了吧，好的命名能让你的代码更好理解。</p>
+<ol>
+<li>命名不要随意简写，或者应该让变量名能够自我描述这个变量是做什么的。</li>
+<li>尽量不要起相似度非常大的名字，避免出现使用错误。</li>
+<li>保证命名的单词拼写是正确的，如果不是，及时改正。</li>
+<li>命名要简洁，比如<code>name</code>就要比<code>nameString</code>要好，省却<strong>无用的</strong>类型名等，会让我们写的更舒服。</li>
+<li>一般来讲，变量名和类名主体应该是名词，方法名主体是动词。</li>
+</ol>
+<p>上面是简单写了写书上的内容。<br>
+就我个人而言，会尽可能的使用能自我描述的名字，当然这样也无法避免的会产生一个问题——变量名过长——好在现在IDE都有自动补全，这不算大问题。<br>
+上面的第4条，对写UI组件相关的东西时，并不是太适用。我们的UI组件实在太多，不加上诸如<code>Text</code> <code>Button</code>之类的可能会让我们写代码变的很费劲。<br>
+还有，命名不要用拼音汉字，遇到不知道的单词查一下就好了。（当然，拼音有时候还是可以用的，比如说银行税务局那种专业性特别强的项目，一些变量翻译成英文那真是又臭又长，缩写还不好认，这时候可能拼音就好一些，当然汉字就不要用了，写代码时来回切换输入法不嫌烦么？）</p>
+<h4 id="第三章-函数">第三章 函数</h4>
+<ol>
+<li>函数要尽可能的短小</li>
+<li>每个函数只做一件事</li>
+<li>函数之间的顺序要调整好，符合从上到下的阅读顺序</li>
+<li>函数的参数越少越好</li>
+<li>尽可能不要用<code>out</code> <code>ref</code>，有返回值就直接返回</li>
+<li>尽可能不要向函数中传标识参数，如果真的需要，可以考虑将函数拆成多个</li>
+<li>如果参数必须出现多个，可以考虑将一些参数封装到一个类里面</li>
+</ol>
+<p>函数短小的好处是显而易见的，一方面，它能够缩短“主功能函数”的长度，方便阅读，另一方面，短小功能单一的函数方便我们进行复用。</p>
+<p>工作中，我会习惯性的把界面逻辑拆成若干块，每块负责一个部分；涉及到的计算部分单独写一个函数——即使它只在这块界面里使用；涉及到数据修改的单独写一个函数或者类。<br>
+做过客户端的应该都清楚，函数拆的够细的话，复用不复用的先不说，起码后面改bug的时候改动会小一些，避免因为改bug而导致一堆bug。而且客户端的表现效果随时可能会改，尽可能将不受界面影响的地方写在函数里面，也利于加快自己后期的迭代效率。</p>
+<p>有些时候界面里的元素很多，声明的变量和用到这个变量的函数相隔太远，我们写代码时就会不舒服。我的习惯是使用<code>region</code>来分块，将一部分变量和使用这些变量的函数放到一个块里，方便写，也方便读。</p>
+<p>另外，必要的函数及时添加注释，说明这个函数是干什么的，每个参数的意义是什么，返回值是什么。</p>
+<p>最后就是函数命名和这个函数做的事情要符合，不要函数名字是A，结果里面还干了B的事，这容易导致一些Bug。</p>
+<p>总之，就是尽可能不要写长函数，一般不要超过20行吧。</p>
+<h4 id="第四章-注释">第四章 注释</h4>
+<ol>
+<li>能不写注释就不要写注释<br>
+如果我们命名足够规范，且能够自行解释的话，注释基本就是无用&amp;重复的。</li>
+<li>写了的注释及时更新<br>
+不要一个函数已经改了名字，功能，但它的注释仍然是旧的。</li>
+<li>注释掉的代码记得及时删除<br>
+客户端实际开发过程中，确实会因为表现效果的改过来改过去而临时注释代码，但版本定下来后，记得把临时注释的代码删除掉，避免干扰正常代码。</li>
+<li>复杂的算法要写上注释<br>
+一是为了避免自己忘掉，二是方便他人修改</li>
+</ol>
+<p>个人经验来说，功能接口的注释一般会有。界面逻辑中，复杂的计算的地方会注释每一步做了什么。功能开发调试时有时候会加上TODO获取其他的注释标记。其他的基本就没什么了。<br>
+总的来说，写代码的时候，将名字起的好一点，一般用不着额外注释。</p>
+<h4 id="第五章-格式">第五章 格式</h4>
+<p><strong>格式不分好坏，而在于统一。</strong><br>
+实际开发中，如果规范有通用代码风格文档的话，就按照文档来。没有的话就和其他同事的风格保持一致就好了。如果是自己新启的项目，那么你要保证自己的代码风格始终是一致的。</p>
+<p>我写自己的代码，习惯是按照公有方法，私有方法，公有变量，私有变量的顺序排序。公司代码的话，一般是每块中变量在上，方法在下。<br>
+<code>private</code>我不会主动去写，因为没必要，默认就是私有，额外敲个单词我嫌费手。当然如果IDE自动生成的我也不会去主动删，同样是因为没必要，删除一样费手。<br>
+此外不同语言的推荐代码风格也不一样，一般按照推荐的代码风格就可以。<br>
+代码写完之后注意调整一下代码顺序，功能相关的函数放在一起，方便查看。</p>
+<h4 id="第六章-对象和数据结构">第六章 对象和数据结构</h4>
+<ol>
+<li><em>隐藏实现并不仅仅是在变量之间放上一层函数那么简单。隐藏实现关乎抽象。类并不简单的将变量通过赋值器和取值器推向外部，而是暴露抽象接口。使用户无需了解数据的实现就能操作数据的本体。</em></li>
+<li>对象将数据隐藏在抽象之后，数据结构暴露其数据且没有具体意义的函数接口。<br>
+一个算是能够区分对象和数据结构的方法吧：<strong>对象就应该能做些什么</strong>，而数据结构仅仅只是数据而已</li>
+<li>过程式代码（使用数据结构的代码）便于在不改动当前数据结构的前提下添加新的函数；面向对象的代码便于在不改变当前已有函数的情况下添加新类。<br>
+一切皆对象只是一个传说，要根据实际情况来使用。</li>
+<li>避免<em>开火车</em>式的函数调用。类似于<code>A()</code> <code>B()</code> <code>C()</code>返回的对象不一样的情况下这样<code>A().B().C()</code>调用。（方法不应该调用由任何函数返回的对象的方法——只和朋友谈话，不与陌生人谈话——得墨忒定律）<br>
+书中谈到了一个值得注意的地方：如果<strong>数据结构仅仅是简单的拥有公有变量而没有函数，对象拥有私有变量和公有函数</strong>，这样我们就不容易产生混淆。<br>
+这个我自己写代码的时候也确实出过类似的问题——滥用属性访问器——有些简单的读写数据也加上属性访问器着实有些多余，这方面确实应该注意一下。</li>
+<li>避免混杂<br>
+详细来说，就是<strong>不要一半是数据结构，一半是对象</strong>。这样的代码相当于结合了上面第3条的所有缺点——既不方便扩展类，也不方便扩展函数接口。</li>
+<li>几种数据结构的形式<br>
+数据传送对象（DTO）：只有公有变量，没有函数的数据结构<br>
+豆结构（bean）：有简单的属性访问器<br>
+Active Record：特殊的DTO，除了公有变量外还有一些save，find之类的查找方法</li>
+</ol>
+<p>看完这一章觉得收获不小，之前自己写代码确实没有注意数据结构和对象之间的区别，也确实因为这个原因犯过一些错误，值得注意。</p>
+<h4 id="第七章-错误处理">第七章 错误处理</h4>
+<ol>
+<li>如果错误处理影响了正常逻辑的表达，那么这段错误处理就是不好的。</li>
+<li>如果有过多的错误处理，可以考虑将错误直接抛出异常，然后使用<code>try</code> <code>catch</code>。</li>
+<li>不要向函数中传递<code>null</code>。</li>
+<li>函数不要返回<code>null</code>。<br>
+可以考虑在函数返回null的地方返回一个特例类，或者直接将<code>null</code>抛出异常。如果是第三方API返回的，可以考虑将接口额外封装，单独处理一下。</li>
+</ol>
+<p>就个人工作经验来说，<code>null</code>的处理真的是各种多。&amp;&amp;好像自己很忌讳写<code>try catch</code>，这方面确实应该改正。<br>
+顺便网上查了查关于<code>try catch</code>的效率问题，发现<code>try</code>的部分基本没影响，好多<code>if return</code>的错误处理改用异常的话能让代码简洁不少。<br>
+另外，不要在开发中隐藏错误，自己开发时，一定要让报错明显的清晰的展示出来——比如什么地方数据空了，一定要有相应的log或者error，将不正常的地方暴露出来才有助于我们提升代码的稳固性。</p>
+<h4 id="第八章-边界">第八章 边界</h4>
+<ol>
+<li>使用第三方代码时，可以将第三方的代码接口按照我们的需求进行一次封装。这么做是为了隔离代码，防止后更新第三方代码是，第三方代码API变化而导致的大范围修改。</li>
+<li>有些时候，做新功能需要某个尚未完成的模块做支持。这时候可以先定义尚未完成的模块的接口，先完成自己的功能开发，等需要的模块完成后在修改接口实现。</li>
+<li><strong>学习型测试</strong>：不在生产代码中实验新的东西，而是编写测试来理解和明确第三方API的功能。这样做一是更容易清楚API的功能，二是当第三方API更新时，可以使用这些测试代码来检查API接口以及实现是否有变化。<br>
+平常自己写代码的时候确实没有写正式的测试脚本，基本上都是临时测试，测试通过后测试代码就被干掉了，这方面确实应该改正。</li>
+</ol>
+<h4 id="第九章-单元测试">第九章 单元测试</h4>
+<ol>
+<li>单元测试让代码可拓展，可维护，可复用——在有测试的基础上，放心的改动任何代码，而不用担心自己的改动导致一些莫名其妙的Bug——你只需要改动后也能通过测试接好了。</li>
+<li>TDD三定律<br>
+书上的中文翻译实在让人头大，所以这里记录的是英文版的&amp;&amp;网上的总结性的翻译。
+<ol>
+<li>You must write a failing unit test before you write production code.（测试先行）</li>
+<li>You must stop writing that unit test as soon as it fails; and not compiling is failing.（测试不通过，写生产代码）</li>
+<li>You must stop writing production code as soon as the currently failing test passes.（老测试通过，开始写新的测试）</li>
+</ol>
+</li>
+<li>测试代码一样需要维护和整洁：脏测试 <strong>&lt;=</strong> 没测试</li>
+<li>测试代码的要求：<strong>可读性</strong>。</li>
+<li>测试代码的步骤：<strong>构造——操作——检验</strong></li>
+<li>测试代码中断言数量应该最小化；每个测试代码中只测试一个概念。</li>
+<li>测试代码<strong>FIRST原则</strong>
+<ul>
+<li>Fast快速：测试能快速运行</li>
+<li>Independent独立：测试代码之间相互独立，没有关联。</li>
+<li>Repeatable可重复：测试代码的应该能够在任何环境下重复运行。</li>
+<li>Self-Validating自足验证：测试代码有明确的测试成功还是失败的输出，而不是靠Log人工去验证结果。</li>
+<li>Timely及时：测试代码应该在生产代码前及时编写。</li>
+</ul>
+</li>
+</ol>
+<p>说起来有些遗憾，平时工作中没用过TDD进行开发。时间紧，需求变更快，写一般项目代码时基本上就不写测试代码，直接上的。估计以后工作中也不会有机会用TDD来进行开发。还是尽可能在自己的项目中试验吧。</p>
+<h4 id="第十章-类">第十章 类</h4>
+<ol>
+<li>类应该尽量短小。</li>
+<li>单一权责原则：类或者模块有且仅有一个被修改的理由。</li>
+<li>内聚：类应该有少量的实体变量，类中的每个方法都应该操作一个或者多个实体变量。<br>
+将大函数改成小函数时，往往也是将大类拆成小类的时机。</li>
+<li>开闭原则：对扩展开放，对修改关闭。<br>
+理想系统中，我们通过扩展代码而不是修改代码来为程序增加新的特性。</li>
+<li>依赖倒置原则：上层模块不依赖底层模块，都应该依赖抽象；抽象不依赖细节，细节依赖抽象。</li>
+</ol>
+<p>个人认为核心的还是要让类尽可能的小。一方面是修改功能的时候，只需要修改对应的小类就喊了；另一方面，小的类才方便更精准的复用。</p>
+<h4 id="第十一章-系统">第十一章 系统</h4>
+<p><em>这个部分书上的好多东西是java的，本人没正经做过java开发，只是懂一点java语法罢了，同时系统这块自己还有不少提升的余地，这部分就记录一下自己的经验&amp;感受吧。</em></p>
+<p>系统这块关注的是<code>Main</code>入口，以及各个功能模块之间的使用方式。<br>
+书中反复提到的一个关键点在于<strong>构造和使用分离</strong>，也就是说，我们不要在Main中进行具体的处理，而是应该将具体处理的逻辑交给指定的功能模块。（这个错误自己曾经犯过，当时确实想的是分模块启动，但是里面有些模块之间有依赖关系，当时自己是直接把依赖的一些处理放在Main里面了，在不断的迭代修改的情况下，Main中的代码越来越乱，启动逻辑各种复杂）。<br>
+还有就是一些参数之类的，能走配置就走配置，不要直接代码里面写死，避免因为参数变化而反复改代码，不容易调试还容易出错。</p>
+<h4 id="第十二章-迭进">第十二章 迭进</h4>
+<ul>
+<li>先记录几个英文缩写 <strong>SRP</strong>单一职责原则，<strong>DIP</strong>依赖倒置原则，<strong>OO</strong>面向接口编程。</li>
+<li><strong>简单设计</strong>的四条原则（四条原则重要性递减）
+<ol>
+<li>运行所有测试<br>
+首先程序要能按照预期正常的工作。这里额外强调了测试，是因为测试导向我们编写单一短小的设计方案（SRP），也因为紧耦合的代码难以测试，也一样会导向我们尽可能的解耦合（DIP）。<strong>测试消除了对清理代码就会破坏代码的恐惧。</strong></li>
+<li>不可重复<br>
+重复的代码，重复的逻辑，重复的功能，都应该尽可能的消除掉。拿现在在做的项目举例子吧，旧的代码中有好多相同功能的不同接口，同一个数据不同的访问路径，尤其是各种局部的中间缓存，特别容易出现数据没同步到全局的Bug。重复的越少，改bug就越容易（不然一个Bug要改N多个地方，容易错漏）。</li>
+<li>表达了程序员的意图<br>
+自己写的代码要清晰易懂。注意命名，保持函数和类的短小，必要时使用标准命名法，编写单元测试（单元测试的一个重要作用就是通过实例起到文档的作用）。此外，必要的地方写上注释，尤其是原创和半原创的稀奇古怪的算法。</li>
+<li>尽可能少的类和函数的数量<br>
+在上面三条都满足的情况下，可能会有很多小类和小函数。但类和函数的数量太多，有些时候完全是我们的教条主义导致的，不要因为编码的标准限制而写一堆无用的代码。</li>
+</ol>
+</li>
+</ul>
+<h4 id="第十三章-并发编程">第十三章 并发编程</h4>
+<p>本来是想记一下书上的关键点的，后来发现仅仅是记录一些名词，也没什么用，就简单写些自己想到的吧。</p>
+<p>服务器的东西接触过一些，但修改的都是纯逻辑相关的内容，并没有涉及多线程进程的内容。<br>
+自己本身是Unity客户端，曾经独立写过一个项目的网络模块，算是有一点点经验吧。</p>
+<p>先来说为什么要用多线程。网络连接，网络消息发送和接收，多数都是阻塞的——阻塞阶段你的app什么都干不了——表现就是卡顿或者卡死。<br>
+至于客户端的线程共享数据的处理，一般来说加上<code>lock</code>就可以了——防止主线程查询数据与网络线程存放数据相冲突。数据方面其他的没什么了。<br>
+觉得最后就是代码的梳理部分了。不要将不同线程的逻辑代码混淆在一起，容易出现Bug。</p>
+<p>现在来反思自己之前写的网络部分，还是有些问题的。这里记录下来，避免以后再犯。<br>
+程序入口部分，因为网络做了不少回调消息之类的处理，影响了总体的流程。<br>
+网络模块有部分代码分割的不够好，写的有些乱。<br>
+过于强调封装，有一些没用的工具方法 ，凭空增加了代码的复杂度。</p>
+<h4 id="第十四章-逐步改进第十六章-重构">第十四章 逐步改进；第十六章  重构</h4>
+<ol>
+<li>首先保证程序能够正常的工作。</li>
+<li>添加新功能特性后 ，不止要看程序能不能正常工作，还要看代码是不是因为这个添加而乱掉了。</li>
+<li>修改代码不仅仅是代码干净就可以的，还要考虑到以后的拓展性。我们每一次修改代码都应该是为了未来少修改代码（就像是努力是为了以后不用努力一样）。</li>
+<li>在不断的功能添加和代码修改中，<strong>测试</strong>能够保障我们不会把原本好用的功能逻辑改坏掉。进一步说明了<strong>测试</strong>的重要性。</li>
+<li>不断修改优化自己的旧代码对自己的技术成长的帮助并不比仔细构思写新代码小。不断修改自己的代码，明确自己之前犯过的错误，从而减少自己再次犯错的几率。</li>
+</ol>
+<h4 id="第十七章-味道与启发">第十七章 味道与启发</h4>
+<p><em>这一章的内容是总结式的，好多点前面都有提到过。下面主要记录一下之前没有提到过并且自己还没有做到的内容。</em></p>
+<ol>
+<li>程序的启动，出包等各个流程步骤要足够简单，足够快。（复杂==&gt;不好用==&gt;懒得用==&gt;测试少==&gt;bug多）</li>
+<li>程序的测试步骤也要足够简单。</li>
+<li>注意<strong>编译警告</strong>，有时程序错误查不到原因就是因为我们忽略了警告。</li>
+<li>注意边界条件的检查，注意边界条件的封装。</li>
+<li>尽可能限制类和模块暴露的接口数量。类中方法越少越好，函数知道的变量越少越好，类拥有的实体变量越少越好。</li>
+<li>设定一套命名的规范，并且从始至终使用</li>
+<li>类中方法一般应该只使用自己类中的参数和方法，而不应该使用其他类中的参数和方法。</li>
+<li>尽量使用多态来替代switch/case。</li>
+<li>将if的判断条件封装成函数方法 ，使代码更易读。</li>
+<li>避免否定性条件判断</li>
+<li>不要掩盖时序耦合，把它暴露出来</li>
+<li>命名应该说明副作用。eg.<code>GetData()</code> 和 <code>GetOrCreateData()</code>，后一个明确地告诉你如果获取不到会新建一个给你 。</li>
+<li>缺陷通常扎堆，某个地方有缺陷时，多次检查，也许还有别的 。</li>
+</ol>
+<hr>
+<p><em>完毕</em></p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2">写在前面</a></li>
+<li><a href="#%E7%AC%94%E8%AE%B0%E5%86%85%E5%AE%B9">笔记内容</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%95%B4%E6%B4%81%E4%BB%A3%E7%A0%81">第一章 整洁代码</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E5%91%BD%E5%90%8D">第二章 有意义的命名</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%87%BD%E6%95%B0">第三章 函数</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%B3%A8%E9%87%8A">第四章 注释</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%BC%E5%BC%8F">第五章 格式</a></li>
+<li><a href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">第六章 对象和数据结构</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86">第七章 错误处理</a></li>
+<li><a href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E8%BE%B9%E7%95%8C">第八章 边界</a></li>
+<li><a href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">第九章 单元测试</a></li>
+<li><a href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E7%B1%BB">第十章 类</a></li>
+<li><a href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B3%BB%E7%BB%9F">第十一章 系统</a></li>
+<li><a href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E8%BF%AD%E8%BF%9B">第十二章 迭进</a></li>
+<li><a href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B">第十三章 并发编程</a></li>
+<li><a href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0-%E9%80%90%E6%AD%A5%E6%94%B9%E8%BF%9B%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E9%87%8D%E6%9E%84">第十四章 逐步改进；第十六章  重构</a></li>
+<li><a href="#%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0-%E5%91%B3%E9%81%93%E4%B8%8E%E5%90%AF%E5%8F%91">第十七章 味道与启发</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

@@ -1,0 +1,526 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>《C#高级编程5.0》 读书笔记 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="《C#高级编程5.0》 读书笔记 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="写在前面
+发现一个买实体书的好处吧，当你发现屋子里的乱七八糟的东西越来越多，想清理掉的时候，发现一堆没怎么翻过的书在那里，就只能把它看完，做好笔记再扔了。
+这本书真的是比砖头还要厚，里面的各种知识点都很详细。但因为一些东西太过基础，一些东西..." />
+  <meta property="og:title" content="《C#高级编程5.0》 读书笔记 - 资料库">
+  <meta property="og:description" content="写在前面
+发现一个买实体书的好处吧，当你发现屋子里的乱七八糟的东西越来越多，想清理掉的时候，发现一堆没怎么翻过的书在那里，就只能把它看完，做好笔记再扔了。
+这本书真的是比砖头还要厚，里面的各种知识点都很详细。但因为一些东西太过基础，一些东西..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/lesslesscgao-ji-bian-cheng-50greatergreater-du-shu-bi-ji/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="《C#高级编程5.0》 读书笔记 - 资料库">
+  <meta name="twitter:description" content="写在前面
+发现一个买实体书的好处吧，当你发现屋子里的乱七八糟的东西越来越多，想清理掉的时候，发现一堆没怎么翻过的书在那里，就只能把它看完，做好笔记再扔了。
+这本书真的是比砖头还要厚，里面的各种知识点都很详细。但因为一些东西太过基础，一些东西...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/lesslesscgao-ji-bian-cheng-50greatergreater-du-shu-bi-ji/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-github.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          《C#高级编程5.0》 读书笔记
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-02-02 · 10 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/UjKOtFN6l/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              读书笔记
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/wEUlpqMsQF/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              C#
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h3 id="写在前面">写在前面</h3>
+<p>发现一个买实体书的好处吧，当你发现屋子里的乱七八糟的东西越来越多，想清理掉的时候，发现一堆没怎么翻过的书在那里，就只能把它看完，做好笔记再扔了。<br>
+这本书真的是比砖头还要厚，里面的各种知识点都很详细。但因为一些东西太过基础，一些东西又不是我想做的方向，所以我就对着目录圈出了自己觉得需要看的地方。下面做一个笔记，算是填充自己的资料库吧。<br>
+&amp;&amp; 发现里面有些东西有点旧了，但还是现看完再说，新添的特性再额外补充一下。</p>
+<!-- more -->
+<h3 id="语法方面">语法方面</h3>
+<ol>
+<li>关于两个main()函数：一般C#程序中，只允许有一个静态main函数作为入口，否则会编译错误。（<em>看目录的时候还以为多个main函数可以有什么特殊操作特殊用法，结果并没有</em>）</li>
+<li>闭包：声明匿名函数的时候，如果引用了匿名函数内部引用了外部的量，就会形成一个闭包。关于闭包，我个人理解就是匿名函数在实际执行的时候，会隐式创建一个类，这个类包含构造方法和一个与匿名函数相同的public方法，外部变量通过构造方法传到隐式类里面来，调用匿名函数时执行隐式类的public方法。了解了大致的原理，我们就可以知道，首先<strong>写程序的时候应该避免频繁使用带闭包的匿名函数</strong>；其次<strong>注意匿名函数中[[引用]]的外部变量，每次调用匿名函数，外部变量的值都是最新值，比如for循环中Dotween的OnComplete中输出循环变量 i 值，输出的 i 值不是从0开始，而是循环最大值</strong>（<em>这个高版本语言已经升级改掉了，不用在意这条，但低版本语言上还是有这个特性的，仍然需要注意</em>）</li>
+<li>逆变和协变：<strong>协变out，逆变in</strong>。用在接口上，可以控制传参和返回值的类型大小。这地方确实比较绕。下面有个简单例子，帮助理解。其中<strong>A大于B表示A包含B，能用B的地方一定能用A</strong>。（<strong>一定要看注释</strong>）（个人觉得这个东西自然而然的就用出来了，死扣定义没什么大用，用多了就好了。&amp;&amp;写错了属于语法错误，有报错的，也不用怕出稀奇古怪的bug）</li>
+</ol>
+<pre><code class="language-c-sharp">        /// 1. string 是 object 的子类 ==》 string &lt; object
+        /// 2. 作为输入值，能输入object的地方一定能输入string 
+        ///   ==》 action&lt;in string&gt; 包含 action&lt;in object&gt; 
+        ///   ==》 action&lt;in string&gt; 大于 action&lt;in object&gt;   
+        ///    ==》 大小关系发生变化，为逆变
+        /// 3. 作为输出值，能输出object的地方一定能输出string
+        ///   ==&gt; func&lt;out object&gt; 包含  func&lt;out string&gt;
+        ///   ==&gt; func&lt;out string&gt; 小于 func&lt;out object&gt; 
+        ///   ==&gt; 大小关系不变，为协变
+        /// 4. 上面的2，3只是简单的举例，实际使用时，可以自己控制in，out参数
+        
+        Action&lt;object&gt; v = null;
+        Action&lt;string&gt; c = v;
+
+        Func&lt;string&gt; s = null;
+        Func&lt;object&gt; d = ()=&gt;
+        {
+            return s();
+        };
+</code></pre>
+<ol start="4">
+<li><code>dynamic</code>类型，可以在运行时确定变量的类型，而不是在编译阶段。但有两个限制，一个是动态类型不支持扩展方法，另一个是动态类型不能作为匿名函数的参数。个人觉得，<code>dynamic</code>在反射之类的东西里面会比较有用，平时一般开发中，基本不会用上这个东西。&amp;&amp;C#本身并不是动态语言，为了实现这个动态语言的功能，C#内部做了很多很多的操作，这也就导致了一个问题，他的效率并不高。</li>
+</ol>
+<h3 id="字符串">字符串</h3>
+<ol>
+<li>
+<p>string类<br>
+需要注意的是，string类方法的一系列操作，基本都是重新创建新字符串，进行一系列处理后再将旧字符串丢弃，新字符串返回。所以，一些长字符串操作不要用string，影响效率。另外，除了常用的字符串方法，比如<code>format</code>之类的，还有其他的字符串方法，可以简单实现我们的需求。<em>遇到类似的问题要先记得查一下API，尽量不要直接自己上手写，一是非学习情况下造轮子没什么意义，二是自己造的轮子还不一定好用。</em></p>
+</li>
+<li>
+<p>长字符串的处理：使用<code>StringBuilder</code><br>
+<code>StringBuilder</code>仅能够<strong>替换</strong>，<strong>追加</strong>，<strong>删除</strong>字符串中的文本，而且它的效率很高。<br>
+<code>StringBuilder</code>在能够设置<code>Capacity</code>，也就是操作字符串的空间大小。所有对字符串的操作都在这个空间中进行，而不用额外去申请内存空间，从而提高操作字符串的效率。在默认不设置<code>Capacity</code>的情况下，<code>StringBuilder</code>创建的空间会比初始化所用的字符串大，&amp;&amp;如果操作的字符超出所设置的<code>Capacity</code>，一般会自动翻倍。<br>
+<em>值得额外注意⚠️的是，只有对字符串频繁进行操作，才能获得<code>StringBuilder</code>的性能优势。</em></p>
+</li>
+<li>
+<p>关于<code>Fromat</code><br>
+需要额外知道的就是通过实现<code>IFormattable</code>接口，可以自定义format格式。下面是一个简单的例子:</p>
+</li>
+</ol>
+<pre><code class="language-c-sharp">public class A : IFormattable
+{
+    public string content;
+   
+    public string ToString(string format, IFormatProvider formatProvider)
+    {
+        switch (format)
+        {
+            case &quot;UP&quot;:
+                return content.ToUpper();
+                break;
+            case &quot;LOW&quot;:
+                return content.ToLower();
+                break;
+            default:
+                return content;
+                break;
+        }    
+    }
+}
+</code></pre>
+<pre><code class="language-c-sharp">var a = new A();
+a.content = &quot;Hello World !!!&quot;;
+
+print($&quot;{a:LOW}&quot;);
+print(a.ToString(&quot;UP&quot;, null));
+</code></pre>
+<ol start="4">
+<li>正则表达式<br>
+<strong>关键字</strong> <strong><code>Regex</code></strong><br>
+<img src="https://upload-images.jianshu.io/upload_images/10406737-116f1b54a5980fb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用的正则表达式关键字.png" loading="lazy"></li>
+</ol>
+<h3 id="内存管理和指针">内存管理和指针</h3>
+<ol>
+<li>堆和栈
+<ol>
+<li>栈：存储值类型数据</li>
+<li>托管堆：存储引用类型数据</li>
+</ol>
+</li>
+<li>C#中的指针
+<ol>
+<li>在C#中使用指针需要添加<code>unsafe</code>标记</li>
+<li>在类型后面添加<code>*</code>表示对应类型的指针。eg. <code>int*</code> <code>byte*[]</code></li>
+<li><code>&amp;</code>取地址操作；<code>*</code>获取地址内容操作</li>
+</ol>
+</li>
+<li><code>sizeof</code>确定各种数据类型所占的空间大小（字节数）</li>
+<li><code>stackalloc</code>分配一定大小的内存。下面是一个高速数组的例子：（需要注意的是，这种数据是没有越界报错的，需要自己额外检查）</li>
+</ol>
+<pre><code class="language-c-sharp">unsafe static void Test()
+{
+    int* intArray = stackalloc int[10];
+    for (int i = 0; i &lt; 10; i++)
+    {
+        intArray[i] = i;
+    }
+    
+    for (int i = 0; i &lt; 10; i++)
+    {
+        Console.WriteLine(*(intArray + i));
+    }
+}
+</code></pre>
+<h3 id="反射">反射</h3>
+<ol>
+<li>这个东西游戏开发代码中一般是用不到的。其他的.net具体是什么样子就不清楚了，没有做过.net的正式商业项目，只是自己写过demo工具之类。欢迎大佬告知。</li>
+<li>其实就是用<strong>名字</strong>来找对应的<strong>类型方法属性等等</strong>，然后对其进行<strong>动态创建调用方法等</strong>操作。</li>
+<li>个人的使用感受：根据名字=》找<strong>程序集</strong>=》找<strong>类型</strong>=》找<strong>方法属性字段等等</strong>。找到你想找的量进行操作就好了。<br>
+但这个名字有时候容易写不对。就Unity来说，Unity自己的非编辑器C#脚本是打在一个dll里面的，写编辑器工具时，不好直接填那个dll的名字。我当时是找了一个非编辑器类，用这个类取它所在的程序集，然后用获取到的这个程序集进行反射，来找其他的想要的类。算是一个偷懒的办法吧。</li>
+</ol>
+<h3 id="异步">异步</h3>
+<ol>
+<li>最最基本的，使用<code>Thread</code>实现。这个没什么太需要注意的。需要注意一下的就是启动新线程消耗会比较大，要避免频繁创建线程。&amp;&amp;C#提供了其他的异步类和接口，这个可以基本不用了。</li>
+<li><code>Task</code>，下面是几种创建&amp;&amp;启动方式。类&amp;接口知道了，其他的细节需要的时候直接查一下就好了，这里不再记录。</li>
+</ol>
+<pre><code>创建
+
+Task.Factory.StartNew
+
+Task.Run
+
+Task task1 = new Task(() =&gt;
+{
+    Console.WriteLine(123);
+});
+task1.Start();
+</code></pre>
+<pre><code>阻塞等待，当然还有其他的接口，用的时候直接看补全提示就好了
+Task.WaitAll(task1)
+</code></pre>
+<ol start="3">
+<li><code>CancellationTokenSource</code> 取消常驻线程辅助类。<br>
+它的主要作用就是标记量，但相比普通的<code>bool</code>和<code>int</code>，使用方便&amp;&amp;有自带的触发回掉接口。</li>
+<li><code>async</code> <code>await</code>，用法感觉上和协程的<code>yield return</code>差不多。</li>
+</ol>
+<pre><code class="language-c-sharp">    class Program
+    {
+        static void Main(string[] args)
+        {
+            var content = Test1().Result;//这个属性是阻塞的
+            Console.WriteLine(content);
+        }
+
+        static async Task&lt;string&gt; Test1()//这里返回值还可以是`Task` `void`
+        {
+            string path = &quot;&quot;;
+            FileStream fs = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+
+            string content = await sr.ReadToEndAsync();//这里等待读取完成
+
+            return content;
+        }
+    }
+</code></pre>
+<ol start="5">
+<li>并行<code>Parallel</code>：注意并行不保证执行顺序<br>
+<code>Parallel</code>有三个静态方法，分别是<code>Invoke</code>,<code>For</code>,<code>Foreach</code>。
+<ol>
+<li><code>Parallel.Invoke(params Action[] actions)</code>：能够同时执行参数中的方法。</li>
+<li><code>Parallel.For</code>：多次执行一个方法。如果需要执行的次数大于当前任务线程的数量，则同时执行的方法数量为当前最大任务线程数，这一批次执行完毕再执行下一个批。<code>ParallelLoopState</code>对象的<code>Break</code>方法能够提前终止该次并行。</li>
+</ol>
+<pre><code class="language-c-sharp">Parallel.For(0, 40, (i, p) =&gt;
+{
+    string content = $&quot;i:{i} taskId:{Task.CurrentId} ThreadId:    {Thread.CurrentThread.ManagedThreadId}&quot;;
+    Console.WriteLine(content);
+
+    Thread.Sleep(1000);
+});
+</code></pre>
+3.<code>Parallel.Foreach</code>：并行执行一个方法。第二个<code>Action</code>参数中，第一个为迭代的值，第二个是并行状态变量，第三个为迭代次数。<pre><code>string[] test = new[]
+{
+    &quot;Hello&quot;,
+    &quot;World&quot;,
+    &quot;HHH&quot;,
+    &quot;123&quot;,
+    &quot;456&quot;,
+};
+
+Parallel.ForEach(test, (a, p, i) =&gt;
+{
+    Console.WriteLine($&quot;content:{a}, long:{i}&quot;);
+});
+</code></pre>
+</li>
+<li><code>System.Timer.Timer</code> 计时器，延迟多长时间触发事件。</li>
+<li>关于线程间数据同步，第一个原则就是能不同步就不同步。必须同步的，除了简单的使用<code>lock</code>，还有其他的<code>Spinlock</code>,<code>Interlocked</code>等（++i不是线程安全的）。</li>
+</ol>
+<hr>
+<h5 id="一个实用工具">一个实用工具</h5>
+<p>使用<strong>ildasm</strong>工具进行代码分析（反编译）。</p>
+<hr>
+<p>断断续续，看一点写一点拖了好久，终于吧想看的看完了。</p>
+<p>最后感谢大神写的好文章<br>
+<a href="https://www.cnblogs.com/qixuejia/p/4383068.html">深入理解 C# 协变和逆变</a>，给了我很大启发。<br>
+<a href="https://blog.csdn.net/btfireknight/article/details/97766193">C# Task和async/await详解</a>，介绍的很详细。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2">写在前面</a></li>
+<li><a href="#%E8%AF%AD%E6%B3%95%E6%96%B9%E9%9D%A2">语法方面</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a></li>
+<li><a href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%92%8C%E6%8C%87%E9%92%88">内存管理和指针</a></li>
+<li><a href="#%E5%8F%8D%E5%B0%84">反射</a></li>
+<li><a href="#%E5%BC%82%E6%AD%A5">异步</a><br>
+*
+<ul>
+<li><a href="#%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7">一个实用工具</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

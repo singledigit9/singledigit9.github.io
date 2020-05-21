@@ -1,0 +1,906 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Lua复习笔记 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Lua复习笔记 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="简介
+关于Lua的复习整理。方便以后查找&amp;amp;避免遗忘。
+
+基本介绍
+变量与类型
+
+Lua是动态语言，变量没有类型，但值有类型。
+所有的值都是 第一类对象
+8种基本类型：
+
+nil：任何未赋值的变量均为nil
+boolean：nil和f..." />
+  <meta property="og:title" content="Lua复习笔记 - 资料库">
+  <meta property="og:description" content="简介
+关于Lua的复习整理。方便以后查找&amp;amp;避免遗忘。
+
+基本介绍
+变量与类型
+
+Lua是动态语言，变量没有类型，但值有类型。
+所有的值都是 第一类对象
+8种基本类型：
+
+nil：任何未赋值的变量均为nil
+boolean：nil和f..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/lua-fu-xi-bi-ji/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="Lua复习笔记 - 资料库">
+  <meta name="twitter:description" content="简介
+关于Lua的复习整理。方便以后查找&amp;amp;避免遗忘。
+
+基本介绍
+变量与类型
+
+Lua是动态语言，变量没有类型，但值有类型。
+所有的值都是 第一类对象
+8种基本类型：
+
+nil：任何未赋值的变量均为nil
+boolean：nil和f...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/lua-fu-xi-bi-ji/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-github.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          Lua复习笔记
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2019-01-13 · 15 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/UjKOtFN6l/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              读书笔记
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/nSAmWDS57A/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Lua
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="简介">简介</h2>
+<p>关于Lua的复习整理。方便以后查找&amp;避免遗忘。</p>
+<!--more-->
+<h2 id="基本介绍">基本介绍</h2>
+<h3 id="变量与类型">变量与类型</h3>
+<ul>
+<li>Lua是动态语言，变量没有类型，但值有类型。</li>
+<li>所有的值都是 <em>第一类对象</em></li>
+<li>8种基本类型：
+<ul>
+<li>nil：任何未赋值的变量均为nil</li>
+<li>boolean：nil和false在判断中均视为false，其他值视为true</li>
+<li>number：整数和浮点数</li>
+<li>string：可以视为不可改变的byte队列。</li>
+<li>function：函数。是对象。</li>
+<li>userdata：是对象。</li>
+<li>thread：线程，是对象。</li>
+<li>table：是对象。除了nil和 <em>NaN</em> 不能作为索引，其他的所有值均能作为索引。是Lua中唯一的数据结构机制。如果使用number索引，浮点数如果能够转换成整数的话，则索引值默认改成对应的整数，eg. a[2.0]与a[2]</li>
+</ul>
+</li>
+</ul>
+<h3 id="元表和元方法metatables-and-metamethods">元表和元方法(Metatables and Metamethods)</h3>
+<ul>
+<li>任何值都有元表</li>
+<li>元方法定义了值的基本行为，如加减等操作。</li>
+<li>可以使用<code>getmetatable</code>来获取元表；使用<code>setmetatable</code>替换元表</li>
+<li>每个table和userdata有自己单独的元表，复合的table和userdata共享元表。其他的值每种类型共享一个元表。</li>
+<li>当外部触发调用原方法时，先在当前的元表中查找对应的元方法，没有则在上一级元表中继续查找，直至找到对应的元方法或者查找完所有的元表。找到则执行返回结果，找不到则报错。</li>
+<li>所有的元方法以及其含义：
+<ul>
+<li><code>__add</code> : +</li>
+<li><code>__sub</code> : -</li>
+<li><code>__mul</code> : *</li>
+<li><code>__div</code> : /</li>
+<li><code>__mod</code> : %</li>
+<li><code>__pow</code> : ^</li>
+<li><code>__unm</code> : 取反</li>
+<li><code>__idiv</code> : // 等价于 (int)(a/b)</li>
+<li><code>__babd</code> : 按位与</li>
+<li><code>__bor</code> : 按位或</li>
+<li><code>__bxor</code> : 按位异或</li>
+<li><code>__bnot</code> : 按位取反</li>
+<li><code>__shl</code> : 按位左移</li>
+<li><code>__shr</code> : 按位右移</li>
+<li><code>__cancat</code> : .. 字符拼接</li>
+<li><code>__len</code> : 默认情况下，返回字符串或者table的长度</li>
+<li><code>__eq</code> : ==比较等于</li>
+<li><code>__lt</code> : &lt;比较小于</li>
+<li><code>__le</code> : &lt;=比较小于等于</li>
+<li><code>__index</code> : a[b] 索引访问操作执行。当目标不是table或者table中没有对应索引时触发。</li>
+<li><code>__newindex</code> : a[b] = c 索引赋值才做执行。当目标不是table或者table中没有对应索引时触发。</li>
+<li><code>__call</code> : 非function作为函数调用时触发，惟一一个能够返回多个值的元方法。</li>
+<li><code>__gc</code> : table和userdata 执行垃圾回收时调用。</li>
+</ul>
+</li>
+</ul>
+<h3 id="垃圾回收gc">垃圾回收(GC)</h3>
+<ul>
+<li>Lua中的内存是自动分配的，gc也是自动的。当一个对象的引用为0时，将其加入回收列表，等待回收。</li>
+<li>特殊的table：弱表(weak table)
+<ul>
+<li>描述：弱表是一个弱引用的表。</li>
+<li>定义：重新设置table的元表，添加<code>__mode</code>字段。其中字段值等于&quot;k&quot;表示key是弱引用，&quot;v&quot;表示值是弱引用，&quot;kv&quot;表示索引和值都是弱引用。</li>
+</ul>
+<pre><code class="language-Lua">weakTable = {&quot;xxx&quot;, &quot;yyy&quot;, &quot;zzz&quot;};
+setmetatable(weakTable, {__mode = &quot;v&quot;})
+</code></pre>
+</li>
+</ul>
+<h3 id="协同程序continues">协同程序(Continues)</h3>
+<ul>
+<li>在lua中，协程也相当于是独立的线程，但和线程不同的是，协程只能通过显示调用和yield函数来挂起和执行。</li>
+<li>激活执行流程：1.创建协程；2.激活协程；3.执行到 <strong>任意</strong><code>coroutine.yield</code>返回；4.再次激活；5.接着上次未执行的地方继续执行，遇到<code>coroutine.yield</code>返回。（<strong>任意</strong> 表示函数中嵌套的函数里如果有<code>coroutine.yield</code>的话，一样跳出返回）</li>
+<li>协程相关的函数
+<ul>
+<li>coroutine.create([function])：创建协程，返回<code>thread</code>类型。该方法并不启动协程。</li>
+<li>coroutine.resume([thread],[arg...])：激活协程，协程结束或者yield结束此次运行。如果中间出错，则会终止该协程，但不会终止程序。
+<ul>
+<li>参数：[要激活的协程],[可选传递参数]。</li>
+<li>返回：true, [coroutine.yield(xxx)中返回的参数] 或者 false,错误信息。</li>
+</ul>
+</li>
+<li>coroutine.yield([arg...])：协程跳出。每一次resume，执行到一个yield；下一次resume，接着未执行的代码继续执行。</li>
+<li>coroutine.wrap：创建协程。
+<ul>
+<li>返回：<code>function</code>。</li>
+<li>使用说明：当外部调用返回的函数时，激活对应的协程，并有返回值。其返回值和<code>resume</code>相比除了没有第一个bool返回值，其余相同。并且，当函数中运行出错时，会抛出异常，中断程序。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>官网的协程的示例代码
+<ul>
+<li>代码：</li>
+</ul>
+<pre><code class="language-Lua">function foo (a)
+	print(&quot;foo&quot;, a)
+	return coroutine.yield(2*a)
+end
+
+co = coroutine.create(function (a,b)
+	print(&quot;co-body&quot;, a, b)
+	local r = foo(a+1)
+	print(&quot;co-body&quot;, r)
+	local r, s = coroutine.yield(a+b, a-b)
+	print(&quot;co-body&quot;, r, s)
+	return b, &quot;end&quot;
+end)
+
+print(&quot;main&quot;, coroutine.resume(co, 1, 10))
+print(&quot;main&quot;, coroutine.resume(co, &quot;r&quot;))
+print(&quot;main&quot;, coroutine.resume(co, &quot;x&quot;, &quot;y&quot;))
+print(&quot;main&quot;, coroutine.resume(co, &quot;x&quot;, &quot;y&quot;))
+</code></pre>
+<ul>
+<li>返回值</li>
+</ul>
+<pre><code>co-body 1       10
+foo     2
+main    true    4
+co-body r
+main    true    11      -9
+co-body x       y
+main    true    10      end
+main    false   cannot resume dead coroutine
+</code></pre>
+</li>
+</ul>
+<h2 id="语法与常用函数">语法与常用函数</h2>
+<h3 id="常用">常用</h3>
+<ul>
+<li>输出：<code>print(&quot;xxxx&quot;)</code></li>
+<li>注释：
+<ul>
+<li>单行注释：<code>--</code></li>
+<li>多行注释：</li>
+</ul>
+<pre><code class="language-lua">--[[
+    多行注释
+--]]
+</code></pre>
+</li>
+<li>命名：
+<ul>
+<li>大小写敏感</li>
+<li>尽量不要用下划线加大写字母的组合，避免和Lua内置的命名冲突</li>
+<li>其余规则和其他语言基本一致</li>
+</ul>
+</li>
+<li><strong>任何位置</strong> 声明的变量默认为全局变量，未声明的变量为<code>nil</code></li>
+<li>多重赋值：
+<ul>
+<li>示例：</li>
+</ul>
+<pre><code class="language-lua">a = 5
+b = 6
+a,b = b,a
+</code></pre>
+<ul>
+<li>说明：要赋值的变量多时，多余的变量用nil补足；要赋值的变量少时，多余的值舍弃不用。</li>
+</ul>
+</li>
+<li>local变量的作用范围：
+<ul>
+<li>同一个区块内</li>
+<li>示例：下面的输出为 <code>nil nil</code></li>
+</ul>
+<pre><code class="language-lua">function A()
+    local a = 5;
+end
+
+do
+    local b = 6;
+end
+
+print(a, b)
+</code></pre>
+</li>
+<li>模块加载：<code>require(&quot;xxxxx&quot;)</code></li>
+</ul>
+<h3 id="基本类型的声明和使用">基本类型的声明和使用</h3>
+<ul>
+<li>
+<p>nil：</p>
+<ul>
+<li>对于全局变量和table，令其等于<code>nil</code>，等同于将其删除</li>
+<li>判断一个变量是否为 <code>nil</code>的方法为：<code>type(x) == &quot;nil&quot;</code>。需要加上双引号。</li>
+</ul>
+</li>
+<li>
+<p>boolean：</p>
+<ul>
+<li>false和nil在if判断中均为false</li>
+</ul>
+</li>
+<li>
+<p>number：（默认是double）</p>
+<ul>
+<li>科学计数法：[X]e[Y] === X * 10^Y。eg. 2e2 = 2 * 10^2 = 200</li>
+</ul>
+</li>
+<li>
+<p>string：</p>
+<ul>
+<li>[[ …… ]]：表示一块字符串，可以跨行。</li>
+<li>字符串连接：<code>..</code></li>
+<li>数字字符串，数字之间进行算术操作时，字符串会自动转换成对应的数字进行运算。如果转换失败，则会报错。eg. “2” + 6 = 8</li>
+<li>转义字符：下面记录一些常用的转义字符
+<ul>
+<li>\n：</li>
+<li>\r：</li>
+<li>\t：横向制表符</li>
+<li>\v：纵向制表符</li>
+<li>\：</li>
+<li>'：</li>
+<li>&quot;：</li>
+<li>\0：空字符</li>
+</ul>
+</li>
+<li>字符串操作：
+<ul>
+<li>string.upper(target)</li>
+<li>string.lower(target)</li>
+<li>string.gsub(target, find, replace, num)：字符串替换。
+<ul>
+<li>参数说明：目标字符串， 要查找的字符串，要替换成的字符串，替换的次数(省略表示替换所有)</li>
+<li>返回值：[替换后的字符串], [替换的次数]</li>
+</ul>
+</li>
+<li>string.find(target, find, index)：字符串查找
+<ul>
+<li>参数说明：目标字符串， 要查找的字符串， 查找的起始位置</li>
+<li>返回值：如果找得到： [找到的字符窜的开始位置],[找到的字符串的结束位置]；如果找不到：nil</li>
+</ul>
+</li>
+<li>string.reverse(target)：反转字符</li>
+<li>string.format(pattern, ...)：字符串格式化
+<ul>
+<li>参数说明：<em>格式字符串</em>， 填充到格式字符串中的内容</li>
+</ul>
+</li>
+<li>string.char(...)：将整数转成对应的字符并拼接</li>
+<li>string.byte(target, index)：将字符转成对应的整数值。索引-1表示倒数第一个字符
+<ul>
+<li>参数说明：目标字符串，字符串索引值。第二个参数可以省略，默认为1</li>
+</ul>
+</li>
+<li>string.len(target)：获取目标字符串的长度</li>
+<li>string.rep(target, n)：将目标字符串复制n次，并拼接</li>
+<li>.. : 连接两个字符</li>
+<li>string.gmatch(target, pattern)：迭代器函数，每一次调用这个函数，都会返回符合格式的字符串，如果没有找到，则返回nil
+<ul>
+<li>参数说明：目标字符串， <em>格式字符串</em></li>
+<li>示例：</li>
+</ul>
+<pre><code class="language-Lua">for word in string.gmatch(&quot;Hello Lua user&quot;, &quot;%a+&quot;) do
+    print(word)
+end
+</code></pre>
+</li>
+<li>string.match(target, pattern, index)：返回符合格式的第一个字符串
+<ul>
+<li>参数说明：目标字符串， <em>格式字符串</em>， 搜索开始位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>格式化字符串规则：
+<ul>
+<li>format
+<ul>
+<li>基本规则：
+<ul>
+<li>%c：数字取整转换成Ascii码中对应的字符</li>
+<li>%d, %i：数字取整</li>
+<li>%o：数字取整转八进制</li>
+<li>%u：将大于-1的数强制转成整数。如果输入的数字小于等于-1， 则会报错</li>
+<li>%x：数字取整转十六进制，使用小写字母</li>
+<li>%X：数字取整转十六进制，使用大写字母</li>
+<li>%e：数字转为科学计数法，使用小写字母e</li>
+<li>%E：数字转为科学计数法， 使用大写字母E</li>
+<li>%f：数字转为浮点数表示</li>
+<li>%g(%G)：数字绝对值的大于0且整数部分数字个数大于6时，同%e(%E)；数字绝对值小于0或者整数部分数字个数小于等于6时，显示6位有效数字，其余舍弃。
+<ul>
+<li>eg. 123456.123456 --&gt; 123456 ; 1234567 --&gt; 1.23457e+06 ; 0.0123123123 --&gt; 0.0123123</li>
+</ul>
+</li>
+<li><em>%q：将string转化成lua中可以安全读取的模式。 会将字符进行一些转换，具体规则带查明</em></li>
+<li>%s：接受字符串，并按照给定格式输出。</li>
+</ul>
+</li>
+<li>进阶规则：
+<ul>
+<li>可以在%后面添加参数
+<ol>
+<li>符号</li>
+<li>占位符</li>
+<li>对其标识</li>
+<li>宽度数值</li>
+<li>小数位数/字符裁切</li>
+</ol>
+</li>
+<li>示例
+<ul>
+<li>%04d：数值取整， 不足4位数字用0补全</li>
+<li>%+d：数值为正数时，显示数字“+”号</li>
+<li>%.4f：输入数值保留4位小数</li>
+<li>%3s：输入字符串长度小于3时，在字符串 <strong>左面</strong> 补足空格，使字符串长度等于3。字符串长度大于等于3时直接输出字符串。</li>
+<li>%-3s：作用同上，不同的是在字符串 <strong>右边</strong> 补足空格</li>
+<li>%5.3s：截取字符串中前三个字符，并用空格在左侧补全至5个字符</li>
+<li>%-5.3s：作用同上，但补全的空格从右侧开始</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>正则表达式
+<ul>
+<li>基本规则：
+<ul>
+<li>单个字符(除 ^ $ ( ) % . [ ] * + - ? 外): 与该字符自身配对</li>
+<li>.(点): 与任何字符配对</li>
+<li>%a: 与任何字母配对</li>
+<li>%c: 与任何控制符配对(例如\n)</li>
+<li>%d: 与任何数字配对</li>
+<li>%l: 与任何小写字母配对</li>
+<li>%p: 与任何标点(punctuation)配对</li>
+<li>%s: 与空白字符配对</li>
+<li>%u: 与任何大写字母配对</li>
+<li>%w: 与任何字母/数字配对</li>
+<li>%x: 与任何十六进制数配对</li>
+<li>%z: 与任何代表0的字符配对</li>
+<li>%x(此处x是非字母非数字字符): 与字符x配对. 主要用来处理表达式中有功能的字符( ^ $ ( ) % . [ ] * + - ? )的配对问题, 例如%%与%配对</li>
+<li>上面的匹配字符，如果%后面的字母是大写的，则表示除了该类型字符不匹配其余都匹配。例如：%A与任何非字母匹配<br>
+<strong>正则部分待完善</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>table：</p>
+<ul>
+<li>声明：</li>
+</ul>
+<pre><code class="language-lua">local t1 = {};
+local t2 = {&quot;x&quot;, &quot;y&quot;, &quot;z&quot;};
+
+t2[1] = 3
+</code></pre>
+<ul>
+<li>索引
+<ul>
+<li>列表：与其他语言索引从0开始不同，lua中索引从1开始</li>
+<li>字典：对于字符索引，可以有以下方式取值赋值</li>
+</ul>
+<pre><code class="language-Lua">t[&quot;key&quot;] = &quot;value&quot;;
+t.key = value;
+</code></pre>
+</li>
+<li>获取长度：
+<ul>
+<li><code>#(t)</code>：长度识别从索引1开始，如果没有索引1，则返回0；之后顺序查找连续索引，直至最大值。eg. t[1] = 1; t[2] = 2; t[4] = 4; 返回的长度为2</li>
+<li><code>table.maxn(t)</code>：获取的是table的最大整数数字索引。上面的例子中的table，如果使用这个函数，则返回4。</li>
+</ul>
+</li>
+<li>Table操作
+<ul>
+<li>table.concat(target, sep, start, end)：输出全部table元素字符串
+<ul>
+<li>参数说明：目标table，分隔符（可省略），开始索引（可省略）， 结束索引（可省略）</li>
+</ul>
+</li>
+<li>table.insert(target, index, value)：插入元素
+<ul>
+<li>参数说明：目标table，插入位置（可省略，默认为最后），插入元素</li>
+</ul>
+</li>
+<li>table.remove(target, index)：
+<ul>
+<li>参数说明：目标table，移除的位置（可省略，默认为最后一个）</li>
+</ul>
+</li>
+<li>table.sort(target, compareFunction)：
+<ul>
+<li>参数说明：目标table， 比较函数（可省略，省略后按默认内置排序进行比较）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>function：</p>
+<ul>
+<li>示例：</li>
+</ul>
+<pre><code class="language-Lua">function Add(a, b)
+    return a + b;
+end
+</code></pre>
+<ul>
+<li>函数默认声明为全局函数。标明为local时，声明的函数为局部函数</li>
+<li>多返回值，使用<code>return a, b, c</code>， 返回值的使用同多重赋值</li>
+<li>不定参数：
+<ul>
+<li>示例</li>
+</ul>
+<pre><code class="language-Lua">local function A(...)
+    local args = {...}
+end
+</code></pre>
+<ul>
+<li>获取不定参数长度
+<ul>
+<li>将不定参数存储到table中，获取table列表的长度<code>#{...}</code></li>
+<li>使用select函数。<code>select(&quot;#&quot;, ...)</code></li>
+</ul>
+</li>
+<li>select函数的说明
+<ul>
+<li>select(&quot;#&quot;, ...)：返回不定参数的长度。</li>
+<li>select(n, ...)：返回第n个参数值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="基本运算">基本运算</h3>
+<h4 id="算术运算">算术运算</h4>
+<p><code>+ - * / % ^</code></p>
+<h4 id="比较运算">比较运算</h4>
+<p><code>== ~= &lt; &lt;= &gt; &gt;=</code></p>
+<h4 id="逻辑运算">逻辑运算</h4>
+<p><code>and or not</code></p>
+<h4 id="位运算">位运算</h4>
+<p><code>&amp; | ~ &lt;&lt; &gt;&gt; ~</code> 其中<code>~</code>符号除了代表“非”还可以代表“异或”</p>
+<h3 id="流程控制">流程控制</h3>
+<h4 id="判断">判断</h4>
+<ul>
+<li>示例：</li>
+</ul>
+<pre><code class="language-Lua">if (a &lt; 0) then
+
+elseif (a == 0) then
+
+else
+
+end
+</code></pre>
+<ul>
+<li>特殊说明：除了false和nil是假，其余都为真。(<strong>if判断中0为真</strong>)</li>
+</ul>
+<h4 id="循环">循环</h4>
+<ul>
+<li>while循环</li>
+</ul>
+<pre><code>a=10
+while( a &lt; 20 )
+do
+   print(&quot;a 的值为:&quot;, a)
+   a = a+1
+end
+</code></pre>
+<ul>
+<li>for循环
+<ul>
+<li>示例：</li>
+</ul>
+<pre><code class="language-Lua">for i = 1, 10, 2 do
+    print(i)
+end
+</code></pre>
+<ul>
+<li>说明：起点值，终点值，步长。其中步长可以省略，默认为1。</li>
+<li>遍历：</li>
+</ul>
+<pre><code class="language-lua">for k, v in pairs(t) do     --按照hash顺序遍历，而不是table中值的添加顺序
+    print(k .. &quot;:&quot; .. v);
+end
+
+for k, v in ipairs(t) do    --按照索引从1开始递增遍历，索引有跳跃时会停止。
+    print(k .. &quot;:&quot; .. v);
+end
+
+for i=1, #(t) do            --从1开始，获取table中最大连续索引值
+    print(t[i])
+end
+</code></pre>
+</li>
+<li>repeat...until：
+<ul>
+<li>示例：</li>
+</ul>
+<pre><code class="language-Lua">local a = 10
+repeat
+    print(&quot;a的值为:&quot;, a)
+    a = a + 1
+until (a &gt; 15)
+</code></pre>
+</li>
+</ul>
+<h2 id="文件io">文件IO</h2>
+<ul>
+<li>io.open(path, mode)：文件打开/创建，返回file对象
+<ul>
+<li>参数说明：目标路径，打开模式（可省略）</li>
+<li>模式参数以及其意义
+<ul>
+<li>r：只读打开，文件必须存在</li>
+<li>w：只写打开。文件不存在则创建，文件存在则清空文件再打开。</li>
+<li>a：只写打开。文件不存在则创建，文件存在则打开，新写入的数据将添加到原数据的末尾。（源文件的EOF符号保留）</li>
+<li><em>b：二进制模式。如果文件是二进制文件，可以加上b。</em></li>
+<li><em>+：表示可读可写。</em></li>
+<li>可以用这种方式[r/w/a][b][+]进行组合。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>io.close(file)：关闭已打开的file</li>
+<li>io.input(file)：设置默认的操作file</li>
+<li>io.read(mode)/file.read(mode)：读取已打开文件内容
+<ul>
+<li>参数说明：模式，可省略，默认为第一行文件</li>
+</ul>
+</li>
+</ul>
+<h2 id="注释">注释</h2>
+<ol>
+<li>第一类对象：指程序中所有的实体。可以存入变量或结构；可以作为参数传递；可以作为返回值；可以执行时创建；有 <em>固定身份</em></li>
+<li>固定身份：指实体有内部表示，而不是依靠名字来进行识别，比如匿名函数</li>
+<li>NaN：一个特殊值，表示未定义或者运算无效的返回值。</li>
+<li>弱引用：弱引用时不计入引用计数。即gc会忽略弱引用。</li>
+</ol>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="http://www.lua.org/manual/5.3/manual.html">Lua 5.3 Reference Manual</a></p>
+<p><a href="https://wenku.baidu.com/view/d18daddf5122aaea998fcc22bcd126fff7055d11.html">第一类对象(First-class Object)</a></p>
+<p><a href="http://www.runoob.com/lua/lua-tutorial.html">Lua教程 | 菜鸟教程</a></p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D">基本介绍</a>
+<ul>
+<li><a href="#%E5%8F%98%E9%87%8F%E4%B8%8E%E7%B1%BB%E5%9E%8B">变量与类型</a></li>
+<li><a href="#%E5%85%83%E8%A1%A8%E5%92%8C%E5%85%83%E6%96%B9%E6%B3%95metatables-and-metamethods">元表和元方法(Metatables and Metamethods)</a></li>
+<li><a href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6gc">垃圾回收(GC)</a></li>
+<li><a href="#%E5%8D%8F%E5%90%8C%E7%A8%8B%E5%BA%8Fcontinues">协同程序(Continues)</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AF%AD%E6%B3%95%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0">语法与常用函数</a>
+<ul>
+<li><a href="#%E5%B8%B8%E7%94%A8">常用</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E4%BD%BF%E7%94%A8">基本类型的声明和使用</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97">基本运算</a>
+<ul>
+<li><a href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97">算术运算</a></li>
+<li><a href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97">比较运算</a></li>
+<li><a href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97">逻辑运算</a></li>
+<li><a href="#%E4%BD%8D%E8%BF%90%E7%AE%97">位运算</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6">流程控制</a>
+<ul>
+<li><a href="#%E5%88%A4%E6%96%AD">判断</a></li>
+<li><a href="#%E5%BE%AA%E7%8E%AF">循环</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E4%BB%B6io">文件IO</a></li>
+<li><a href="#%E6%B3%A8%E9%87%8A">注释</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

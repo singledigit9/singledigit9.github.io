@@ -1,0 +1,772 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Unity Shader中的关键字 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Unity Shader中的关键字 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="记录一些Shader的关键字，方便查阅
+
+
+渲染状态设置选项
+
+Cull 设置剔除模式
+
+Cull Back 剔除背面
+Cull Front 剔除正面
+Cull Off 关闭剔除
+
+
+ZTest 设置深度测试时使用的函数
+
+Less Gre..." />
+  <meta property="og:title" content="Unity Shader中的关键字 - 资料库">
+  <meta property="og:description" content="记录一些Shader的关键字，方便查阅
+
+
+渲染状态设置选项
+
+Cull 设置剔除模式
+
+Cull Back 剔除背面
+Cull Front 剔除正面
+Cull Off 关闭剔除
+
+
+ZTest 设置深度测试时使用的函数
+
+Less Gre..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/unity-shader-zhong-de-guan-jian-zi/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="Unity Shader中的关键字 - 资料库">
+  <meta name="twitter:description" content="记录一些Shader的关键字，方便查阅
+
+
+渲染状态设置选项
+
+Cull 设置剔除模式
+
+Cull Back 剔除背面
+Cull Front 剔除正面
+Cull Off 关闭剔除
+
+
+ZTest 设置深度测试时使用的函数
+
+Less Gre...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/unity-shader-zhong-de-guan-jian-zi/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-github.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          Unity Shader中的关键字
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-04-30 · 10 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/iHLk7fHQm9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Unity3D
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/dk8wleA28S/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Shader
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>记录一些Shader的关键字，方便查阅</p>
+<!-- more -->
+<hr>
+<h3 id="渲染状态设置选项">渲染状态设置选项</h3>
+<ol>
+<li>Cull 设置剔除模式
+<ol>
+<li>Cull Back 剔除背面</li>
+<li>Cull Front 剔除正面</li>
+<li>Cull Off 关闭剔除</li>
+</ol>
+</li>
+<li>ZTest 设置深度测试时使用的函数
+<ol>
+<li>Less Greater</li>
+<li>LEqual</li>
+<li>GEqual</li>
+<li>Equal</li>
+<li>NotEqual</li>
+<li>Always</li>
+</ol>
+</li>
+<li>ZWrite 深度写入
+<ol>
+<li>On 开启</li>
+<li>Off 关闭</li>
+</ol>
+</li>
+<li>Blend 设置混合模式<br>
+<img src="https://singledigit9.github.io/post-images/1588513504195.jpeg" alt="" loading="lazy">
+<ol>
+<li>Blend的具体指令内容<br>
+<img src="https://singledigit9.github.io/post-images/1588514226965.jpeg" alt="" loading="lazy"></li>
+<li>BlendOp的具体指令内容<br>
+<img src="https://singledigit9.github.io/post-images/1588514238818.jpeg" alt="" loading="lazy"><br>
+<img src="https://singledigit9.github.io/post-images/1588514298133.jpeg" alt="" loading="lazy"></li>
+<li>常见的混合类型
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正常(normal)</td>
+<td>Blend SrcAlpha OneMinusSrcAlpha</td>
+</tr>
+<tr>
+<td>柔和相加(sort additive)</td>
+<td>Blend OneMinusDstColor One</td>
+</tr>
+<tr>
+<td>正片叠底(multiply)</td>
+<td>Blend DstColor Zero</td>
+</tr>
+<tr>
+<td>变暗(darken)</td>
+<td>BlendOp Min       Blend One One</td>
+</tr>
+<tr>
+<td>变亮(lighten)</td>
+<td>BlendOp Max     Blend One One</td>
+</tr>
+<tr>
+<td>滤色(screen)</td>
+<td>Blend OneMinusDstColor One</td>
+</tr>
+<tr>
+<td>线性减淡(liner dodge)</td>
+<td>Blend One One</td>
+</tr>
+<tr>
+<td>等同于</td>
+<td>Blend One OneMinusSrcColor</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>需要额外注意的是：Max和Min操作，忽略了混合因子；混合默认是加法操作。</li>
+</ol>
+</li>
+<li>ColorMask 颜色掩码：相当于当前Pass最终颜色乘以 (R,G,B,A)。（填了哪个哪个值为1，否则为0）
+<ol>
+<li>0：不允许任何颜色通过</li>
+<li>RGB：允许RGB通过</li>
+<li>A：只允许A通过</li>
+<li>其他任何RGBA的组合</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="常用的tags">常用的Tags</h3>
+<ol>
+<li>Queue：渲染顺序<br>
+<img src="https://singledigit9.github.io/post-images/1588512563096.jpeg" alt="" loading="lazy"></li>
+<li>RenderType：着色器分类，用于着色器替换功能</li>
+<li>DisableBatching：禁用批处理
+<ol>
+<li>True</li>
+<li>False</li>
+</ol>
+</li>
+<li>ForceNoShadowCasting：使用该Shader的物体是否会产生投影
+<ol>
+<li>True</li>
+<li>False</li>
+</ol>
+</li>
+<li>IgnoreProjector：是否忽略Projector
+<ol>
+<li>True</li>
+<li>False</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="pass中独有的tags">Pass中独有的Tags</h3>
+<ol>
+<li>LightMode：设置Pass在流水线中的角色<br>
+<img src="https://singledigit9.github.io/post-images/1588579132607.jpeg" alt="" loading="lazy"></li>
+<li>RequireOptions：满足条件才渲染这个Pass
+<ol>
+<li>SoftVegetion</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="摄像机和屏幕参数">摄像机和屏幕参数</h3>
+<ol>
+<li>_WorldSpaceCameraPos：float3，摄像机在世界空间中的位置</li>
+<li>_ProjectionParams：float4，摄像机投影参数x=1或者-1，y=Near，z=Far，w=1+1/Far。</li>
+<li>_ScreenParams：float4，x=width，y=height，z=1+1/width，w=1+1/height。其中width和height表示摄像机中<strong>RenderTarget</strong>的像素宽度和高度。</li>
+<li>_ZBufferParams：float4，x=1-Far/Near，y=Far/Near，z=x/Far，w=y/Far。用于线性化Z缓存中的深度值。</li>
+<li>unity_OrthoParams：float4，x=width，y=height，z没有定义，w=1（正交相机）或者0（透视相机）。其中widht和height为正交投影相机的宽度和高度。</li>
+<li>unity_CameraProjection：float4x4，摄像机投影矩阵</li>
+<li>unity_CameraWorldClipPlanes[6]：float4[]，摄像机剪裁平面公式，分别是左右，下上，近远。</li>
+</ol>
+<hr>
+<h3 id="像素在屏幕中的位置">像素在屏幕中的位置</h3>
+<ol>
+<li>
+<p>语义：WPOS（CG），VPOS（HLSL）</p>
+<ol>
+<li>在400X300的范围内时，使用上面的语义返回的值范围为[0.5,400.5]和[0.5,300.5]，因为OpenGL和DX认为浮点数中间是像素的中心。</li>
+<li>z分量为[0,1]，越靠近近裁面越接近0，越靠近远裁面越接近1。</li>
+<li>正交相机下，w始终等于1；透视相机下，w=[1/Near, 1/Far]</li>
+</ol>
+<pre><code class="language-shader">fixed4 frag(float4 sp : WPOS) :SV_Target
+{
+     return fixed4(sp.xy / _ScreenParams.xy, 0, 1);
+}
+</code></pre>
+</li>
+<li>
+<p>Unity提供的<strong>ComputeScreenPos</strong></p>
+<ol>
+<li>该函数输入为剪裁空间坐标</li>
+<li>这个方式相当于我们手动实现了屏幕映射的过程。</li>
+<li>该函数输出并不是屏幕坐标，而是需要将结果xy除以w分量，才能得到屏幕坐标</li>
+<li>不直接返回屏幕坐标是因为，顶点着色器到片元着色器之间有个插值过程，直接进行除法会破坏插值。<strong>因为投影空间不是线性的，线性插值会导致不准确。</strong></li>
+</ol>
+<pre><code class="language-shader">struct vertOut
+{
+     float4 pos : SV_POSITION;
+     float4 scrPos : TEXCOORD0;
+}
+
+vertOut vert (appdata_base v)
+{
+     vertOut o;
+     o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+     o.scrPos = CompulateScreenPos(o.pos);
+
+     return o;
+}
+
+fixed4 frag(vertOut i) : SV_Target
+{
+     //最终的屏幕像素坐标
+     float2 wcoord = i.scrPos.xy / i.scrPos.w;
+     return fixed4(wcrood, 0, 1);
+}
+</code></pre>
+<hr>
+</li>
+</ol>
+<h3 id="代码常用关键字">代码常用关键字</h3>
+<ol>
+<li>CGPROGRAM：开始CG代码</li>
+<li>ENDCG：CG代码结束</li>
+<li>#pragam vertex [name]：预编译指令，定义定点着色器函数</li>
+<li>#pragma fragment [name]：预编译指令，定义片元着色器函数</li>
+<li>struct：结构体。默认数据类型不满足需求时，可以使用结构体进行定义。
+<ol>
+<li>需要注意的是，一个语义只能存储4个浮点值，如果需要4X4矩阵数据时，可以把矩阵拆成4个float4。</li>
+</ol>
+<pre><code class="language-shader">struct  [structName]
+{
+    [类型名字] [变量名字] : [语义]
+    ……
+}
+</code></pre>
+</li>
+<li>#if UNITY_UV_STARTS_AT_TOP // 判断当前平台是不是DX平台</li>
+<li><code>UNITY_INITIALIZE_OUTPUT([类型], [变量名])</code>：对指定的out结构体进行初始化。</li>
+<li><code>#pragma target 3.0</code>：指定Shader Target。不同的Target的临时寄存器和最大命令数目是不同的。</li>
+<li><code>satureate(x)</code>：将x截取到[0, 1]区间内。如果x是矢量，则对每一个分量进行此操作。</li>
+<li><code>normalize(x)</code>：归一化</li>
+<li><code>UNITY_LIGHTMODEL_AMBIENT.xyz</code>：获取环境光</li>
+<li><code>_WorldSpaceLightPos0.xyz</code>：
+<ol>
+<li>如果是平行光则获取光源方向</li>
+<li>如果是其他光源，则获取光源位置。（可以由光源位置减去顶点位置得到光源方向 ）</li>
+</ol>
+</li>
+<li><code>dot(a, b)</code>：点积</li>
+<li><code>reflect(i, n)</code>：求反射方向。i为入射方向，n为法线</li>
+<li><code>refract(-normalize(o.worldViewDir), normalize(o.worldNormal), _RefractRatio)</code>可以计算折射，其中_refractRatio为折射率</li>
+<li><code>pow(x, a)</code>：求x的a次方</li>
+<li><code>TRANSFORM_TEX(v.texcoord, _MainTex)</code>：计算最终UV值。
+<ol>
+<li>等价于<code>o.uv = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw</code></li>
+<li>原始UV乘以缩放系数再加上UV偏移</li>
+</ol>
+</li>
+<li><code>cross(a, b)</code>：ab叉乘</li>
+<li><code>UnpackNormal(fixed4 color)</code>：在Texture是Normal map的时候，Unity会根据不同的平台来使用不同的压缩算法。这是rgb不再与xyz相对应了，需要用这个函数将颜色值将颜色值转成法线方向 。具体的可以在UnityCG.cginc中查看。</li>
+<li><code>sqrt(x)</code>：对x开平方</li>
+<li><code>clip(x)</code>：给定参数的任意一个分量有负数，则直接舍弃当前像素的输出颜色。（x可以是float，float2，float3，float4）
+<ol>
+<li>等价于<pre><code>void clip(float4 x)
+{
+    if(any(x &lt; 0))
+    {
+        discard;
+    }
+}
+</code></pre>
+</li>
+</ol>
+</li>
+<li><code>#pragma multi_compile_fwdbase</code>：用于前向渲染第一个Pass</li>
+<li><code>#pragma multi_compile_fwdadd</code>：用于前向渲染的第二个Pass</li>
+<li><code>#ifdef USING_DIRECTIONAL_LIGHT</code>：预编译，判断当前光源是不是平行光</li>
+<li><code>#if defined (POINT)</code>：预编译，判断当前光源是不是点光源</li>
+<li><code>#if defined (SPOT)</code>：预编译，判断当前光源是不是 聚光灯。</li>
+<li><code>_LightTexture0</code>：内置的光照衰减纹理</li>
+<li><code>_LightTextureB0</code>：内置的光照衰减纹理（光源使用了cookies情况下）</li>
+<li>UnityShader中阴影的三个关键字</li>
+<li>SHADOW_COORDS(x)：用于Struct v2f中定义阴影深度纹理。其中x要看我们的TEXCOORD使用了几个，比如我已经用了TEXCOORD0，TEXCOORD1，那么x就写2。</li>
+<li>TRANSFER_SHADOW(o)：用于顶点着色器中生成阴影深度纹理</li>
+<li>SHADOW_ATTENUATION(i)：用于片元着色器中读取阴影颜色（用来和最终颜色相乘）</li>
+<li>这几个宏对命名有要求，要求a2f的顶点坐标命名必须是v.vertex，v2f中顶点位置变量必须是pos</li>
+<li>UNITY_LIGHT_ATTENUATION(atten, i, i.worldPos)：计算光照衰减和阴影。其中atten自动生成，不用额外声明。第二个参数v2f</li>
+<li>立方纹理的采样方法：texCUBE(_TexName, i.xyz)</li>
+<li><code>GrabPass{&quot;_TexName&quot;}</code>：抓屏。抓取的图像存到_TexName中。
+<ol>
+<li>下面的Pass要对应声明<code>sampler2D _TexName;</code>	<code>float4 _TexName_TexelSize;</code></li>
+<li>TexName可以省略，但直接声明TexName往往可以提升性能。</li>
+<li>_TexName_TexelSize：纹理大小。eg：1/1280，1/720</li>
+</ol>
+</li>
+<li><code>ComputeGrabScreenPos</code>：与<code>ComputeScreenPos</code>类似，输入为剪裁空间中坐标，输出为屏幕坐标。区别的地方在于抓屏在不同平台上的处理方式不一样</li>
+<li>阴影相关
+<ol>
+<li>TRANSFER_SHADOW_CASTER_NORMALOFFSET(v2f o)：顶点着色器中使用</li>
+<li>SHADOW_CASTER_FRAGMENT(v2f i) ：片元着色器中使用</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="cgincludes主要包含的文件以及作用">CGIncludes主要包含的文件以及作用</h3>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UnityCG.cginc</td>
+<td>包含最常用的帮助函数，宏，结构体等。</td>
+</tr>
+<tr>
+<td>UnityShaderVariables.cginc</td>
+<td>编译UnityShader时，自动包含。有许多内置的全局变量，比如 UNITY_MATRIX_MVP 等等。</td>
+</tr>
+<tr>
+<td>Lighting.cginc</td>
+<td>内置了各种光照模型。使用Surface Shader时自动包含。</td>
+</tr>
+<tr>
+<td>HLSLSupport.cginc</td>
+<td>编译UnityShader时自动包含。声明了许多跨平台编译的宏和定义。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="unitycgcginc中常用的结构体和函数">UnityCG.cginc中常用的结构体和函数</h3>
+<ol>
+<li>结构体</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>包含变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appdata_base</td>
+<td>顶点着色器输入</td>
+<td>顶点位置，顶点法线，第一组纹理坐标</td>
+</tr>
+<tr>
+<td>appdata_tan</td>
+<td>顶点着色器输入</td>
+<td>顶点位置，顶点法线，顶点切线，第一组纹理坐标</td>
+</tr>
+<tr>
+<td>appdata_full</td>
+<td>顶点着色器输入</td>
+<td>顶点位置，顶点法线，顶点切线，四组或者更多纹理坐标</td>
+</tr>
+<tr>
+<td>appdata_img</td>
+<td>顶点着色器输入</td>
+<td>顶点位置，第一组纹理坐标</td>
+</tr>
+<tr>
+<td>v2f_img</td>
+<td>顶点着色器输出</td>
+<td>剪裁空间中的位置，纹理坐标</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>函数<br>
+下面的函数返回值不保证是单位矢量，使用前注意归一化的问题。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float3 WorldSpaceViewDir(float4 v)</td>
+<td>输入模型空间中顶点位置，返回世界空间中从该点到摄像机的观察方向</td>
+</tr>
+<tr>
+<td>float3 UnityWorldSpaceViewDir(float4 v)</td>
+<td>输入世界空间中顶点位置，返回世界空间中从该点到摄像机的观察方向</td>
+</tr>
+<tr>
+<td>float3 ObjSpaceViewDir(float4 v)</td>
+<td>输入模型空间中顶点位置，返回模型空间中从该点到摄像机的观察方向</td>
+</tr>
+<tr>
+<td>float3 WorldSpaceLightDir(float4 v)</td>
+<td><strong>仅用于前向渲染</strong>，输入模型空间中顶点位置，返回世界空间中从该点到光源的光照方向，没有归一化</td>
+</tr>
+<tr>
+<td>float3 UnityWorldSpaceLightDir(float4 v)</td>
+<td><strong>仅用于前向渲染</strong>，输入世界空间中顶点位置，返回世界空间中从该点到光源的光照方向，没有归一化</td>
+</tr>
+<tr>
+<td>float3 ObjSpaceLightDir(float4 v)</td>
+<td><strong>仅用于前向渲染</strong>，输入模型空间中顶点位置，返回模型空间中从该点到光源的光照方向，没有归一化</td>
+</tr>
+<tr>
+<td>float3 UnityObjectToWorldNormal(float3 norm)</td>
+<td>法线方向从模型空间转到世界空间</td>
+</tr>
+<tr>
+<td>float3 UnityObjectToWorldDir(float3 dir)</td>
+<td>将一个向量从模型空间转到世界空间</td>
+</tr>
+<tr>
+<td>float3 UnityWorldToObjectDir(float3 dir)</td>
+<td>将一个向量从世界空间转到模型空间</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="lightingcginc">Lighting.cginc</h3>
+<ol>
+<li>常用的字段函数
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_LightColor0</td>
+<td>光源颜色</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<hr>
+<h3 id="前向渲染中可以使用的变量和参数">前向渲染中可以使用的变量和参数</h3>
+<p><img src="https://singledigit9.github.io/post-images/1588581343630.jpeg" alt="" loading="lazy"><br>
+<img src="https://singledigit9.github.io/post-images/1588581384147.jpeg" alt="" loading="lazy"></p>
+<hr>
+<h3 id="延迟渲染可以使用的变量">延迟渲染可以使用的变量</h3>
+<figure data-type="image" tabindex="1"><img src="https://singledigit9.github.io/post-images/1588582214322.jpeg" alt="" loading="lazy"></figure>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E6%B8%B2%E6%9F%93%E7%8A%B6%E6%80%81%E8%AE%BE%E7%BD%AE%E9%80%89%E9%A1%B9">渲染状态设置选项</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E7%9A%84tags">常用的Tags</a></li>
+<li><a href="#pass%E4%B8%AD%E7%8B%AC%E6%9C%89%E7%9A%84tags">Pass中独有的Tags</a></li>
+<li><a href="#%E6%91%84%E5%83%8F%E6%9C%BA%E5%92%8C%E5%B1%8F%E5%B9%95%E5%8F%82%E6%95%B0">摄像机和屏幕参数</a></li>
+<li><a href="#%E5%83%8F%E7%B4%A0%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">像素在屏幕中的位置</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%B8%B8%E7%94%A8%E5%85%B3%E9%94%AE%E5%AD%97">代码常用关键字</a></li>
+<li><a href="#cgincludes%E4%B8%BB%E8%A6%81%E5%8C%85%E5%90%AB%E7%9A%84%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E4%BD%9C%E7%94%A8">CGIncludes主要包含的文件以及作用</a></li>
+<li><a href="#unitycgcginc%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E5%87%BD%E6%95%B0">UnityCG.cginc中常用的结构体和函数</a></li>
+<li><a href="#lightingcginc">Lighting.cginc</a></li>
+<li><a href="#%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E4%B8%AD%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8F%98%E9%87%8F%E5%92%8C%E5%8F%82%E6%95%B0">前向渲染中可以使用的变量和参数</a></li>
+<li><a href="#%E5%BB%B6%E8%BF%9F%E6%B8%B2%E6%9F%93%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8F%98%E9%87%8F">延迟渲染可以使用的变量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>
