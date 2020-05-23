@@ -17,30 +17,12 @@
   <meta name="description" content="第17章 Unity表面着色器探秘
 第18章 基于物理的渲染
 第19章 Unity5更新了什么
-第20章 还有更多内容么
-
-OpenGL
-
-红宝书：《OpenGL编程指南》
-蓝宝书：《OpenGL超级宝典》
-
-
-GPU精粹系列
-叶劲峰 ，计..." />
+现在版本都2019了，这章好多东西应该都不适用了，更详细的应该查unity的更新文档了。但还是简单记录一下，万一遇到类似的问题能够快速反应过来。..." />
   <meta property="og:title" content="《Unity Shader 入门精要》读书笔记（扩展篇） - 资料库">
   <meta property="og:description" content="第17章 Unity表面着色器探秘
 第18章 基于物理的渲染
 第19章 Unity5更新了什么
-第20章 还有更多内容么
-
-OpenGL
-
-红宝书：《OpenGL编程指南》
-蓝宝书：《OpenGL超级宝典》
-
-
-GPU精粹系列
-叶劲峰 ，计..." />
+现在版本都2019了，这章好多东西应该都不适用了，更详细的应该查unity的更新文档了。但还是简单记录一下，万一遇到类似的问题能够快速反应过来。..." />
   <meta property="og:type" content="articles">
   <meta property="og:url" content="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-kuo-zhan-pian/" />
   <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
@@ -50,16 +32,7 @@ GPU精粹系列
   <meta name="twitter:description" content="第17章 Unity表面着色器探秘
 第18章 基于物理的渲染
 第19章 Unity5更新了什么
-第20章 还有更多内容么
-
-OpenGL
-
-红宝书：《OpenGL编程指南》
-蓝宝书：《OpenGL超级宝典》
-
-
-GPU精粹系列
-叶劲峰 ，计...">
+现在版本都2019了，这章好多东西应该都不适用了，更详细的应该查unity的更新文档了。但还是简单记录一下，万一遇到类似的问题能够快速反应过来。...">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-kuo-zhan-pian/">
 
@@ -87,13 +60,29 @@ GPU精粹系列
         </h1>
         
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2020-05-20 · 1 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2020-05-20 · 2 min read</div>
           
         </div>
         <div class="markdown mb-8" v-pre>
           <h1 id="第17章-unity表面着色器探秘">第17章 Unity表面着色器探秘</h1>
 <h1 id="第18章-基于物理的渲染">第18章 基于物理的渲染</h1>
 <h1 id="第19章-unity5更新了什么">第19章 Unity5更新了什么</h1>
+<p>现在版本都2019了，这章好多东西应该都不适用了，更详细的应该查unity的更新文档了。但还是简单记录一下，万一遇到类似的问题能够快速反应过来。</p>
+<ol>
+<li>表面着色器报错。
+<ol>
+<li>通常是因为转换着色器时使用了一些额外的效果计算，比如法线，光照之类的。从而导致需求的寄存器数目超过限定的寄存器数目。</li>
+<li>解决办法
+<ol>
+<li>可以将默认的Shader Model 2.0 改为3.0，即<code>#pragma target 3.0</code>。</li>
+<li>可以手动设置该着色器不计算阴影纹理坐标（不接受阴影），不计算光照纹理和雾效 ，减少额外计算。即<code>#pragma surface surfaceFunction lightModeln oshadow nolightmap nofog</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>CPU不再处理非统一缩放，也就是说，CPU会把顶点信息和非统一缩放的矩阵直接传给Shader。因此在顶点片元着色器中变换顶点法线时，需要注意非统一缩放的影响，也要注意对变换后的法线进行手动归一化操作。</li>
+<li>固定管线Shader被放弃。</li>
+</ol>
 <h1 id="第20章-还有更多内容么">第20章 还有更多内容么</h1>
 <ol>
 <li>OpenGL
