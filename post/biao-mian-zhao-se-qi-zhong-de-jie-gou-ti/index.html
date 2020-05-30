@@ -4,37 +4,43 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>《Unity Shader 入门精要》读书笔记（扩展篇） - 资料库</title>
+<title>表面着色器中的结构体 - 资料库</title>
 <link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
 <link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
 <link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="《Unity Shader 入门精要》读书笔记（扩展篇） - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="表面着色器中的结构体 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
 
     
 
-  <meta name="description" content="第17章 Unity表面着色器探秘
+  <meta name="description" content="Input
 
-表面着色器，实际上是Unity在基本的顶点片元着色器上进行的一次封装。在实际运行过程中，会自动转换成对应的顶点片元着色器来运行。
-表面着色器的好处在于，可以方便的处理光照等效果。相同的光照效果用表面着色..." />
-  <meta property="og:title" content="《Unity Shader 入门精要》读书笔记（扩展篇） - 资料库">
-  <meta property="og:description" content="第17章 Unity表面着色器探秘
+SurfaceOutPut
 
-表面着色器，实际上是Unity在基本的顶点片元着色器上进行的一次封装。在实际运行过程中，会自动转换成对应的顶点片元着色器来运行。
-表面着色器的好处在于，可以方便的处理光照等效果。相同的光照效果用表面着色..." />
+
+..." />
+  <meta property="og:title" content="表面着色器中的结构体 - 资料库">
+  <meta property="og:description" content="Input
+
+SurfaceOutPut
+
+
+..." />
   <meta property="og:type" content="articles">
-  <meta property="og:url" content="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-kuo-zhan-pian/" />
+  <meta property="og:url" content="https://singledigit9.github.io/post/biao-mian-zhao-se-qi-zhong-de-jie-gou-ti/" />
   <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
-  <meta name="twitter:title" content="《Unity Shader 入门精要》读书笔记（扩展篇） - 资料库">
-  <meta name="twitter:description" content="第17章 Unity表面着色器探秘
+  <meta name="twitter:title" content="表面着色器中的结构体 - 资料库">
+  <meta name="twitter:description" content="Input
 
-表面着色器，实际上是Unity在基本的顶点片元着色器上进行的一次封装。在实际运行过程中，会自动转换成对应的顶点片元着色器来运行。
-表面着色器的好处在于，可以方便的处理光照等效果。相同的光照效果用表面着色...">
+SurfaceOutPut
+
+
+...">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-kuo-zhan-pian/">
+  <link rel="canonical" href="https://singledigit9.github.io/post/biao-mian-zhao-se-qi-zhong-de-jie-gou-ti/">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
@@ -56,16 +62,11 @@
     <div class="max-w-4xl w-full mx-auto">
       <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
         <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
-          《Unity Shader 入门精要》读书笔记（扩展篇）
+          表面着色器中的结构体
         </h1>
         
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2020-05-20 · 4 min read</div>
-          
-            <a href="https://singledigit9.github.io/tag/UjKOtFN6l/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
-              <i class="ri-hashtag"></i>
-              读书笔记
-            </a>
+          <div class="text-gray-400 text-sm mr-4">2020-05-30 · 1 min read</div>
           
             <a href="https://singledigit9.github.io/tag/iHLk7fHQm9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
               <i class="ri-hashtag"></i>
@@ -79,80 +80,11 @@
           
         </div>
         <div class="markdown mb-8" v-pre>
-          <h1 id="第17章-unity表面着色器探秘">第17章 Unity表面着色器探秘</h1>
-<ol>
-<li>表面着色器，实际上是Unity在基本的顶点片元着色器上进行的一次封装。在实际运行过程中，会自动转换成对应的顶点片元着色器来运行。</li>
-<li>表面着色器的好处在于，可以方便的处理光照等效果。相同的光照效果用表面着色器实现，需要写的代码会比顶点片元着色器少好多。但它的缺点在于，一是自由度受到一些限制，有些特殊效果表面着色器实现不了；二是性能消耗一般都比较大。</li>
-<li>表面着色器的计算步骤
-<ol>
-<li>将CGPROGRAM和ENDCG中的代码进行复制</li>
-<li>生成顶点着色器输出结构体v2f_surf，用于顶点着色器和片元着色器之间数据传递。</li>
-<li>生成顶点着色器。</li>
-<li>生成片元着色器。</li>
-<li>颜色叠加。</li>
-<li>最后的颜色修改函数。<br>
-<img src="https://singledigit9.github.io/post-images/1590849115208.jpeg" alt="" loading="lazy"></li>
-</ol>
-</li>
-</ol>
-<h1 id="第18章-基于物理的渲染">第18章 基于物理的渲染</h1>
-<ol>
-<li>Unity的Standard是金属工作流，Specularsetup是高光反射工作流。两种Shader都能调出相同的效果，只是有些参数不一样。</li>
-<li>伽马校正：
-<ol>
-<li>原理是人们对明亮部分的光线变化的敏感程度远远低于暗的部分的敏感程度。比如，一个房间开一盏灯到开两盏灯和开99盏灯到开100盏灯给人的感觉是不同的。</li>
-<li>伽马矫正是为了更加充分的利用图像的存储空间，将不明显的明亮部分压缩，将变化明显的暗的部分放大以存储更精细的值。</li>
-<li>伽马校正下，显示整体偏暗。</li>
-</ol>
-</li>
-<li>PBS（基于物理的渲染）优点在于，相当大的一部分物体，可以使用同一套shader来进行渲染，而且不用各种调参。缺点在于使用起来比较复杂，而且消耗来说也比较高。</li>
-</ol>
-<h1 id="第19章-unity5更新了什么">第19章 Unity5更新了什么</h1>
-<p>现在版本都2019了，这章好多东西应该都不适用了，更详细的应该查unity的更新文档了。但还是简单记录一下，万一遇到类似的问题能够快速反应过来。</p>
-<ol>
-<li>表面着色器报错。
-<ol>
-<li>通常是因为转换着色器时使用了一些额外的效果计算，比如法线，光照之类的。从而导致需求的寄存器数目超过限定的寄存器数目。</li>
-<li>解决办法
-<ol>
-<li>可以将默认的Shader Model 2.0 改为3.0，即<code>#pragma target 3.0</code>。</li>
-<li>可以手动设置该着色器不计算阴影纹理坐标（不接受阴影），不计算光照纹理和雾效 ，减少额外计算。即<code>#pragma surface surfaceFunction lightModeln oshadow nolightmap nofog</code></li>
-</ol>
-</li>
-</ol>
-</li>
-<li>CPU不再处理非统一缩放，也就是说，CPU会把顶点信息和非统一缩放的矩阵直接传给Shader。因此在顶点片元着色器中变换顶点法线时，需要注意非统一缩放的影响，也要注意对变换后的法线进行手动归一化操作。</li>
-<li>固定管线Shader被放弃。</li>
-</ol>
-<h1 id="第20章-还有更多内容么">第20章 还有更多内容么</h1>
-<ol>
-<li>OpenGL
-<ol>
-<li>红宝书：《OpenGL编程指南》</li>
-<li>蓝宝书：《OpenGL超级宝典》</li>
-</ol>
-</li>
-<li>GPU精粹系列</li>
-<li>叶劲峰 ，计算机图形：入门/API类；Gems类</li>
-<li>GPU Pro系列和ShaderX系列</li>
-<li>物理渲染和光线追踪：《Physically based rendering : From theory to implementation》</li>
-<li>学术会议（Ke-Sen Huang主页上有历年的论文）
-<ol>
-<li>SIGGRAPH</li>
-<li>SIGGRAPH Asia</li>
-<li>Eurographics</li>
-<li>Symposium On Interactive 3D Graphics And Games</li>
-</ol>
-</li>
-<li>Shadertoy网站</li>
-<li>GLSL SandBox Gallery网站</li>
-</ol>
-<h1 id="后记">后记</h1>
-<p>算是终于完整看完了一遍吧。感觉自己对着色器这块确实了解的更加深入了。有一些以前一知半解的东西知道是怎么回事了。比如说伽马空间之类的。<br>
-此外就是觉得自己做的练习还是比较少，而且仅仅是记笔记的话也不是很方便以后自己翻笔记查阅。因此准备在gitbook上专门弄一个shader的资料库。算是复习和继续深入学习兼而有之吧。<br>
-预备Shader资料库的大致结构分为基础知识部分，数学部分，算法公式部分，代码块部分，各种常见效果和自我研究的效果的实例部分。<br>
-内容很多，希望能够在今年内把基本的内容填充完毕吧。<br>
-也希望资料库完成后能给自己和其他需要的同学提供帮助。</p>
+          <h1 id="input">Input</h1>
+<figure data-type="image" tabindex="1"><img src="https://singledigit9.github.io/post-images/1590848930611.jpeg" alt="" loading="lazy"></figure>
+<h1 id="surfaceoutput">SurfaceOutPut</h1>
+<p><img src="https://singledigit9.github.io/post-images/1590849021066.jpeg" alt="" loading="lazy"><br>
+<img src="https://singledigit9.github.io/post-images/1590849027972.jpeg" alt="" loading="lazy"></p>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -196,11 +128,8 @@
       </div>
       <div class="post-toc-container">
         <ul class="markdownIt-TOC">
-<li><a href="#%E7%AC%AC17%E7%AB%A0-unity%E8%A1%A8%E9%9D%A2%E7%9D%80%E8%89%B2%E5%99%A8%E6%8E%A2%E7%A7%98">第17章 Unity表面着色器探秘</a></li>
-<li><a href="#%E7%AC%AC18%E7%AB%A0-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93">第18章 基于物理的渲染</a></li>
-<li><a href="#%E7%AC%AC19%E7%AB%A0-unity5%E6%9B%B4%E6%96%B0%E4%BA%86%E4%BB%80%E4%B9%88">第19章 Unity5更新了什么</a></li>
-<li><a href="#%E7%AC%AC20%E7%AB%A0-%E8%BF%98%E6%9C%89%E6%9B%B4%E5%A4%9A%E5%86%85%E5%AE%B9%E4%B9%88">第20章 还有更多内容么</a></li>
-<li><a href="#%E5%90%8E%E8%AE%B0">后记</a></li>
+<li><a href="#input">Input</a></li>
+<li><a href="#surfaceoutput">SurfaceOutPut</a></li>
 </ul>
 
       </div>

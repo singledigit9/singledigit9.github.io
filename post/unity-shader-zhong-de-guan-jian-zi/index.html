@@ -387,6 +387,7 @@ fixed4 frag(vertOut i) : SV_Target
 <li><code>LinearEyeDepth</code>：视角空间下进行线性插值</li>
 <li><code>step(a, b)</code>：如果<code>b&gt;a</code> 则返回1，如果<code>b&lt;a</code>则返回0</li>
 <li><code>smothstep(min, max, a)</code>：如果a小于min，返回0；如果a大于max，返回1，否则在0到1之间进行插值。</li>
+<li><code>pragma surface [表面Shader函数名] lightModel [其他可选参数]</code>：声明表面着色器的编译指令。</li>
 </ol>
 <hr>
 <h3 id="cgincludes主要包含的文件以及作用">CGIncludes主要包含的文件以及作用</h3>
