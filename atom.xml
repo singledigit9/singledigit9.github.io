@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-05-23T02:35:54.854Z</updated>
+    <updated>2020-05-30T06:31:04.933Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -159,9 +159,222 @@ fixed4 fragExtractBright(v2f i) : SV_Target {
 <li>书中使用的方法是在同一个RenderTexture上叠加图像来实现的。但速度过快时，会明显看到单帧的图像。</li>
 </ol>
 <h1 id="第13章-使用深度和法线纹理">第13章 使用深度和法线纹理</h1>
+<ol>
+<li>深度纹理本质上是一张渲染纹理，它存储的是深度值而不是颜色值。范围是 [0, 1]</li>
+<li>深度值和NDC空间z坐标对应关系：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><msub><mi>z</mi><mrow><mi>n</mi><mi>d</mi><mi>c</mi></mrow></msub><mo>∗</mo><mn>0.5</mn><mo>+</mo><mn>0.5</mn></mrow><annotation encoding="application/x-tex">d =  z_{ndc} *  0.5 +  0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.61528em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.04398em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span></li>
+<li>Unity得到深度纹理的流程
+<ol>
+<li>延迟渲染路径时，因为延迟渲染会把深度信息法线信息渲染都G-Buffer中，所以深度纹理和能够直接冲G-Buffer中获取，深度法线纹理一样简单合并一下就可以得到。</li>
+<li>无法直接获取时，深度和法线纹理是通过单独的Pass来渲染获取的。Unity会使用<strong>着色器替换</strong>技术来选择那些渲染类型为<code>Opaque</code>的物体，判断它们的渲染队列是不是小于2500（包含BackGround，Geometry，AlphaTest），如果满足条件，则建起渲染到深度纹理中。因此，要想获得争取的深度纹理，就需要设置正确的<code>RenderType</code>。
+<ol>
+<li>Unity调用ShadowCaster的Pass来渲染深度纹理，因此，如果物体的Shader中不包含这个Pass，，那么这个物体就不会出现在深度纹理中。</li>
+<li>Unity可以设置只渲染深度纹理还是渲染深度法线纹理。</li>
+<li>因为前向渲染默认不创建深度缓存，所以Unity底层使用了额外的Pass来额外渲染。这个Pass在<code>/DefaultResources/Camera-DepthNormalTexture.shader</code>中。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>深度纹理通常是24位或者16位。深度法线纹理通常是32位，其中法线存储在RG中，深度存储在BA中。</li>
+<li>具体的获取
+<ol>
+<li>C#脚本中的API：<code>camera.depthTextureMode</code></li>
+<li>Shader中声明的贴图：<code>_CameraDepthTexture</code>和<code>_CameraDepthNormalTexture</code>。</li>
+<li>Shader中的采样
+<ol>
+<li>一般来说直接用tex2D就可以，但可能某些平台会不适用。</li>
+<li>使用Unity内置的宏<code>float d = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i,uv);</code></li>
+<li>类似的还有<code>float d = SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(i.scrPos))</code>
+<ol>
+<li>第二个参数通常是由顶点着色器输出插值而得到的屏幕坐标。<code>i.scrPos = ComputeScreenPos(o.pos)</code></li>
+<li>采样计算过程，使用前两个分量除以最后一个分量。</li>
+</ol>
+</li>
+<li><code>DecodeDepthNormal(float4 depthNormalTexColor, out float depth, out float3 normal)</code>
+<ol>
+<li>需要注意返回的法线是视角空间下的法线方向。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>运动模糊
+<ol>
+<li>使用速度映射。通过深度纹理为每个像素计算其世界空间下的位置。并与前一帧的位置做差值，从而得到速度。好处是能够在一个屏幕后处理中完成整个效果，缺点就是性能消耗比较大。</li>
+</ol>
+</li>
+<li>雾效
+<ol>
+<li>公式：<code>float3 afterFog = f * fogColor + (1 - f) * origColor</code>
+<ol>
+<li>雾效系数<code>f</code>的计算公式
+<ol>
+<li>线性：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>=</mo><mo>(</mo><msub><mi>d</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>−</mo><mi mathvariant="normal">∣</mi><mi>z</mi><mi mathvariant="normal">∣</mi><mo>)</mo><mi mathvariant="normal">/</mi><mo>(</mo><mrow><msub><mi>d</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>−</mo><msub><mi>d</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><mo>)</mo></mrow><annotation encoding="application/x-tex">f = (d_{max} - |z|)/({d_{max} - d_{min}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mclose">)</span><span class="mord">/</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>指数：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>d</mi><mo>∗</mo><mi mathvariant="normal">∣</mi><mi>z</mi><mi mathvariant="normal">∣</mi></mrow></msup></mrow><annotation encoding="application/x-tex">f = e^{-d*|z|}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">d</span><span class="mbin mtight">∗</span><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord mtight">∣</span></span></span></span></span></span></span></span></span></span></span></span></li>
+<li>指数平方：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mo>(</mo><mi>d</mi><mo>∗</mo><mi mathvariant="normal">∣</mi><mi>z</mi><mi mathvariant="normal">∣</mi><msup><mo>)</mo><mn>2</mn></msup></mrow></msup></mrow><annotation encoding="application/x-tex">f = e^{-(d*|z|)^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9869199999999998em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9869199999999998em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">d</span><span class="mbin mtight">∗</span><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord mtight">∣</span><span class="mclose mtight"><span class="mclose mtight">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 <h1 id="第14章-非真实感渲染">第14章 非真实感渲染</h1>
+<h2 id="卡通风格渲染">卡通风格渲染</h2>
+<h3 id="轮廓线">轮廓线</h3>
+<ol>
+<li>基于观察角度和法线：简单快速，但局限性很大，描边效果不好。</li>
+<li>使用两个Pass，一个渲染背面，一个渲染正面。背面用纯色渲染稍微大一圈，组合到一起就是描边效果了。但这种方式仅仅适用于轮廓平滑的模型，不适用于立方体这类的模型。</li>
+<li>基于图像处理的轮廓线渲染。使用算子进行边缘检测。适用范围广，效果较好。但一些深度法线变化小的轮廓可能无法检测出来。</li>
+<li>基于轮廓边检测的轮廓线检测。原理是检测相邻的两个三角面的朝向是否不一致（是不是一个朝前一个朝后），如果不一致则两个三角面之间有一条轮廓线。但这种方式也有缺点，一个是实现复杂，另一个是动画在帧与帧之间不连贯。
+<ol>
+<li>公式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>n</mi><mn>0</mn></msub><mo separator="true">⋅</mo><mi>v</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo><mo>!</mo><mo>=</mo><mo>(</mo><msub><mi>n</mi><mn>1</mn></msub><mo separator="true">⋅</mo><mi>v</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(n_0 · v &gt; 0) != (n_1 · v &gt; 0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></li>
+</ol>
+</li>
+</ol>
+<h3 id="高光">高光</h3>
+<p>卡通的高光相比于一般的高光来说，颜色过度更贱&quot;生硬&quot;。因此我们将普通的高光公式所求的的值，与一个阈值进行比较，小于该阈值直接为0，大于该阈值直接为1.</p>
+<h2 id="素描风格渲染">素描风格渲染</h2>
+<ol>
+<li>使用了色调艺术映射的技术。</li>
+<li>根据观察方向和法线的点积值，if判断，来确定使用那个贴图的素材。从而叠加渲染。</li>
+</ol>
 <h1 id="第15章-使用噪声">第15章 使用噪声</h1>
+<ol>
+<li>消融效果：在噪声图上采样，得到噪声值。然后将当前颜色值与噪声值进行比较，大于或者小于的直接将该片元discard。剩余的片元再次处理一下边缘颜色就可以了。</li>
+<li>水波效果：基于时间，在法线噪声图上采样。用采样得到的法线值，计算颜色偏移等。</li>
+<li>烟雾飘动的效果。</li>
+</ol>
 <h1 id="第16章-unity中的渲染优化技术">第16章 Unity中的渲染优化技术</h1>
+<p>首要规则：过度优化和不优化一样严重。</p>
+<p>此外有一篇关于Unity优化的导图文章特别好，写的很全。基本上按照那个导图一个流程走下来，性能应该没什么大问题。但因为那个导图是收费的，这里不好直接贴上来。放一个链接，有兴趣可以去查看。</p>
+<p><a href="https://mm.edrawsoft.cn/store">在线思维导图(在搜索里搜Unity就能找到了)</a></p>
+<h2 id="移动平台的特点">移动平台的特点</h2>
+<ol>
+<li>移动设备一般使用基于Tile的延迟渲染架构，即将图像装入一个个tile中。然后再由硬件选择将tile中的哪个图像渲染到屏幕上。</li>
+<li>基于上面描述的渲染架构的特点，overDraw（就是一个像素被多次绘制）很有可能是性能瓶颈。</li>
+</ol>
+<h2 id="影响性能的因素">影响性能的因素</h2>
+<ol>
+<li>CPU
+<ol>
+<li>draw Call</li>
+<li>逻辑</li>
+<li>物理</li>
+</ol>
+</li>
+<li>GPU
+<ol>
+<li>顶点
+<ol>
+<li>顶点过多</li>
+<li>顶点计算过多</li>
+</ol>
+</li>
+<li>片元
+<ol>
+<li>过多的片元</li>
+<li>逐片元计算过多</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>带宽
+<ol>
+<li>尺寸过大的未压缩的纹理</li>
+<li>分辨率过高的帧缓存</li>
+</ol>
+</li>
+</ol>
+<h2 id="unity中的分析工具">Unity中的分析工具</h2>
+<ol>
+<li>
+<p>渲染统计信息。Game窗口的Stats<br>
+<img src="https://singledigit9.github.io/post-images/1590816549696.jpeg" alt="" loading="lazy"><br>
+<img src="https://singledigit9.github.io/post-images/1590816560024.jpeg" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>Profiler<br>
+可以动态查看当前帧的消耗情况。但需要注意的是，编辑器下的调试有一定的参考价值，但和真机上还是有差别。</p>
+</li>
+<li>
+<p>帧调试器<br>
+可以看每一帧都渲染了什么东西，有什么东西是应该一起渲染的但是没有一起渲染（这个对FairyGUI尤其有用。优化时FairyGUI往往调整一下层级就会减少一些DrawCall）</p>
+</li>
+</ol>
+<h2 id="动态批处理">动态批处理</h2>
+<ol>
+<li>顶点数小于900。如果Shader中使用了顶点位置，法线，纹理坐标这3个顶点属性，那么就要小于300</li>
+<li>同一个缩放尺度下。（书上说Unity5之后已经对这个进行了优化，但我在Unity2018下用Cube进行试验，不同缩放尺度的Cube一样会增加DrawCall，想动态批处理的话，这个最好还是严格遵守）</li>
+<li>需要动态批处理的物体应该指向光照纹理的同一个位置。（<strong>光照纹理这部分接触较少，需要深入学习</strong>）</li>
+<li>多Pass的Shader会中断批处理操作。</li>
+</ol>
+<h2 id="静态批处理">静态批处理</h2>
+<p>运行开始阶段，将需要静态批处理的网格合并到一个大网格中。<br>
+静态批处理相比于动态批处理更加高效，但仍然有一些缺点。</p>
+<ol>
+<li>静态批处理的物体不能够移动</li>
+<li>往往会占用更多的内存。因为一些物体如果共享了相同的网格，合并前每一个物体都会有一个该网格的复制。最终导致一个网格的多个复制会发给GPU，从而导致性能瓶颈。
+<ol>
+<li>例子：1000个相同模型的树，如果使用了静态批处理，则会吧这个模型的1000的复制合并到一个大网格里进行处理。也就是说，一个树的模型，我们多消耗了999个单位的内存空间。</li>
+</ol>
+</li>
+</ol>
+<h2 id="共享材质">共享材质</h2>
+<p>关键字：shareMaterial</p>
+<ol>
+<li>使用Renderer.Material时，会创建一份原始材质球的复制，造成额外消耗。</li>
+<li>使用Renderer.ShareMaterial时，会修改原始的材质球，从而使使用这个材质球的模型都收到影响。</li>
+</ol>
+<h2 id="减少顶点">减少顶点</h2>
+<ol>
+<li>模型制作，去除不必要的顶点和边</li>
+<li>LOD</li>
+<li>遮挡剔除技术（<strong>这个需要重点学习一下，之前没有用过。</strong>）</li>
+</ol>
+<h2 id="减少片元">减少片元</h2>
+<ol>
+<li>减少overDraw
+<ol>
+<li>最最主要的，尽可能不要用半透明的渲染队列。半透明物体会破坏渲染队列。</li>
+<li>对于UI，如果无法避免半透明，可以将UI的相机和其他的场景相机分开，不要一起渲染。</li>
+<li>透明度测试也会影响游戏性能。discard和clip操作可能会导致一些硬件的优化策略失败。</li>
+</ol>
+</li>
+<li>减少实时光照和阴影
+<ol>
+<li>灯光贴图</li>
+<li>移动平台上，物体的逐像素光照光源数目应该小于1（不包括平行光）。如果为了效果需要多个光源，请使用逐顶点光照。</li>
+<li>将光照计算存储到纹理中。根据光源方向，视角方向，法线方向等直接从纹理采样得到信息。但这种方法需要编写对应的美术编辑器，</li>
+</ol>
+</li>
+</ol>
+<h2 id="较少带宽">较少带宽</h2>
+<ol>
+<li>减少纹理大小。纹理大小应该是2的整数次幂。纹理压缩格式在不影响效果的情况下，应该压缩到最小。</li>
+<li>有些设备空有高分辨率的屏幕而没有配套的其他硬件，从而导致游戏在那个设备上运行时效果不好。可以使用Screen.SetResolution来设置分辨率。（<strong>这块需要进一步查阅资料学习</strong>）</li>
+</ol>
+<h2 id="减少计算复杂度">减少计算复杂度</h2>
+<ol>
+<li>Shader中的LOD
+<ol>
+<li>只有Shader中的LOD小于指定值时，这个Shader才会被使用。</li>
+<li>内置的Diffuse的LOD是200，BumpedSpecular是400。</li>
+</ol>
+</li>
+<li>Shader代码
+<ol>
+<li>计算数目排序：物体数量 &lt; 顶点数量 &lt; 片元数量</li>
+<li>尽可能把计算上移，减少计算。</li>
+<li>尽可能使用低精度浮点数进行计算</li>
+<li>避免不同精度数来回切换</li>
+<li>避免频繁的color.rgrg操作</li>
+<li>尽可能不要用屏幕后处理</li>
+<li>如果需要使用屏幕后处理，尽可能把多个特效封到一个Shader里</li>
+<li>尽可能不要用分支和循环，sin, tan, pow，等费时操作，以及discard操作。</li>
+</ol>
+</li>
+</ol>
 ]]></content>
     </entry>
     <entry>

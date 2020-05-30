@@ -378,6 +378,15 @@ fixed4 frag(vertOut i) : SV_Target
 <li>SHADOW_CASTER_FRAGMENT(v2f i) ：片元着色器中使用</li>
 </ol>
 </li>
+<li>获取使用深度法线纹理相关
+<ol>
+<li>C#脚本中的API：<code>camera.depthTextureMode</code></li>
+<li>Shader中声明的贴图：<code>_CameraDepthTexture</code>和<code>_CameraDepthNormalTexture</code>。</li>
+</ol>
+</li>
+<li><code>LinearEyeDepth</code>：视角空间下进行线性插值</li>
+<li><code>step(a, b)</code>：如果<code>b&gt;a</code> 则返回1，如果<code>b&lt;a</code>则返回0</li>
+<li><code>smothstep(min, max, a)</code>：如果a小于min，返回0；如果a大于max，返回1，否则在0到1之间进行插值。</li>
 </ol>
 <hr>
 <h3 id="cgincludes主要包含的文件以及作用">CGIncludes主要包含的文件以及作用</h3>
