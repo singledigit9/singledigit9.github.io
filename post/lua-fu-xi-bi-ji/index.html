@@ -162,11 +162,11 @@ boolean：nil和f...">
 <li>描述：弱表是一个弱引用的表。</li>
 <li>定义：重新设置table的元表，添加<code>__mode</code>字段。其中字段值等于&quot;k&quot;表示key是弱引用，&quot;v&quot;表示值是弱引用，&quot;kv&quot;表示索引和值都是弱引用。</li>
 </ul>
+</li>
+</ul>
 <pre><code class="language-Lua">weakTable = {&quot;xxx&quot;, &quot;yyy&quot;, &quot;zzz&quot;};
 setmetatable(weakTable, {__mode = &quot;v&quot;})
 </code></pre>
-</li>
-</ul>
 <h3 id="协同程序continues">协同程序(Continues)</h3>
 <ul>
 <li>在lua中，协程也相当于是独立的线程，但和线程不同的是，协程只能通过显示调用和yield函数来挂起和执行。</li>
@@ -193,18 +193,20 @@ setmetatable(weakTable, {__mode = &quot;v&quot;})
 <ul>
 <li>代码：</li>
 </ul>
+</li>
+</ul>
 <pre><code class="language-Lua">function foo (a)
-	print(&quot;foo&quot;, a)
-	return coroutine.yield(2*a)
+    print(&quot;foo&quot;, a)
+    return coroutine.yield(2*a)
 end
 
 co = coroutine.create(function (a,b)
-	print(&quot;co-body&quot;, a, b)
-	local r = foo(a+1)
-	print(&quot;co-body&quot;, r)
-	local r, s = coroutine.yield(a+b, a-b)
-	print(&quot;co-body&quot;, r, s)
-	return b, &quot;end&quot;
+    print(&quot;co-body&quot;, a, b)
+    local r = foo(a+1)
+    print(&quot;co-body&quot;, r)
+    local r, s = coroutine.yield(a+b, a-b)
+    print(&quot;co-body&quot;, r, s)
+    return b, &quot;end&quot;
 end)
 
 print(&quot;main&quot;, coroutine.resume(co, 1, 10))
@@ -212,9 +214,8 @@ print(&quot;main&quot;, coroutine.resume(co, &quot;r&quot;))
 print(&quot;main&quot;, coroutine.resume(co, &quot;x&quot;, &quot;y&quot;))
 print(&quot;main&quot;, coroutine.resume(co, &quot;x&quot;, &quot;y&quot;))
 </code></pre>
-<ul>
-<li>返回值</li>
-</ul>
+<pre><code>* 返回值
+</code></pre>
 <pre><code>co-body 1       10
 foo     2
 main    true    4
@@ -224,8 +225,6 @@ co-body x       y
 main    true    10      end
 main    false   cannot resume dead coroutine
 </code></pre>
-</li>
-</ul>
 <h2 id="语法与常用函数">语法与常用函数</h2>
 <h3 id="常用">常用</h3>
 <ul>
@@ -235,11 +234,13 @@ main    false   cannot resume dead coroutine
 <li>单行注释：<code>--</code></li>
 <li>多行注释：</li>
 </ul>
+</li>
+</ul>
 <pre><code class="language-lua">--[[
     多行注释
 --]]
 </code></pre>
-</li>
+<ul>
 <li>命名：
 <ul>
 <li>大小写敏感</li>
@@ -252,18 +253,21 @@ main    false   cannot resume dead coroutine
 <ul>
 <li>示例：</li>
 </ul>
+</li>
+</ul>
 <pre><code class="language-lua">a = 5
 b = 6
 a,b = b,a
 </code></pre>
+<pre><code>* 说明：要赋值的变量多时，多余的变量用nil补足；要赋值的变量少时，多余的值舍弃不用。
+</code></pre>
 <ul>
-<li>说明：要赋值的变量多时，多余的变量用nil补足；要赋值的变量少时，多余的值舍弃不用。</li>
-</ul>
-</li>
 <li>local变量的作用范围：
 <ul>
 <li>同一个区块内</li>
 <li>示例：下面的输出为 <code>nil nil</code></li>
+</ul>
+</li>
 </ul>
 <pre><code class="language-lua">function A()
     local a = 5;
@@ -275,32 +279,28 @@ end
 
 print(a, b)
 </code></pre>
-</li>
+<ul>
 <li>模块加载：<code>require(&quot;xxxxx&quot;)</code></li>
 </ul>
 <h3 id="基本类型的声明和使用">基本类型的声明和使用</h3>
 <ul>
-<li>
-<p>nil：</p>
+<li>nil：
 <ul>
 <li>对于全局变量和table，令其等于<code>nil</code>，等同于将其删除</li>
 <li>判断一个变量是否为 <code>nil</code>的方法为：<code>type(x) == &quot;nil&quot;</code>。需要加上双引号。</li>
 </ul>
 </li>
-<li>
-<p>boolean：</p>
+<li>boolean：
 <ul>
 <li>false和nil在if判断中均为false</li>
 </ul>
 </li>
-<li>
-<p>number：（默认是double）</p>
+<li>number：（默认是double）
 <ul>
 <li>科学计数法：[X]e[Y] === X * 10^Y。eg. 2e2 = 2 * 10^2 = 200</li>
 </ul>
 </li>
-<li>
-<p>string：</p>
+<li>string：
 <ul>
 <li>[[ …… ]]：表示一块字符串，可以跨行。</li>
 <li>字符串连接：<code>..</code></li>
@@ -442,96 +442,64 @@ end
 </li>
 </ul>
 </li>
-<li>
-<p>table：</p>
+<li>table：
 <ul>
 <li>声明：</li>
+</ul>
+</li>
 </ul>
 <pre><code class="language-lua">local t1 = {};
 local t2 = {&quot;x&quot;, &quot;y&quot;, &quot;z&quot;};
 
 t2[1] = 3
 </code></pre>
-<ul>
-<li>索引
-<ul>
-<li>列表：与其他语言索引从0开始不同，lua中索引从1开始</li>
-<li>字典：对于字符索引，可以有以下方式取值赋值</li>
-</ul>
-<pre><code class="language-Lua">t[&quot;key&quot;] = &quot;value&quot;;
-t.key = value;
+<pre><code>* 索引
+    * 列表：与其他语言索引从0开始不同，lua中索引从1开始
+    * 字典：对于字符索引，可以有以下方式取值赋值
+    ``` Lua
+    t[&quot;key&quot;] = &quot;value&quot;;
+    t.key = value;
+    ```
+* 获取长度：
+    * `#(t)`：长度识别从索引1开始，如果没有索引1，则返回0；之后顺序查找连续索引，直至最大值。eg. t[1] = 1; t[2] = 2; t[4] = 4; 返回的长度为2
+    * `table.maxn(t)`：获取的是table的最大整数数字索引。上面的例子中的table，如果使用这个函数，则返回4。
+* Table操作
+    * table.concat(target, sep, start, end)：输出全部table元素字符串
+        * 参数说明：目标table，分隔符（可省略），开始索引（可省略）， 结束索引（可省略）
+    * table.insert(target, index, value)：插入元素
+        * 参数说明：目标table，插入位置（可省略，默认为最后），插入元素
+    * table.remove(target, index)：
+        * 参数说明：目标table，移除的位置（可省略，默认为最后一个）
+    * table.sort(target, compareFunction)：
+        * 参数说明：目标table， 比较函数（可省略，省略后按默认内置排序进行比较）
 </code></pre>
-</li>
-<li>获取长度：
 <ul>
-<li><code>#(t)</code>：长度识别从索引1开始，如果没有索引1，则返回0；之后顺序查找连续索引，直至最大值。eg. t[1] = 1; t[2] = 2; t[4] = 4; 返回的长度为2</li>
-<li><code>table.maxn(t)</code>：获取的是table的最大整数数字索引。上面的例子中的table，如果使用这个函数，则返回4。</li>
-</ul>
-</li>
-<li>Table操作
-<ul>
-<li>table.concat(target, sep, start, end)：输出全部table元素字符串
-<ul>
-<li>参数说明：目标table，分隔符（可省略），开始索引（可省略）， 结束索引（可省略）</li>
-</ul>
-</li>
-<li>table.insert(target, index, value)：插入元素
-<ul>
-<li>参数说明：目标table，插入位置（可省略，默认为最后），插入元素</li>
-</ul>
-</li>
-<li>table.remove(target, index)：
-<ul>
-<li>参数说明：目标table，移除的位置（可省略，默认为最后一个）</li>
-</ul>
-</li>
-<li>table.sort(target, compareFunction)：
-<ul>
-<li>参数说明：目标table， 比较函数（可省略，省略后按默认内置排序进行比较）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>function：</p>
+<li>function：
 <ul>
 <li>示例：</li>
+</ul>
+</li>
 </ul>
 <pre><code class="language-Lua">function Add(a, b)
     return a + b;
 end
 </code></pre>
-<ul>
-<li>函数默认声明为全局函数。标明为local时，声明的函数为局部函数</li>
-<li>多返回值，使用<code>return a, b, c</code>， 返回值的使用同多重赋值</li>
-<li>不定参数：
-<ul>
-<li>示例</li>
-</ul>
+<pre><code>* 函数默认声明为全局函数。标明为local时，声明的函数为局部函数
+* 多返回值，使用`return a, b, c`， 返回值的使用同多重赋值
+* 不定参数：
+    * 示例
+</code></pre>
 <pre><code class="language-Lua">local function A(...)
     local args = {...}
 end
 </code></pre>
-<ul>
-<li>获取不定参数长度
-<ul>
-<li>将不定参数存储到table中，获取table列表的长度<code>#{...}</code></li>
-<li>使用select函数。<code>select(&quot;#&quot;, ...)</code></li>
-</ul>
-</li>
-<li>select函数的说明
-<ul>
-<li>select(&quot;#&quot;, ...)：返回不定参数的长度。</li>
-<li>select(n, ...)：返回第n个参数值</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>    * 获取不定参数长度
+        * 将不定参数存储到table中，获取table列表的长度`#{...}`
+        * 使用select函数。`select(&quot;#&quot;, ...)`
+    * select函数的说明
+        * select(&quot;#&quot;, ...)：返回不定参数的长度。
+        * select(n, ...)：返回第n个参数值
+</code></pre>
 <h3 id="基本运算">基本运算</h3>
 <h4 id="算术运算">算术运算</h4>
 <p><code>+ - * / % ^</code></p>

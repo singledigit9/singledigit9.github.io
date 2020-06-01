@@ -1,0 +1,839 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Transform和RectTransform的编辑器扩展 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Transform和RectTransform的编辑器扩展 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="简介
+扩展了Transform和RectTransform的Inspector编辑器面板。
+
+可以快速归0
+可以快速复制坐标
+Transform额外有一个整体的缩放的控制
+
+
+源代码
+
+Transform的扩展
+
+using System...." />
+  <meta property="og:title" content="Transform和RectTransform的编辑器扩展 - 资料库">
+  <meta property="og:description" content="简介
+扩展了Transform和RectTransform的Inspector编辑器面板。
+
+可以快速归0
+可以快速复制坐标
+Transform额外有一个整体的缩放的控制
+
+
+源代码
+
+Transform的扩展
+
+using System...." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/transform-he-recttransform-de-bian-ji-qi-kuo-zhan/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="Transform和RectTransform的编辑器扩展 - 资料库">
+  <meta name="twitter:description" content="简介
+扩展了Transform和RectTransform的Inspector编辑器面板。
+
+可以快速归0
+可以快速复制坐标
+Transform额外有一个整体的缩放的控制
+
+
+源代码
+
+Transform的扩展
+
+using System....">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/transform-he-recttransform-de-bian-ji-qi-kuo-zhan/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          Transform和RectTransform的编辑器扩展
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2018-12-23 · 9 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/5hgjXbXgj/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              工具
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/iHLk7fHQm9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Unity3D
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/wEUlpqMsQF/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              C#
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h1 id="简介">简介</h1>
+<p>扩展了Transform和RectTransform的Inspector编辑器面板。</p>
+<ul>
+<li>可以快速归0</li>
+<li>可以快速复制坐标</li>
+<li>Transform额外有一个整体的缩放的控制</li>
+</ul>
+<!--more-->
+<h1 id="源代码">源代码</h1>
+<ul>
+<li>Transform的扩展</li>
+</ul>
+<pre><code class="language-csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+namespace EasyFramework.eEditor
+{
+    [CanEditMultipleObjects]
+    [CustomEditor(typeof(Transform), true)]
+    public class TransformInspectorExtend : Editor
+    {
+        const float LABEL_WIDTH_NORMAL = 15f;
+        const float LABEL_WIDTH_SPECIAL = 80f;
+        const bool WIDE_MODE = true;
+        const float POSITION_MAX = 100000.0f;
+
+        static GUIContent positionGUIContent = new GUIContent(&quot;&quot;);
+        static GUIContent rotationGUIContent = new GUIContent(&quot;&quot;);
+        static GUIContent scaleGUIContent = new GUIContent(&quot;&quot;);
+        static GUIContent quickScaleGUIContent = new GUIContent(&quot;Quick Scale&quot;);
+        static GUIContent quickScaleButtonGUIContent = new GUIContent(&quot;Scale Multiple&quot;);
+
+        static string positionWarningText = &quot;Due to floating-point precision limitations, it is recommended to bring the world coordinates of the GameObject within a smaller range.&quot;;
+        static string copyModel = &quot;Vector3 {0}_{1} = new Vector3({2}f, {3}f, {4}f);\n&quot;;
+
+        static TextEditor textEditor = new TextEditor();
+
+        SerializedProperty positionProperty;
+        SerializedProperty rotationProperty;
+        SerializedProperty scaleProperty;
+        float quickScaleValue = 1;
+        float quickScaleMultiple = 1;
+
+        public void OnEnable()
+        {
+            positionProperty = serializedObject.FindProperty(&quot;m_LocalPosition&quot;);
+            rotationProperty = serializedObject.FindProperty(&quot;m_LocalRotation&quot;);
+            scaleProperty = serializedObject.FindProperty(&quot;m_LocalScale&quot;);
+        }
+
+        public override void OnInspectorGUI()
+        {
+            EditorGUIUtility.wideMode = WIDE_MODE;
+            EditorGUIUtility.labelWidth = LABEL_WIDTH_NORMAL;
+
+            serializedObject.Update();
+
+            DrawPosition();
+            DrawRotation();
+            DrawScale();
+            DrawQuickScale();
+            DrawCopyTool();
+
+            //check position
+            if (!ValidatePosition((target as Transform).position))
+            {
+                EditorGUILayout.HelpBox(positionWarningText, MessageType.Warning);
+            }
+
+            serializedObject.ApplyModifiedProperties();
+        }
+        void DrawQuickScale()
+        {
+            EditorGUIUtility.labelWidth = LABEL_WIDTH_SPECIAL;
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label(quickScaleButtonGUIContent, GUILayout.Width(90));
+
+            EditorGUI.BeginChangeCheck();
+
+            EditorGUI.BeginDisabledGroup(quickScaleMultiple == 0.01f);
+            bool isClick_001 = GUILayout.Button(&quot;x 0.01&quot;);
+            EditorGUI.EndDisabledGroup();
+
+            EditorGUI.BeginDisabledGroup(quickScaleMultiple == 0.1f);
+            bool isClick_01 = GUILayout.Button(&quot;x 0.1&quot;);
+            EditorGUI.EndDisabledGroup();
+
+            EditorGUI.BeginDisabledGroup(quickScaleMultiple == 1f);
+            bool isClick_1 = GUILayout.Button(&quot;x 1&quot;);
+            EditorGUI.EndDisabledGroup();
+
+            EditorGUI.BeginDisabledGroup(quickScaleMultiple == 10f);
+            bool isClick_10 = GUILayout.Button(&quot;x 10&quot;);
+            EditorGUI.EndDisabledGroup();
+
+            EditorGUI.BeginDisabledGroup(quickScaleMultiple == 100f);
+            bool isClick_100 = GUILayout.Button(&quot;x 100&quot;);
+            EditorGUI.EndDisabledGroup();
+
+            if (isClick_001)
+                quickScaleMultiple = 0.01f;
+            if (isClick_01)
+                quickScaleMultiple = 0.1f;
+            if (isClick_1)
+                quickScaleMultiple = 1f;
+            if (isClick_10)
+                quickScaleMultiple = 10f;
+            if (isClick_100)
+                quickScaleMultiple = 100f;
+
+            EditorGUILayout.EndHorizontal();
+            quickScaleValue = EditorGUILayout.Slider(quickScaleGUIContent, quickScaleValue, 0, 10);
+            bool isChanged = EditorGUI.EndChangeCheck();
+            if (isChanged)
+            {
+                scaleProperty.vector3Value = Vector3.one * quickScaleValue * quickScaleMultiple;
+            }
+        }
+
+        void DrawScale()
+        {
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(&quot;S&quot;, GUILayout.Width(20f)))
+            {
+                scaleProperty.vector3Value = Vector3.one;
+            }
+            EditorGUILayout.PropertyField(scaleProperty, scaleGUIContent);
+            EditorGUILayout.EndHorizontal();
+        }
+
+        void DrawRotation()
+        {
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(&quot;R&quot;, GUILayout.Width(20f)))
+            {
+                rotationProperty.quaternionValue = Quaternion.identity;
+            }
+            RotationPropertyField(rotationProperty, rotationGUIContent);
+            EditorGUILayout.EndHorizontal();
+        }
+
+        void DrawPosition()
+        {
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(&quot;P&quot;, GUILayout.Width(20f)))
+            {
+                positionProperty.vector3Value = Vector3.zero;
+            }
+            EditorGUILayout.PropertyField(positionProperty, positionGUIContent);
+            EditorGUILayout.EndHorizontal();
+        }
+
+        void DrawCopyTool()
+        {
+            EditorGUILayout.BeginHorizontal();
+            int copyFlag = 0;
+            if (GUILayout.Button(&quot;Copy Pos&quot;))//0001
+            {
+                copyFlag |= 1;
+            }
+            if (GUILayout.Button(&quot;Copy Rot&quot;))//0010
+            {
+                copyFlag |= 2;
+            }
+            if (GUILayout.Button(&quot;Copy Sca&quot;))//0100
+            {
+                copyFlag |= 4;
+            }
+            if (GUILayout.Button(&quot;Copy All&quot;))//0111
+            {
+                copyFlag |= 7;
+            }
+            CopyValue(copyFlag);
+            EditorGUILayout.EndHorizontal();
+        }
+
+        void CopyValue(int _flag)
+        {
+            if (_flag == 0) return;
+            textEditor.text = &quot;&quot;;
+            string goName = target.name.ToLower();
+            string strBuffer = &quot;copy_&quot;;
+            for (int i = 0; i &lt; goName.Length; i++)
+            {
+                char c = goName[i];
+                if ((goName[i] &lt;= 'z' &amp;&amp; goName[i] &gt;= 'a')
+                    || (goName[i] &gt;= '0' &amp;&amp; goName[i] &lt;= '9'))
+                {
+                    strBuffer += c;
+                }
+            }
+            goName = strBuffer;
+            if ((_flag &amp; 1) == 1)
+            {
+                textEditor.text += string.Format(copyModel,
+                                                 goName,
+                                                &quot;LoaclPosition&quot;,
+                                                positionProperty.vector3Value.x,
+                                                positionProperty.vector3Value.y,
+                                                positionProperty.vector3Value.z);
+            }
+            if ((_flag &amp; 2) == 2)
+            {
+                textEditor.text += string.Format(copyModel,
+                                                 goName,
+                                                &quot;LocalEulerAngles&quot;,
+                                                rotationProperty.quaternionValue.eulerAngles.x,
+                                                rotationProperty.quaternionValue.eulerAngles.y,
+                                                rotationProperty.quaternionValue.eulerAngles.z);
+            }
+            if ((_flag &amp; 4) == 4)
+            {
+                textEditor.text += string.Format(copyModel,
+                                                 goName,
+                                                &quot;LocalScale&quot;,
+                                                scaleProperty.vector3Value.x,
+                                                scaleProperty.vector3Value.y,
+                                                 scaleProperty.vector3Value.z);
+            }
+
+            textEditor.OnFocus();
+            textEditor.Copy();
+            Debug.Log(textEditor.text);
+        }
+
+        bool ValidatePosition(Vector3 _position)
+        {
+            if (Mathf.Abs(_position.x) &gt; POSITION_MAX) return false;
+            if (Mathf.Abs(_position.y) &gt; POSITION_MAX) return false;
+            if (Mathf.Abs(_position.z) &gt; POSITION_MAX) return false;
+            return true;
+        }
+
+        void RotationPropertyField(SerializedProperty _rotationProperty, GUIContent _content)
+        {
+            Transform transform = targets[0] as Transform;
+            Quaternion localRotation = transform.localRotation;
+            foreach (Object t in targets)
+            {
+                if (!SameRotation(localRotation, (t as Transform).localRotation))
+                {
+                    EditorGUI.showMixedValue = true;
+                    break;
+                }
+            }
+
+            EditorGUI.BeginChangeCheck();
+
+            Vector3 temp = localRotation.eulerAngles;
+            temp.x = WrapAngle(temp.x);
+            temp.y = WrapAngle(temp.y);
+            temp.z = WrapAngle(temp.z);
+
+            Vector3 eulerAngles = EditorGUILayout.Vector3Field(_content, temp);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObjects(this.targets, &quot;Rotation Changed&quot;);
+                foreach (Object obj in targets)
+                {
+                    Transform t = obj as Transform;
+                    t.localEulerAngles = eulerAngles;
+                }
+                _rotationProperty.serializedObject.SetIsDifferentCacheDirty();
+            }
+
+            EditorGUI.showMixedValue = false;
+        }
+
+        bool SameRotation(Quaternion _rot1, Quaternion _rot2)
+        {
+            if (!CompareFloat(_rot1.x, _rot2.x)) return false;
+            if (!CompareFloat(_rot1.y, _rot2.y)) return false;
+            if (!CompareFloat(_rot1.z, _rot2.z)) return false;
+            if (!CompareFloat(_rot1.w, _rot2.w)) return false;
+            return true;
+        }
+
+        bool CompareFloat(float _a, float _b, float _accuracy = 0.00001f)
+        {
+            return Mathf.Abs(_a - _b) &lt; _accuracy;
+        }
+
+        float WrapAngle(float _angle)
+        {
+            _angle = _angle % 360;
+            if (_angle &gt; 180) _angle -= 360;
+            if (_angle &lt; -180) _angle += 360;
+            _angle = (float)System.Math.Round(_angle, 2);
+            return _angle;
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>RectTransform的扩展</li>
+</ul>
+<pre><code class="language-csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using System;
+using System.Reflection;
+
+namespace EasyFramework.eEditor
+{
+    [CanEditMultipleObjects]
+    [CustomEditor(typeof(RectTransform))]
+    public class RectTransformInspectorExtend : Editor
+    {
+        static GUIContent resetMessageGUIContent = new GUIContent(&quot;Reset&quot;);
+        static GUIContent posGUIContent = new GUIContent(&quot;Pos&quot;);
+        static GUIContent rotGUIContent = new GUIContent(&quot;Rot&quot;);
+        static GUIContent scaleGUIContent = new GUIContent(&quot;Scale&quot;);
+        static GUIContent sizeGUIContent = new GUIContent(&quot;Size&quot;);
+        static GUIContent copyMessageContent = new GUIContent(&quot;Copy&quot;);
+        static string copyVector3Model = &quot;Vector3 {0}_{1} = new Vector3({2}f, {3}f, {4}f);\n&quot;;
+        static string copyVector2Model = &quot;Vector2 {0}_{1} = new Vector2({2}f, {3}f);\n&quot;;
+
+        Editor rectTransformEditor;
+        Editor RectTransformEditor
+        {
+            get
+            {
+                if(rectTransformEditor == null)
+                {
+                    rectTransformEditor = GetRectTransformEditor();
+                }
+                return rectTransformEditor;
+            }
+        }
+
+        TextEditor textEditor = new TextEditor();
+
+        public override void OnInspectorGUI()
+        {
+            RectTransformEditor.OnInspectorGUI();
+            DrawResetButton();
+            DrawCopyTool();
+        }
+
+        Editor GetRectTransformEditor()
+        {
+            var editorAssembly = Assembly.GetAssembly(typeof(Editor));
+            var types = editorAssembly.GetTypes();
+            Type editorType = null;
+            for (int i = 0; i &lt; types.Length;++i)
+            {
+                if(types[i].Name == &quot;RectTransformEditor&quot;)
+                {
+                    editorType = types[i];
+                    break;
+                }
+            }
+            var editor = CreateEditor(targets, editorType);
+            if (editor == null) throw new Exception(&quot;Create RectTransform Editor Failed&quot;);
+            return editor;
+        }
+
+        void DrawResetButton()
+        {
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label(resetMessageGUIContent);
+            bool isResetPosition = GUILayout.Button(posGUIContent);
+            bool isResetRotation = GUILayout.Button(rotGUIContent);
+            bool isResetScale = GUILayout.Button(scaleGUIContent);
+            bool isResetSize = GUILayout.Button(sizeGUIContent);
+            EditorGUILayout.EndHorizontal();
+            bool hasChanged = EditorGUI.EndChangeCheck();
+            if (!hasChanged)
+            {
+                return;
+            }
+
+            for (int i = 0; i &lt; targets.Length; i++)
+            {
+                var go = targets[i] as RectTransform;
+
+
+                if (isResetPosition)
+                {
+                    go.localPosition = Vector3.zero;
+                }
+                if (isResetRotation)
+                {
+                    go.localRotation = Quaternion.identity;
+                }
+                if (isResetScale)
+                {
+                    go.localScale = Vector3.one;
+                }
+                if (isResetSize)
+                {
+                    go.sizeDelta = Vector2.one * 100;
+                }
+            }
+        }
+
+        void DrawCopyTool()
+        {
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label(copyMessageContent);
+            int copyFlag = 0;
+            if (GUILayout.Button(posGUIContent))//0001
+            {
+                copyFlag |= 1;
+            }
+            if (GUILayout.Button(rotGUIContent))//0010
+            {
+                copyFlag |= 2;
+            }
+            if (GUILayout.Button(scaleGUIContent))//0100
+            {
+                copyFlag |= 4;
+            }
+            if (GUILayout.Button(sizeGUIContent))//1000
+            {
+                copyFlag |= 8;
+            }
+            if (GUILayout.Button(&quot;Copy All&quot;))//1111
+            {
+                copyFlag |= 15;
+            }
+            CopyValue(copyFlag);
+            EditorGUILayout.EndHorizontal();
+        }
+
+        void CopyValue(int _flag)
+        {
+            if (_flag == 0) return;
+            var go = target as RectTransform;
+            textEditor.text = &quot;&quot;;
+            string goName = target.name.ToLower();
+            string strBuffer = &quot;copy_&quot;;
+            for (int i = 0; i &lt; goName.Length; i++)
+            {
+                char c = goName[i];
+                if ((goName[i] &lt;= 'z' &amp;&amp; goName[i] &gt;= 'a')
+                    || (goName[i] &gt;= '0' &amp;&amp; goName[i] &lt;= '9'))
+                {
+                    strBuffer += c;
+                }
+            }
+            goName = strBuffer;
+
+            if ((_flag &amp; 1) == 1)
+            {
+                textEditor.text += string.Format(copyVector3Model,
+                                                 goName,
+                                                &quot;LoaclPosition&quot;,
+                                                 go.localPosition.x,
+                                                 go.localPosition.y,
+                                                 go.localPosition.z);
+            }
+            if ((_flag &amp; 2) == 2)
+            {
+                textEditor.text += string.Format(copyVector3Model,
+                                                 goName,
+                                                &quot;LocalEulerAngles&quot;,
+                                                 go.localEulerAngles.x,
+                                                 go.localEulerAngles.y,
+                                                 go.localEulerAngles.z);
+            }
+            if ((_flag &amp; 4) == 4)
+            {
+                textEditor.text += string.Format(copyVector3Model,
+                                                 goName,
+                                                &quot;LocalScale&quot;,
+                                                 go.localScale.x,
+                                                 go.localScale.y,
+                                                 go.localScale.z);
+            }
+            if ((_flag &amp; 8) == 8)
+            {
+                textEditor.text += string.Format(copyVector2Model,
+                                                 goName,
+                                              &quot;Size&quot;,
+                                               go.sizeDelta.x,
+                                               go.sizeDelta.y);
+            }
+
+            textEditor.OnFocus();
+            textEditor.Copy();
+            Debug.Log(textEditor.text);
+        }
+    }
+}
+</code></pre>
+<h1 id="重点内容">重点内容</h1>
+<ul>
+<li>Transform的旋转默认是四元数的，直接拓展出来的旋转面板也是四元数格式的，所以要用Vector3类型的面板进行装饰</li>
+<li>RectTransform的原生面板功能很齐全，想再原有的面板上进行扩展。但正常情况下是访问不到Unity原生的Editor脚本的，所以用反射获取原生的UnityEditor类型，然后生成对象，以使用Unity原生的编辑器面板。</li>
+</ul>
+<h1 id="其他">其他</h1>
+<ul>
+<li>这两个脚本是很久之前做的了，当时是先做的Transform的脚本。现在想想的话，其实Transform部分也可以用反射来使用Unity自带的Editor，会使Transform的扩展简便很多，这个后续更新吧。</li>
+<li>为了节省存储空间，就不放效果图了。</li>
+</ul>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li><a href="#%E6%BA%90%E4%BB%A3%E7%A0%81">源代码</a></li>
+<li><a href="#%E9%87%8D%E7%82%B9%E5%86%85%E5%AE%B9">重点内容</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96">其他</a></li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>
