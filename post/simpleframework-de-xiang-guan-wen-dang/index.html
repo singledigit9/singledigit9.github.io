@@ -1,0 +1,428 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>SimpleFramework的相关文档 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="SimpleFramework的相关文档 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="简介
+这个框架算是为了总结自己所掌握的东西的一个总结。目标是基于Unity和FairyGUI，完成一个轻量的方便使用的游戏框架。
+目前完成了一部分，还有不少内容需要填充和测试，空闲时间一点一点来做吧。
+碎碎念
+其实之前自己也写过一些半残的东..." />
+  <meta property="og:title" content="SimpleFramework的相关文档 - 资料库">
+  <meta property="og:description" content="简介
+这个框架算是为了总结自己所掌握的东西的一个总结。目标是基于Unity和FairyGUI，完成一个轻量的方便使用的游戏框架。
+目前完成了一部分，还有不少内容需要填充和测试，空闲时间一点一点来做吧。
+碎碎念
+其实之前自己也写过一些半残的东..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/simpleframework-de-xiang-guan-wen-dang/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="SimpleFramework的相关文档 - 资料库">
+  <meta name="twitter:description" content="简介
+这个框架算是为了总结自己所掌握的东西的一个总结。目标是基于Unity和FairyGUI，完成一个轻量的方便使用的游戏框架。
+目前完成了一部分，还有不少内容需要填充和测试，空闲时间一点一点来做吧。
+碎碎念
+其实之前自己也写过一些半残的东...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/simpleframework-de-xiang-guan-wen-dang/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          SimpleFramework的相关文档
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-06-06 · 3 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/8EcVz9hnG/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              框架
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/iHLk7fHQm9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Unity3D
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h1 id="简介">简介</h1>
+<p>这个框架算是为了总结自己所掌握的东西的一个总结。目标是基于Unity和FairyGUI，完成一个轻量的方便使用的游戏框架。<br>
+目前完成了一部分，还有不少内容需要填充和测试，空闲时间一点一点来做吧。</p>
+<h2 id="碎碎念">碎碎念</h2>
+<p>其实之前自己也写过一些半残的东西，不过很多都不成体系，模块不全。此外也是深感自己在技术学习上有种<strong>N乘50%<strong>的感觉，想总体回顾一下，把欠缺的东西补到</strong>100%</strong>。<br>
+这个文档主要是记录自己已经完成了什么，完成的部分该怎么使用。以及还没有完成什么，已经完成的部分有哪些优化空间；以及一些临时想到的可以做的编辑器工具等等。<br>
+希望今年年底能够完成所有主体功能，且都测试过，也就是传说中的1.0版本。</p>
+<h1 id="已完成测试">已完成测试</h1>
+<h2 id="对象池">对象池</h2>
+<h2 id="状态机">状态机</h2>
+<h2 id="事件系统">事件系统</h2>
+<h2 id="调试工具部分">调试工具[部分]</h2>
+<h3 id="有log输出工具">有Log输出工具</h3>
+<h3 id="输出运行时间类">输出运行时间类</h3>
+<h1 id="完成未测试">完成未测试</h1>
+<h2 id="配置表">配置表</h2>
+<ol>
+<li>数据读取存储[完成]</li>
+<li>自动生成代码[完成]</li>
+<li>生成序列化数据[完成]</li>
+<li>生成代码序列化数据配置工具[完成]</li>
+<li>PC/Android/Ios各个平台测试[未完成]</li>
+<li>测试[未完成]</li>
+</ol>
+<h1 id="进行中">进行中</h1>
+<h2 id="ui">UI</h2>
+<ol>
+<li>界面生命周期[部分]
+<ol>
+<li>初始化</li>
+<li>enter动画</li>
+<li>显示界面</li>
+<li>exit动画</li>
+<li>隐藏界面</li>
+<li>销毁界面</li>
+</ol>
+</li>
+<li>界面切换缓存策略[未完成]</li>
+<li>红点系统[部分]</li>
+<li>强制引导系统[未完成]</li>
+</ol>
+<h2 id="assetbundle">AssetBundle</h2>
+<ol>
+<li>打AssetBundle工具[部分]
+<ol>
+<li>选定哪些资源打到哪个Bundle里面</li>
+<li>Bundle的一些配置</li>
+</ol>
+</li>
+<li>依赖查询工具[部分]</li>
+<li>生成AssetBundle的加密和解密[未]</li>
+</ol>
+<h2 id="资源加载">资源加载</h2>
+<ol>
+<li>AssetBundle加载[未]
+<ol>
+<li>LZMA压缩模式</li>
+<li>LZ4和未压缩模式</li>
+</ol>
+</li>
+<li>Resources加载[未]</li>
+<li>编辑器下模拟AssetBundle加载[未]</li>
+<li>冗余缓存的清理[未]</li>
+</ol>
+<p>#未开始</p>
+<h2 id="启动流程">启动流程</h2>
+<h2 id="网络部分">网络部分</h2>
+<ol>
+<li>HTTP连接</li>
+<li>TCP连接</li>
+<li>UDP连接</li>
+</ol>
+<h2 id="本地数据保存加载">本地数据保存加载</h2>
+<h2 id="本地化">本地化</h2>
+<h2 id="常用的shader效果">常用的Shader效果</h2>
+<h2 id="其他插件工具">其他插件工具</h2>
+<ol>
+<li>摇杆（这个应该有插件，找个好用的集成进来）</li>
+</ol>
+<h2 id="其他编辑器工具这部分工具随时想到随时添加">其他编辑器工具（这部分工具随时想到随时添加）</h2>
+<ol>
+<li>噪声图生成工具</li>
+<li>渐变采样图生成工具</li>
+<li>随机地形生成工具</li>
+<li>随机地牢生成工具</li>
+</ol>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a>
+<ul>
+<li><a href="#%E7%A2%8E%E7%A2%8E%E5%BF%B5">碎碎念</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B7%B2%E5%AE%8C%E6%88%90%E6%B5%8B%E8%AF%95">已完成测试</a>
+<ul>
+<li><a href="#%E5%AF%B9%E8%B1%A1%E6%B1%A0">对象池</a></li>
+<li><a href="#%E7%8A%B6%E6%80%81%E6%9C%BA">状态机</a></li>
+<li><a href="#%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F">事件系统</a></li>
+<li><a href="#%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E9%83%A8%E5%88%86">调试工具[部分]</a>
+<ul>
+<li><a href="#%E6%9C%89log%E8%BE%93%E5%87%BA%E5%B7%A5%E5%85%B7">有Log输出工具</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E7%B1%BB">输出运行时间类</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%AE%8C%E6%88%90%E6%9C%AA%E6%B5%8B%E8%AF%95">完成未测试</a>
+<ul>
+<li><a href="#%E9%85%8D%E7%BD%AE%E8%A1%A8">配置表</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9B%E8%A1%8C%E4%B8%AD">进行中</a>
+<ul>
+<li><a href="#ui">UI</a></li>
+<li><a href="#assetbundle">AssetBundle</a></li>
+<li><a href="#%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD">资源加载</a></li>
+<li><a href="#%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B">启动流程</a></li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86">网络部分</a></li>
+<li><a href="#%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E4%BF%9D%E5%AD%98%E5%8A%A0%E8%BD%BD">本地数据保存加载</a></li>
+<li><a href="#%E6%9C%AC%E5%9C%B0%E5%8C%96">本地化</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E7%9A%84shader%E6%95%88%E6%9E%9C">常用的Shader效果</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E6%8F%92%E4%BB%B6%E5%B7%A5%E5%85%B7">其他插件工具</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7%E8%BF%99%E9%83%A8%E5%88%86%E5%B7%A5%E5%85%B7%E9%9A%8F%E6%97%B6%E6%83%B3%E5%88%B0%E9%9A%8F%E6%97%B6%E6%B7%BB%E5%8A%A0">其他编辑器工具（这部分工具随时想到随时添加）</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

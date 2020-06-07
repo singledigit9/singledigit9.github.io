@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-06-01T17:11:58.582Z</updated>
+    <updated>2020-06-07T04:34:44.512Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,100 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[SimpleFramework的相关文档]]></title>
+        <id>https://singledigit9.github.io/post/simpleframework-de-xiang-guan-wen-dang/</id>
+        <link href="https://singledigit9.github.io/post/simpleframework-de-xiang-guan-wen-dang/">
+        </link>
+        <updated>2020-06-06T09:37:44.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="简介">简介</h1>
+<p>这个框架算是为了总结自己所掌握的东西的一个总结。目标是基于Unity和FairyGUI，完成一个轻量的方便使用的游戏框架。<br>
+目前完成了一部分，还有不少内容需要填充和测试，空闲时间一点一点来做吧。</p>
+<h2 id="碎碎念">碎碎念</h2>
+<p>其实之前自己也写过一些半残的东西，不过很多都不成体系，模块不全。此外也是深感自己在技术学习上有种<strong>N乘50%<strong>的感觉，想总体回顾一下，把欠缺的东西补到</strong>100%</strong>。<br>
+这个文档主要是记录自己已经完成了什么，完成的部分该怎么使用。以及还没有完成什么，已经完成的部分有哪些优化空间；以及一些临时想到的可以做的编辑器工具等等。<br>
+希望今年年底能够完成所有主体功能，且都测试过，也就是传说中的1.0版本。</p>
+<h1 id="已完成测试">已完成测试</h1>
+<h2 id="对象池">对象池</h2>
+<h2 id="状态机">状态机</h2>
+<h2 id="事件系统">事件系统</h2>
+<h2 id="调试工具部分">调试工具[部分]</h2>
+<h3 id="有log输出工具">有Log输出工具</h3>
+<h3 id="输出运行时间类">输出运行时间类</h3>
+<h1 id="完成未测试">完成未测试</h1>
+<h2 id="配置表">配置表</h2>
+<ol>
+<li>数据读取存储[完成]</li>
+<li>自动生成代码[完成]</li>
+<li>生成序列化数据[完成]</li>
+<li>生成代码序列化数据配置工具[完成]</li>
+<li>PC/Android/Ios各个平台测试[未完成]</li>
+<li>测试[未完成]</li>
+</ol>
+<h1 id="进行中">进行中</h1>
+<h2 id="ui">UI</h2>
+<ol>
+<li>界面生命周期[部分]
+<ol>
+<li>初始化</li>
+<li>enter动画</li>
+<li>显示界面</li>
+<li>exit动画</li>
+<li>隐藏界面</li>
+<li>销毁界面</li>
+</ol>
+</li>
+<li>界面切换缓存策略[未完成]</li>
+<li>红点系统[部分]</li>
+<li>强制引导系统[未完成]</li>
+</ol>
+<h2 id="assetbundle">AssetBundle</h2>
+<ol>
+<li>打AssetBundle工具[部分]
+<ol>
+<li>选定哪些资源打到哪个Bundle里面</li>
+<li>Bundle的一些配置</li>
+</ol>
+</li>
+<li>依赖查询工具[部分]</li>
+<li>生成AssetBundle的加密和解密[未]</li>
+</ol>
+<h2 id="资源加载">资源加载</h2>
+<ol>
+<li>AssetBundle加载[未]
+<ol>
+<li>LZMA压缩模式</li>
+<li>LZ4和未压缩模式</li>
+</ol>
+</li>
+<li>Resources加载[未]</li>
+<li>编辑器下模拟AssetBundle加载[未]</li>
+<li>冗余缓存的清理[未]</li>
+</ol>
+<p>#未开始</p>
+<h2 id="启动流程">启动流程</h2>
+<h2 id="网络部分">网络部分</h2>
+<ol>
+<li>HTTP连接</li>
+<li>TCP连接</li>
+<li>UDP连接</li>
+</ol>
+<h2 id="本地数据保存加载">本地数据保存加载</h2>
+<h2 id="本地化">本地化</h2>
+<h2 id="常用的shader效果">常用的Shader效果</h2>
+<h2 id="其他插件工具">其他插件工具</h2>
+<ol>
+<li>摇杆（这个应该有插件，找个好用的集成进来）</li>
+</ol>
+<h2 id="其他编辑器工具这部分工具随时想到随时添加">其他编辑器工具（这部分工具随时想到随时添加）</h2>
+<ol>
+<li>噪声图生成工具</li>
+<li>渐变采样图生成工具</li>
+<li>随机地形生成工具</li>
+<li>随机地牢生成工具</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[表面着色器中的结构体]]></title>
         <id>https://singledigit9.github.io/post/biao-mian-zhao-se-qi-zhong-de-jie-gou-ti/</id>
@@ -1323,28 +1417,6 @@ fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除�
 </ol>
 </li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[关于Unity  Foreach的GC问题 ]]></title>
-        <id>https://singledigit9.github.io/post/guan-yu-unity-foreach-de-gc-wen-ti/</id>
-        <link href="https://singledigit9.github.io/post/guan-yu-unity-foreach-de-gc-wen-ti/">
-        </link>
-        <updated>2020-05-03T07:10:34.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="先说结论">先说结论</h3>
-<p><strong>新版本Unity中，使用Foreach时已经不产生额外GC了</strong>。<br>
-网上说是从5.6开始改的，这个没有经过验证，暂且存疑。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="先说结论">先说结论</h3>
-<p><strong>新版本Unity中，使用Foreach时已经不产生额外GC了</strong>。<br>
-网上说是从5.6开始改的，这个没有经过验证，暂且存疑。</p>
-<!-- more -->
-<h3 id="结论查找过程">结论查找过程</h3>
-<p>起因是发现<code>List.ForEach</code>可能会很有用，能够减少不少多余代码。<br>
-但因为一直在顾虑<code>Foreach</code>GC的问题，所以就像知道这个方法就不会产生额外GC。</p>
-<p>于是我在Update里面分别用<code>for``foreach``List.ForEach</code>进行遍历，在Profiler中查看，发现没有额外的GC产生。<br>
-刚开始还以为是自己使用Profiler的姿势不对，没找到应该看哪里。<br>
-后来到Google查Unity Foreach GC，发现了这个问题的答案。</p>
 ]]></content>
     </entry>
 </feed>
