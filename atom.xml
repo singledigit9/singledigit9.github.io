@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-06-07T04:34:44.512Z</updated>
+    <updated>2020-06-08T15:42:24.044Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,43 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[面试总结]]></title>
+        <id>https://singledigit9.github.io/post/mian-shi-zong-jie/</id>
+        <link href="https://singledigit9.github.io/post/mian-shi-zong-jie/">
+        </link>
+        <updated>2020-06-08T15:17:42.000Z</updated>
+        <content type="html"><![CDATA[<p>今天面的网易游戏的。gg了。但还是总结一下吧。</p>
+<p>先说总体吧，自己回答的实在是有问题。根本没有体现出自己的技术水平。自己会的东西没有体现出来。<br>
+此外，一些细节的知识点自己还是没有深入研究，需要补足。</p>
+<hr>
+<p>下面汇总一下面试问到的问题吧。</p>
+<ol>
+<li>自我介绍【中】</li>
+<li>做了什么项目【中】</li>
+<li>那个项目最能体现你的能力【差】（这个之前自己都没怎么整理，回答的乱七八糟）
+<ol>
+<li>项目中你负责什么工作（项目选择的问题，选了一个不怎么出彩没什么东西的项目开始聊）</li>
+<li>那个项目中遇到了什么问题（说实话，没感觉遇到什么特别卡人的问题，直接懵掉了，瞎回答的。实际情况是，自己遇到问题要么解决掉，要么找原因发现解决不掉就绕过去，但没有一个系统的记录，这块确实以后要注意。）</li>
+<li>怎么解决的（上面的问题都瞎答的，自然这个也好不了）</li>
+</ol>
+</li>
+<li>写过什么Shader
+<ol>
+<li>怎么实现的。（这个没有说清楚是屏幕后处理，导致面试官以为设计的效果有问题）</li>
+<li>渲染管线流程（这个搞忘了）</li>
+</ol>
+</li>
+<li>算法
+<ol>
+<li>n个数里面去第k个数。（这个主要是想的太多，总想着考虑的全面一点，结果给人的感觉就是你算法不行）</li>
+</ol>
+</li>
+</ol>
+<hr>
+<p>最后总结下，首先，需要对自己的知识体系做一个整理，做一个树状图，把自己的会的知识点和需要掌握的知识点全部编到树里面去，然后缺什么赶紧补什么。其次，今后需要对项目进行总结，每天遇到了什么问题都应该记录下来，然后当前解决掉，解决方案一样要记录。然后就是看书了，一些书该看还是要看的，小说就戒掉吧，看小说时间比玩游戏时间还长，确实很费时间。最后就是刷题了，leetCode上面的题，每天刷一道，并且注意写笔记。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SimpleFramework的相关文档]]></title>
         <id>https://singledigit9.github.io/post/simpleframework-de-xiang-guan-wen-dang/</id>
@@ -1380,43 +1417,6 @@ fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除�
 </tr>
 </tbody>
 </table>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unity Shader中的语义]]></title>
-        <id>https://singledigit9.github.io/post/unity-shader-zhong-de-yu-yi/</id>
-        <link href="https://singledigit9.github.io/post/unity-shader-zhong-de-yu-yi/">
-        </link>
-        <updated>2020-05-04T07:29:07.000Z</updated>
-        <content type="html"><![CDATA[<ol>
-<li>应用阶段--&gt;顶点着色器
-<ol>
-<li>POSITION：模型空间中顶点的位置，常为float4</li>
-<li>NORMAL：顶点法线，常为float3</li>
-<li>TANGENT：顶点切线，常为float4</li>
-<li>TEXCOORD[x]：其中x为大于等于0的数字，表示第几组纹理坐标
-<ol>
-<li>x最大值根据不同的ShaderModel版本变化。</li>
-<li>一般情况下，一个模型的纹理坐标数不超过2。</li>
-</ol>
-</li>
-<li>COLOR：顶点颜色，常为fixed4或者float4</li>
-</ol>
-</li>
-<li>顶点着色器--&gt;片元着色器
-<ol>
-<li>SV_POSITION：裁剪空间中的顶点坐标</li>
-<li>COLOR0：第一组顶点颜色，不是必须的</li>
-<li>COLOR1：第二组顶点颜色，不是必须的</li>
-<li>TEXCOORD0～TEXCOORD7：通常用于输出纹理坐标或者自定义数据。</li>
-</ol>
-</li>
-<li>片元着色器--&gt;
-<ol>
-<li>SV_TARGET：输出值将会存储在渲染目标中。</li>
-</ol>
-</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
