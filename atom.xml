@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-06-08T15:42:24.044Z</updated>
+    <updated>2020-06-09T18:41:05.224Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,69 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[面试准备]]></title>
+        <id>https://singledigit9.github.io/post/mian-shi-zhun-bei/</id>
+        <link href="https://singledigit9.github.io/post/mian-shi-zhun-bei/">
+        </link>
+        <updated>2020-06-09T15:08:16.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="写在前面">写在前面</h1>
+<p>那个猎头哥们说网易的另外的做VR游戏的部门要联系我。聊一聊VR游戏什么的。<br>
+想着别人主动邀请聊一聊还是可以的。<br>
+但答应了之后，觉得那兄弟可能是在套路我。不过也没啥关系啦，那兄弟很负责，自己之前一面都没过实在是说不过去。<br>
+所以要好好准备准备。</p>
+<hr>
+<h1 id="招聘官网上搜索到的职位信息">招聘官网上搜索到的职位信息</h1>
+<h2 id="信息2">信息2</h2>
+<p>职位描述</p>
+<p>职责描述：<br>
+1.负责客户端相关逻辑的脚本开发；<br>
+2.负责游戏客户端调优；<br>
+3.负责游戏客户端模块设计和开发。<br>
+职位要求</p>
+<p>任职要求：<br>
+1.2年以上游戏客户端开发经验<br>
+2 至少熟悉Python/lua一种脚本语言的优先考虑</p>
+<ol>
+<li>至少熟悉Unity3D/Unreal4一款引擎的优先考虑</li>
+<li>具有良好的编程能力、代码风格和编程习惯、熟练掌握常用数据结构及算法</li>
+<li>热爱游戏，能适应手游开发节奏者优先。</li>
+</ol>
+<h1 id="信息整理">信息整理</h1>
+<ol>
+<li>Lua</li>
+<li>Unity<br>
+技能完全命中，准备好概率比较大。</li>
+</ol>
+<h1 id="常见问题">常见问题</h1>
+<h2 id="自我介绍-2403min">自我介绍 （2:40）[3min]</h2>
+<p>面试官你好，我叫王洪庆，毕业于西安交通大学工程力学系。<br>
+我是从15年末开始，到现在一直在做Unity客户端。做过手游和VR相关的东西。<br>
+刚工作时候做的是手游，当时负责的就是一些UI相关功能的开发，比如背包，卡牌培养，商店之类的。<br>
+后来加入了一个创业团队做VR的东西。刚开始做的东西也是比较简单。比如说在VR射击游戏里面负责道具功能的实现，就是加血无限子弹之类的。还有简单的飞机模拟VR游戏，这个主要是做的游戏的整理流程，和座椅设备的串口接入。<br>
+再之后就是做VR教育相关的东西。当时的主要产品大致描述就是由教师端通过服务器控制学生端VR设备的显示内容。我是主要负责课程部分SDK和部分课程内容的制作。这一部分由于当时人比较少，是自己独立完成的。产品完成后，公司逐渐偏向销售，氛围比较安逸，但觉得自己还没到能养老的时候。<br>
+于是到灵游坊组做客户端开发。开发的游戏是2D回合制游戏。我负责UI功能，战斗逻辑和表现部分，编辑器工具等。</p>
+<h2 id="觉得自己做的最好的是哪个项目详细描述一下做了什么-1302min">觉得自己做的最好的是哪个项目，详细描述一下做了什么。（1:30）[2min]</h2>
+<p>我最满意的还是《群星守卫》这款手游吧。代码方面，在之前积累的基础上，有所进步。表现效果方面，项目的流程是先由美术设计做效果视频，然后客户端对效果视频进行逆向还原。最终还原的效果基本上能达到效果视频的80%以上。此外，因为有美术效果设计的过于复杂，UI动画还原的效果不好，所以广泛使用了CriWare视频插件。视频插件的封装工作是我负责的，在原来插件的基础上，实现了Intro-Loop模式播放视频，以及视频的切换。</p>
+<h2 id="项目中遇到了那些难点怎么解决的-4305min">项目中遇到了那些难点，怎么解决的。（4:30）[5min]</h2>
+<p>项目中遇到的难点就是封装视频插件那块了。插件本身是不开源的，里面由不少代码做了混淆，看不到内部实现机制，只能看到外层的播放器。需求要实现IntroLoop效果，我先是看的官方的Demo，发现官方Demo虽然有切换视频的Demo，但因为插件播放视频需要一个Prepare的过程，所以Demo中两个视频之间切换需要卡几帧，很影响展现效果。然后就想着把第二个视频的Prepare的过程移动到第一个视频播放过程中去。于是采用的第一个方案就是创建不同的视频播放材质球，用直接切换材质球的方式实现视频的切换。但这种方案在材质球切换的时候，有几率会闪材质丢失的哪种粉色粉。为了解决这个问题，进一步研究插件的API，文档，发现有Append的方法可以进行视频拼接。按照这个思路改进，使用一个视频播放器和材质球，发现这种方式的限制很大，首先是视频格式的问题，视频格式要求Intro和Loop一致，且只能用Criware工具压缩的标准格式，h264格式的视频在append的时候有几率失败，而标准格式的体积比较大，而项目中使用视频的量很多，考虑包体积的问题，放弃了这个方案。最后是使用一个材质球，切换多个视频播放器开实现的。在视频播放前，先将Intro和Loop的播放器Prepare，之后Intro完毕后启动Loop进行播放，实现了这个需求。</p>
+<h2 id="基础知识">基础知识</h2>
+<h3 id="c的gc问题">C#的GC问题</h3>
+<p>GC是什么<br>
+怎么实现的<br>
+有多少种GC实现的机制</p>
+<h3 id="网络">网络</h3>
+<p>TCP和UDP的区别</p>
+<h3 id="值类型引用类型">值类型，引用类型</h3>
+<h3 id="结构体和类">结构体和类</h3>
+<h3 id="渲染流程">渲染流程</h3>
+<h2 id="算法题">算法题</h2>
+<p>这个，收到问题，先问边界条件。<br>
+之后想到什么直接说。<br>
+再进一步启发思考。<br>
+别tmd想太多，想太多不说话，别人就以为你啥啥不会。。。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[面试总结]]></title>
         <id>https://singledigit9.github.io/post/mian-shi-zong-jie/</id>
@@ -1369,54 +1432,6 @@ fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除�
 </ol>
 </li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unity Shader中的属性]]></title>
-        <id>https://singledigit9.github.io/post/unity-shader-zhong-de-shu-xing-ding-yi-he-chu-shi-hua/</id>
-        <link href="https://singledigit9.github.io/post/unity-shader-zhong-de-shu-xing-ding-yi-he-chu-shi-hua/">
-        </link>
-        <updated>2020-05-04T07:30:31.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="properties定义和初始化">Properties定义和初始化</h3>
-<p><code>_Int(&quot;Int&quot;, Int) = 2</code><br>
-<code>_Float(&quot;Float&quot;, Float) = 1.4</code><br>
-<code>_Range(&quot;Range&quot;, Range(0, 1)) = 0.5</code><br>
-<code>_Color(&quot;Color&quot;, Color) = (1, 0, 0, 0)</code><br>
-<code>_Vector(&quot;Vector&quot;, Vector) = (1, 2, 3, 4)</code><br>
-<code>_2D(&quot;2D&quot;, 2D) = &quot;white&quot;{}</code>（&quot;bump&quot;是unity内置的法线纹理）<br>
-<code>_Cube(&quot;Cube&quot;, Cube) = &quot;&quot;{}</code><br>
-<code>_3D(&quot;3D&quot;, 3D) = &quot;&quot;{}</code></p>
-<h3 id="shaderlab中属性和cg中类型的对应关系">ShaderLab中属性和CG中类型的对应关系</h3>
-<table>
-<thead>
-<tr>
-<th>ShaderLab属性</th>
-<th>CG变量类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Color, Vector</td>
-<td>float4, half4, fixed4</td>
-</tr>
-<tr>
-<td>Range, Float</td>
-<td>float, half, fixed</td>
-</tr>
-<tr>
-<td>2D</td>
-<td>sampler2D</td>
-</tr>
-<tr>
-<td>Cube</td>
-<td>samplerCube</td>
-</tr>
-<tr>
-<td>3D</td>
-<td>sampler3D</td>
-</tr>
-</tbody>
-</table>
 ]]></content>
     </entry>
 </feed>
