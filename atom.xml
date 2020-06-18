@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-06-14T14:45:05.995Z</updated>
+    <updated>2020-06-18T03:12:17.592Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,19 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[面试官给的建议]]></title>
+        <id>https://singledigit9.github.io/post/mian-shi-guan-gei-de-jian-yi/</id>
+        <link href="https://singledigit9.github.io/post/mian-shi-guan-gei-de-jian-yi/">
+        </link>
+        <updated>2020-06-18T03:08:51.000Z</updated>
+        <content type="html"><![CDATA[<p>二面遇到一个挺好的面试官。结束问问题，问了一下自己技术提高的方向。</p>
+<p>主要是指出了自己两个问题。<br>
+第一个问题是要有重点，精力有限，要先搞好一个再搞另一个。<br>
+第二个问题是要有专精，追求广度不可取。</p>
+<p>设计，渲染，优化，动画，等等方面，要专精一两个。这样才好出彩。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[面试准备]]></title>
         <id>https://singledigit9.github.io/post/mian-shi-zhun-bei/</id>
@@ -1764,54 +1777,6 @@ fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除�
 </ol>
 </li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unity Shader中的属性]]></title>
-        <id>https://singledigit9.github.io/post/unity-shader-zhong-de-shu-xing-ding-yi-he-chu-shi-hua/</id>
-        <link href="https://singledigit9.github.io/post/unity-shader-zhong-de-shu-xing-ding-yi-he-chu-shi-hua/">
-        </link>
-        <updated>2020-05-04T07:30:31.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="properties定义和初始化">Properties定义和初始化</h3>
-<p><code>_Int(&quot;Int&quot;, Int) = 2</code><br>
-<code>_Float(&quot;Float&quot;, Float) = 1.4</code><br>
-<code>_Range(&quot;Range&quot;, Range(0, 1)) = 0.5</code><br>
-<code>_Color(&quot;Color&quot;, Color) = (1, 0, 0, 0)</code><br>
-<code>_Vector(&quot;Vector&quot;, Vector) = (1, 2, 3, 4)</code><br>
-<code>_2D(&quot;2D&quot;, 2D) = &quot;white&quot;{}</code>（&quot;bump&quot;是unity内置的法线纹理）<br>
-<code>_Cube(&quot;Cube&quot;, Cube) = &quot;&quot;{}</code><br>
-<code>_3D(&quot;3D&quot;, 3D) = &quot;&quot;{}</code></p>
-<h3 id="shaderlab中属性和cg中类型的对应关系">ShaderLab中属性和CG中类型的对应关系</h3>
-<table>
-<thead>
-<tr>
-<th>ShaderLab属性</th>
-<th>CG变量类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Color, Vector</td>
-<td>float4, half4, fixed4</td>
-</tr>
-<tr>
-<td>Range, Float</td>
-<td>float, half, fixed</td>
-</tr>
-<tr>
-<td>2D</td>
-<td>sampler2D</td>
-</tr>
-<tr>
-<td>Cube</td>
-<td>samplerCube</td>
-</tr>
-<tr>
-<td>3D</td>
-<td>sampler3D</td>
-</tr>
-</tbody>
-</table>
 ]]></content>
     </entry>
 </feed>
