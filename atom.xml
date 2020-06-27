@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-06-27T08:48:56.506Z</updated>
+    <updated>2020-06-27T15:39:50.038Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,65 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[《游戏编程模式》读书笔记 序章]]></title>
+        <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-xu-zhang/</id>
+        <link href="https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-xu-zhang/">
+        </link>
+        <updated>2020-06-27T14:36:50.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="写在前面">写在前面</h1>
+<p>书的英文名是《Game Programming Patterns》，作者是Robert Nystrom。<br>
+看了序章的内容，就觉得这本书和一般的设计模式书相比，更加贴近于游戏开发。而且序章中明确的指出了一些开发过程中可能遇到的问题。<br>
+对于游戏开发的帮助很大。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="写在前面">写在前面</h1>
+<p>书的英文名是《Game Programming Patterns》，作者是Robert Nystrom。<br>
+看了序章的内容，就觉得这本书和一般的设计模式书相比，更加贴近于游戏开发。而且序章中明确的指出了一些开发过程中可能遇到的问题。<br>
+对于游戏开发的帮助很大。</p>
+<!-- more -->
+<h1 id="游戏开发中常见的挑战">游戏开发中常见的挑战</h1>
+<ol>
+<li>时间和顺序。</li>
+<li>高度压缩的开发周期，高速的版本迭代。需要程序能够快速迭代版本同时保证<strong>不干扰他人</strong>，<strong>不污染代码库</strong>。</li>
+<li>实现互动不能把代码搞的一团糟。比如怪物攻击英雄，炸弹炸飞敌人之类的。</li>
+<li>性能很重要。</li>
+</ol>
+<h1 id="怎么评价一个架构的好坏">怎么评价一个架构的好坏</h1>
+<ol>
+<li>架构是有关于改动的，没有改动的情况下谈架构毫无意义。</li>
+<li>评价架构的好坏就是它对应改动有多么轻松。</li>
+</ol>
+<h1 id="解耦的根本目的是什么">解耦的根本目的是什么</h1>
+<p>扩展新功能时，总是要把对应的模块代码熟悉好，知道什么地方是干什么的。<br>
+解耦的作用就在于，<strong>最小化在编码前需要了解的信息</strong>。<br>
+另一个常规的解耦的作用就是，当一块代码有改动时，没必要改动另一块代码。<strong>耦合度越小，改动所波及的外围就越小</strong>。</p>
+<h1 id="架构的代价">架构的代价</h1>
+<ol>
+<li><strong>需要汗水和纪律来维持好的设计</strong>。需要每一次功能实现和改动都努力去保持架构原有的结构。</li>
+<li><strong>需要管理代码</strong>。有无数优雅的开始，死于懒得动脑的“黑魔法”。</li>
+</ol>
+<h1 id="警惕过度设计">警惕过度设计</h1>
+<p>当你在不怎么确定的功能实现的过程中，添加了抽象可扩展之类的支持，你是在赌需求和你预留的扩展一致。此外，抽象和扩展需要不断的进行维护。</p>
+<p>当你过分关注抽象和扩展之类的东西，你写的代码就失控了——抽象和接口无处不在——最终可能你自己都不知道实现这个功能需要用什么接口，也有可能出现一个莫名奇妙的Bug让你查上一整天。</p>
+<h1 id="性能和速度">性能和速度</h1>
+<p>架构使代码变得灵活，灵活性让我们能够更快速的改进游戏，高速迭代。但也可能会加大运行时的开销。</p>
+<p>性能与假设相关，<strong>确定性能优化方案需要有明确的需求限制</strong>。在需求不明确的情况下，你做的优化很有可能是无效优化甚至是负面优化（出了Bug或者不能满足功能）。</p>
+<p>一种折中的方案就是保持代码灵活性，直到确定设计，再去除多余抽象等来提高性能。</p>
+<h1 id="关于速度的权衡">关于速度的权衡</h1>
+<p>长期开发速度，游戏运行速度，短期开发速度。这三者基本上是相互对立的，没有正确的方案，只有当前下的最优解。这个最优解取决于很多放面的因素，包括团队风格，领导风格，工作流程等等。</p>
+<h1 id="简单">简单</h1>
+<p>这个简单指的就是你的代码要尽可能的简单，让人能够简单明了的知道你写的每一个函数，每一个类都是干什么的。<br>
+最最直观的就是代码量要尽可能的小，该有注释的地方不要省注释。</p>
+<p>代码简单少，意味着写新功能需要提前读的代码少，查Bug读的代码也少，也因为代码少能避免很多不必要的Bug。</p>
+<p><em>曾经在开发过程中遇到过这样的代码，他把数据类中的数据在自己功能实现的地方做了多次额外缓存， 最终导致的后果就是，数据更新的地方出了Bug，各种缓存数据需有的需要立即更新，有的需要延迟更新，代码乱到基本无法维护，只能重写。</em></p>
+<h1 id="最后的建议">最后的建议</h1>
+<ol>
+<li>抽象和解耦让代码更容扩展，但除非确认需要灵活性，否则不用在这个上面浪费时间。</li>
+<li>整个开发过程中确实需要考虑设计，但要避免针对底层的大面积优化。因为这样做会锁死代码，导致自己或者其他人无法进行正常的开发流程。</li>
+<li>确定要被抛弃的代码用不着搞的尽善尽美。</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SimpleFramework的相关文档]]></title>
         <id>https://singledigit9.github.io/post/simpleframework-de-xiang-guan-wen-dang/</id>
@@ -1380,43 +1439,6 @@ fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除�
 </tr>
 </tbody>
 </table>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unity Shader中的语义]]></title>
-        <id>https://singledigit9.github.io/post/unity-shader-zhong-de-yu-yi/</id>
-        <link href="https://singledigit9.github.io/post/unity-shader-zhong-de-yu-yi/">
-        </link>
-        <updated>2020-05-04T07:29:07.000Z</updated>
-        <content type="html"><![CDATA[<ol>
-<li>应用阶段--&gt;顶点着色器
-<ol>
-<li>POSITION：模型空间中顶点的位置，常为float4</li>
-<li>NORMAL：顶点法线，常为float3</li>
-<li>TANGENT：顶点切线，常为float4</li>
-<li>TEXCOORD[x]：其中x为大于等于0的数字，表示第几组纹理坐标
-<ol>
-<li>x最大值根据不同的ShaderModel版本变化。</li>
-<li>一般情况下，一个模型的纹理坐标数不超过2。</li>
-</ol>
-</li>
-<li>COLOR：顶点颜色，常为fixed4或者float4</li>
-</ol>
-</li>
-<li>顶点着色器--&gt;片元着色器
-<ol>
-<li>SV_POSITION：裁剪空间中的顶点坐标</li>
-<li>COLOR0：第一组顶点颜色，不是必须的</li>
-<li>COLOR1：第二组顶点颜色，不是必须的</li>
-<li>TEXCOORD0～TEXCOORD7：通常用于输出纹理坐标或者自定义数据。</li>
-</ol>
-</li>
-<li>片元着色器--&gt;
-<ol>
-<li>SV_TARGET：输出值将会存储在渲染目标中。</li>
-</ol>
-</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
