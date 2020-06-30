@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-06-27T15:39:50.038Z</updated>
+    <updated>2020-06-30T14:56:33.281Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,23 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[《暴雪的哈希算法》笔记]]></title>
+        <id>https://singledigit9.github.io/post/lesslessbao-xue-de-ha-xi-suan-fa-greatergreater-bi-ji/</id>
+        <link href="https://singledigit9.github.io/post/lesslessbao-xue-de-ha-xi-suan-fa-greatergreater-bi-ji/">
+        </link>
+        <updated>2020-06-30T14:48:24.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="简介">简介</h1>
+<p>今天看了《暴雪的哈希算法》这篇文章。<br>
+虽然说哈希算法基本都是老生常谈，但文章中哈希的实现思路确实很巧妙，很值得借鉴。</p>
+<h1 id="特别之处">特别之处</h1>
+<p>相比于一般的哈希算法，计算一次哈希值，之后冲突时或者使用链表，或者下移。<br>
+暴雪的哈希算法计算了三个哈希值，从概率上来看，两个字符串的三个哈希值都一样的概率非常非常低，可以忽略这种情况。<br>
+至于查找时，通过依次比对字符串3个哈希值来确定当前哈希表中是不是有该值，效率更高。</p>
+<h1 id="文章链接">文章链接</h1>
+<p>https://www.cnblogs.com/duzouzhe/archive/2009/10/14/1583359.html</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《游戏编程模式》读书笔记 序章]]></title>
         <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-xu-zhang/</id>
@@ -1391,54 +1408,6 @@ fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除�
 </ol>
 </li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unity Shader中的属性]]></title>
-        <id>https://singledigit9.github.io/post/unity-shader-zhong-de-shu-xing-ding-yi-he-chu-shi-hua/</id>
-        <link href="https://singledigit9.github.io/post/unity-shader-zhong-de-shu-xing-ding-yi-he-chu-shi-hua/">
-        </link>
-        <updated>2020-05-04T07:30:31.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="properties定义和初始化">Properties定义和初始化</h3>
-<p><code>_Int(&quot;Int&quot;, Int) = 2</code><br>
-<code>_Float(&quot;Float&quot;, Float) = 1.4</code><br>
-<code>_Range(&quot;Range&quot;, Range(0, 1)) = 0.5</code><br>
-<code>_Color(&quot;Color&quot;, Color) = (1, 0, 0, 0)</code><br>
-<code>_Vector(&quot;Vector&quot;, Vector) = (1, 2, 3, 4)</code><br>
-<code>_2D(&quot;2D&quot;, 2D) = &quot;white&quot;{}</code>（&quot;bump&quot;是unity内置的法线纹理）<br>
-<code>_Cube(&quot;Cube&quot;, Cube) = &quot;&quot;{}</code><br>
-<code>_3D(&quot;3D&quot;, 3D) = &quot;&quot;{}</code></p>
-<h3 id="shaderlab中属性和cg中类型的对应关系">ShaderLab中属性和CG中类型的对应关系</h3>
-<table>
-<thead>
-<tr>
-<th>ShaderLab属性</th>
-<th>CG变量类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Color, Vector</td>
-<td>float4, half4, fixed4</td>
-</tr>
-<tr>
-<td>Range, Float</td>
-<td>float, half, fixed</td>
-</tr>
-<tr>
-<td>2D</td>
-<td>sampler2D</td>
-</tr>
-<tr>
-<td>Cube</td>
-<td>samplerCube</td>
-</tr>
-<tr>
-<td>3D</td>
-<td>sampler3D</td>
-</tr>
-</tbody>
-</table>
 ]]></content>
     </entry>
 </feed>
