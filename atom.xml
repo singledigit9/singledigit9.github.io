@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-06-30T14:56:33.281Z</updated>
+    <updated>2020-07-05T14:00:39.742Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,84 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[《游戏编程模式》读书笔记 命令模式]]></title>
+        <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-yi/</id>
+        <link href="https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-yi/">
+        </link>
+        <updated>2020-07-05T13:23:14.000Z</updated>
+        <summary type="html"><![CDATA[<p>代码语言是C#，但只是简单的实例，有一些地方有语法错误，意会即可。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>代码语言是C#，但只是简单的实例，有一些地方有语法错误，意会即可。</p>
+<!-- more -->
+<h1 id="命令模式">命令模式</h1>
+<h2 id="定义">定义</h2>
+<p>命令是<strong>具现化的方法</strong>调用。</p>
+<h2 id="个人理解">个人理解</h2>
+<p>就是将要执行的具体行为进行封装，交由想执行这个行为的角色执行，而不是直接执行。</p>
+<h2 id="例子">例子</h2>
+<p>要实现一个输入控制系统——比如按下W键前进，S键后退之类的。<br>
+首先想到的就是：</p>
+<pre><code class="language-c#">if (xxx) action1();
+if (yyy) action2();
+</code></pre>
+<p>其中xxx，yyy就是输入满足条件的判断，action1()，action2()就是具体执行的逻辑。</p>
+<p>然后要支持玩家改键，那这样写就有些问题了。需要把具体执行的逻辑进行一下封装</p>
+<pre><code class="language-c#">public abstract class Command
+{
+    public abstract void Do();
+}
+
+public class MoveUp : Command
+{
+    public override void Do() { }
+}
+</code></pre>
+<p>具体的什么按键执行什么东西封装好了，之后我们需要一个能够获取我们想要的命令对象的工具</p>
+<pre><code class="language-c#">public class CommandTool
+{
+    public Command Get(Type commandType) { }
+}
+</code></pre>
+<p>还需要一个根据按键获取对应命令类型的字典</p>
+<pre><code class="language-c#">Dictionary&lt;KeyCode, Type&gt; map;
+</code></pre>
+<p>最后改造出来是这样</p>
+<pre><code class="language-c#">KeyCode keyCode = Input.GetCurrentPressedKeyCode();
+if (keyCode != null)
+{
+    Command command = CommandTool.Get(map[keyCode]);
+    command.Do();
+}
+</code></pre>
+<p>再然后想让玩家能够用这套输入控制系统控制不同的角色，那么就需要将玩家要控制的角色作为参数传入进去。</p>
+<pre><code class="language-c#">public abstract class Command
+{
+    public abstract void Do(Avatar avatar);
+}
+
+public class MoveUp : Command
+{
+    public override void Do(Avatar avatar) { }
+}
+
+KeyCode keyCode = Input.GetCurrentPressedKeyCode();
+if (keyCode != null)
+{
+    Command command = CommandTool.Get(map[keyCode]);
+    command.Do(avatar);
+}
+</code></pre>
+<p>到此，命令模式基本完成。</p>
+<h1 id="总结">总结</h1>
+<p>命令模式，就是将具体的行为操作进行封装，从而让目标和目标的行为，以及执行行为的角色进行分离。从而让程序能够在不修改角色代码和执行行为的代码的情况下，不断的扩展角色的行为。<br>
+上面的最终例子中，命令由第三方执行，命令中行动的具体角色由第三方指定。从而能够实现一套命令代码，能够应用到这个类型对象的所有角色身上去。<br>
+因此，上面的例子不只能够在输入控制系统中使用，AI中也能够使用——只是决定使用哪一个命令的地方不一致罢了。</p>
+<p>此外，命令模式还能方便的进行<strong>撤销</strong>操作。可以在基类中实现撤销的接口，然后其余命令进行实现，就能够完成撤销操作。<br>
+如果想连续撤销，可以将当前所执行过的命令使用一个List进行存储，记录当前命令所在的索引值。撤销时，当前命令执行撤销操作，索引值减一，就能够实现。</p>
+<p>游戏中另外一个常用的地方就是<strong>回放</strong>。如果直接将场景中的数据按帧完全存储下来，那么所消耗的内存会相当大。因此可以将场景中每一帧执行了什么命令存储下来，回放时，相当于每帧执行相对应的命令，实现方式和实现效果要好很多。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《暴雪的哈希算法》笔记]]></title>
         <id>https://singledigit9.github.io/post/lesslessbao-xue-de-ha-xi-suan-fa-greatergreater-bi-ji/</id>
@@ -1369,44 +1447,6 @@ fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除�
 <ol>
 <li>尽量避免使用模型空间下的一些绝对位置做计算。</li>
 <li>有顶点动画的阴影效果往往需要自己额外实现</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unity Shader中常用的变换矩阵]]></title>
-        <id>https://singledigit9.github.io/post/unity-shader-zhong-chang-yong-de-bian-huan-ju-zhen/</id>
-        <link href="https://singledigit9.github.io/post/unity-shader-zhong-chang-yong-de-bian-huan-ju-zhen/">
-        </link>
-        <updated>2020-05-04T07:33:20.000Z</updated>
-        <content type="html"><![CDATA[<p>速记：M模型空间；V：观察空间；P：剪裁空间；I：逆矩阵；T：转置矩阵</p>
-<ol>
-<li>UNITY_MATRIX_MVP 模型空间-&gt;剪裁空间
-<ol>
-<li>新版函数 UnityObjectToClipPos(float4 v)</li>
-</ol>
-</li>
-<li>UNITY_MATRIX_MV 模型空间-&gt;观察空间</li>
-<li>UNITY_MATRIX_V 世界空间-&gt;观察空间</li>
-<li>UNITY_MATRIX_P 观察空间-&gt;剪裁空间</li>
-<li>UNITY_MATRIX_VP 世界空间-&gt;剪裁空间</li>
-<li>UNITY_MATRIX_T_MV 模型空间到观察空间的逆矩阵
-<ol>
-<li>如果UNITY_MATRIX_MV是正交矩阵的话，那么这个矩阵就是它的逆矩阵。可以将观察空间的坐标变换到模型空间。（只旋转和统一缩放）</li>
-</ol>
-</li>
-<li>UNITY_MATRIX_IT_MV 模型空间到观察空间的逆转矩阵
-<ol>
-<li>用于法线从模型空间变换到观察空间</li>
-<li>用于求UNITY_MATRIX_MV的逆矩阵（直接转置一下就可以了）</li>
-</ol>
-</li>
-<li>_Object2World：模型空间到世界空间</li>
-<li>_World2Object：世界空间到模型空间
-<ol>
-<li>新版矩阵 unity_WorldToObject<br>
-<img src="https://singledigit9.github.io/post-images/1588321197724.jpeg" alt="" loading="lazy"></li>
-</ol>
-</li>
 </ol>
 ]]></content>
     </entry>
