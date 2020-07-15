@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-07-05T14:00:39.742Z</updated>
+    <updated>2020-07-15T18:09:51.508Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,103 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[C++视频学习笔记（一）]]></title>
+        <id>https://singledigit9.github.io/post/cshi-pin-xue-xi-bi-ji-yi/</id>
+        <link href="https://singledigit9.github.io/post/cshi-pin-xue-xi-bi-ji-yi/">
+        </link>
+        <updated>2020-07-15T18:03:53.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="视频1为什么要学c">视频1：为什么要学C++</h1>
+<ol>
+<li>高效（在代码不烂的基础上）</li>
+<li>能够控制底层硬件</li>
+<li>任意平台支持</li>
+<li>能够控制CPU执行的任意一条指令</li>
+</ol>
+<h1 id="视频234c编程环境配置">视频2，3，4：C++编程环境配置</h1>
+<p>C++编程环境配置以及Hello World</p>
+<h1 id="视频5c如何工作的">视频5：C++如何工作的</h1>
+<ol>
+<li>流程：C++代码 =[编译]=》一个C++文件对应一个obj文件 =[链接器]=》exe，dll等等。</li>
+<li>Build过程中注意Debug/Release设置和目标平台的设置。</li>
+<li>不同平台的Debug/Release可以单独设置，注意打包时不要弄错。</li>
+<li>默认Debug设置下，有个配置选项不是速度优先，所以一般Debug模式下代码都比较慢</li>
+<li>看报错Log时不要只看提示，应该看完整的Log。那个提示只是在Log中抓取error关键字进行显示而已。</li>
+<li>链接器会找不同文件中代码的各种引用定义，来确定各个文件代码中使用的时正确的引用。</li>
+</ol>
+<h1 id="视频6编译器如何工作">视频6：编译器如何工作</h1>
+<ol>
+<li>将文本文件转化为可执行文件需要两个步骤：编译和链接</li>
+<li>编译器的主要工作就是将文本文件转化为Obj文件
+<ol>
+<li>预处理文件，执行预编译指令。（include只是简单的把别的文件的代码粘贴到当前的代码中）</li>
+<li>标记解释【<strong>这个地方记不太清了需要重新看一下</strong>】</li>
+<li>解析</li>
+</ol>
+</li>
+<li>每一个Cpp文件都是一个编译单元。</li>
+<li>C++不在乎文件，文件只是给编译器提供原始代码数据的一种方式，可以指定任意后缀的文件作为源代码文件。</li>
+<li>编译单元不等于cpp文件，因为cpp文件中可能会相互相互include。【<strong>这一个部分需要进一步测试，理解不好</strong>】</li>
+<li>可以设置配置，生成预处理后的代码文件（xxx.i）</li>
+<li>可以配置，让生成的Obj改为其他的可读模式</li>
+<li>Debug模式，编译器会插入许多代码来帮助Debug</li>
+<li>Obj的可读模式中，函数名会编程一系列编码，因为程序需要各种函数是唯一的。</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[《游戏编程模式》读书笔记（二）]]></title>
+        <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-er/</id>
+        <link href="https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-er/">
+        </link>
+        <updated>2020-07-15T17:38:09.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="享元模式">享元模式</h1>
+<ol>
+<li>享元模式不是什么简单的对象池，而是多个对象共享相同的一个对象数据。</li>
+<li>通过共享部分数据，减少数据的创建和数据的冗余。</li>
+</ol>
+<h1 id="观察者模式">观察者模式</h1>
+<ol>
+<li>这个粗暴些描述就是C#中的event。平时总是各种用，就不再细写了。</li>
+<li>需要注意的就是注册过后要及时解注册，不然可能会有一些对象因为异常引用而无法释放。</li>
+</ol>
+<h1 id="单例模式">单例模式</h1>
+<h2 id="使用单例模式的原因">使用单例模式的原因</h2>
+<ol>
+<li>没被使用时，不用初始化创建对象。</li>
+<li>运行时初始化，可以控制初始化顺序。</li>
+<li>可以使用可继承单例来实现一些特殊功能。比如不同平台的加载系统Log系统。</li>
+</ol>
+<h2 id="不使用单例的原因">不使用单例的原因</h2>
+<ol>
+<li>增加理解代码的难度。
+<ol>
+<li><strong>只使用局部变量的函数叫纯函数，纯函数往往利于理解，利于编译器优化。</strong></li>
+<li>如果使用了全局变量，一旦因为全局变量出现了Bug，那么你就得在几十上百个引用中查找究竟是哪一个引用导致了全局变量的异常。</li>
+</ol>
+</li>
+<li>增加代码耦合的可能性。
+<ol>
+<li>做新功能的时候，往往会因为代码不熟悉或者想懒得动手动脑而采取最简单的方式来做东西。但这种情况下，单例模式因为提供了全局的访问接口，所以可以在各个系统中进行访问，从而导致一些不该有依赖关系的系统产生依赖关系。</li>
+</ol>
+</li>
+<li>对并行不友好。</li>
+</ol>
+<h2 id="单例的问题所在">单例的问题所在</h2>
+<ol>
+<li>存在唯一的实例和对所有人开方访问是两个完全不相关的问题。但单例把这两个强行绑定了。</li>
+<li>延迟创建确实用起来很方便，但也某种意义上让我们丧失了对单例对象的创建的控制。</li>
+</ol>
+<h2 id="避免滥用单例的方法">避免滥用单例的方法</h2>
+<ol>
+<li>去除没有必要的管理类。数量过多的管理类只能说明作者对oop不够熟悉。<strong>oop的核心就是让对象自己管好自己</strong>。</li>
+<li>可是使用<code>assert</code>之类的断言来防止多个创建。（不该多个创建的地方多个创建了，说明这块使用的有问题，有问题就应该暴露出来解决掉。）</li>
+<li>将对象作为参数传进来。</li>
+<li>将对象的访问从基类进行继承。</li>
+<li>让不能避免的全局入口携带对象。（这个看个人习惯，不能完全照搬）</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《游戏编程模式》读书笔记 命令模式]]></title>
         <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-yi/</id>
@@ -1131,323 +1228,6 @@ foreach(string dependency in dependencies)
 <li>可以使用变体，将不同变体的贴图分别打在一个AssetBundle里面，根据情况进行加载。（需要贴图设置正确）</li>
 <li><code>SystemInfo.SupportedTextureFormat</code>可以使用这个API来检测设备支持什么格式的贴图</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unity Shader的内置时间变量]]></title>
-        <id>https://singledigit9.github.io/post/unity-shader-de-nei-zhi-shi-jian-bian-liang/</id>
-        <link href="https://singledigit9.github.io/post/unity-shader-de-nei-zhi-shi-jian-bian-liang/">
-        </link>
-        <updated>2020-05-05T11:06:44.000Z</updated>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://singledigit9.github.io/post-images/1588676867160.jpeg" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[《Unity Shader 入门精要》读书笔记（中级篇共三章）]]></title>
-        <id>https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-zhong-ji-pian/</id>
-        <link href="https://singledigit9.github.io/post/lesslessunity-shader-ru-men-jing-yao-greatergreater-du-shu-bi-ji-zhong-ji-pian/">
-        </link>
-        <updated>2020-05-04T07:49:40.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="写在前面">写在前面</h3>
-<p>有不少地方不好理解，需要仔细研究</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="写在前面">写在前面</h3>
-<p>有不少地方不好理解，需要仔细研究</p>
-<!-- more -->
-<h3 id="第九章-更复杂的光照">第九章 更复杂的光照</h3>
-<p>Shader中的渲染路径设置写在另一篇文章里面，方便查阅。</p>
-<h4 id="unity中的渲染路径">Unity中的渲染路径</h4>
-<ol>
-<li>
-<p>Unity中渲染路径的设置</p>
-<ol>
-<li>全局的渲染路径设置：Other Setting--&gt;Rendering Path</li>
-<li>特殊的渲染路径设置：Camera的检视面板上的Rendering Path</li>
-<li>需要注意的是，如果当前显卡不支持当前的渲染路径，Unity则会自动使用更低一级的渲染路径。比如，一个GPU不支持延迟路径，则Unity会自动使用前向路径。</li>
-</ol>
-</li>
-<li>
-<p>渲染路径的类型</p>
-<ol>
-<li>
-<p>前向渲染：传统的渲染方式，也是最常用的渲染方式。当场景中有大量的实时光源时，性能会极速下降。</p>
-<ol>
-<li>基本任务：渲染每个渲染图元，并且计算颜色缓冲区和深度缓冲区的信息。</li>
-<li>大致步骤：每次前向渲染，对于每一个片元，都会进行深度测试。如果没有通过测试，则直接将该片元丢弃；如果通过深度测试，则片元进行正常的一系列计算最终更新颜色缓冲区。</li>
-<li>每一个逐像素光源，都会执行上面的步骤。如果一个物体在多个逐像素光源下，那么这个物体就要执行多个 Pass，每个Pass的光照结果进行混合，来得到最终的颜色值。</li>
-<li>一般而言引擎会限制逐像素光照的数目。</li>
-<li>Unity中前向渲染光照的3种处理方式
-<ol>
-<li>逐顶点</li>
-<li>逐像素</li>
-<li>球协函数（SH）：拓展文章<a href="https://huailiang.github.io/blog/2019/harmonics/"><em>球谐光照</em></a></li>
-</ol>
-</li>
-<li>Unity中光源使用哪种渲染方式的依据
-<ol>
-<li>最亮的平行光按照逐像素处理</li>
-<li>RenderMode设置成Important的光源会逐像素处理</li>
-<li>RenderMode设置成Not Important的光源会逐顶点或者SH处理</li>
-<li>如果根据以上规则得到的逐像素处理的光源数量少于QualitySetting中Pixel Light Count，则会有更多的光源按照逐像素处理。</li>
-</ol>
-</li>
-<li>前向渲染的Shader实现<br>
-<img src="https://singledigit9.github.io/post-images/1588580937528.jpeg" alt="" loading="lazy">
-<ol>
-<li>上图中两个编译指令必不可少，否则可能得到光照相关的值不正确。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>延迟渲染：</p>
-<ol>
-<li>原理：
-<ol>
-<li>第一个Pass不进行任何光照计算，仅仅计算那些片元是可见的。当一个片元是可见的，就将那个片元的颜色，平滑度，法线，自发光等信息存储到G缓冲区中。对于每个 物体来说，这个Pass只会执行一次。</li>
-<li>第二个Pass，读取G缓冲区中的片元信息，比如表面法线，视角方向等，来进行光照计算。</li>
-</ol>
-</li>
-<li>优点：
-<ol>
-<li>适合场景中光源很多，前向渲染会造成性能瓶颈的时候使用。</li>
-<li>每个光源 都能够逐像素渲染</li>
-</ol>
-</li>
-<li>缺点：
-<ol>
-<li>不支持真正的抗锯齿功能</li>
-<li>不能处理半透明物体</li>
-<li>对显卡有要求，要求支持MRT（Multiple Render Targets），Shader  Model 3.0以及以上，深度渲染纹理以及双面的模版缓冲。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>顶点照明渲染（这个新版Unity逐渐不再支持，暂时不研究了 。）</p>
-</li>
-</ol>
-</li>
-</ol>
-<h4 id="光源">光源</h4>
-<ol>
-<li>光源的5个属性：位置，方向，颜色，强度，衰减</li>
-<li>Unity中实时光源的几种类型
-<ol>
-<li>平行光</li>
-<li>点光源</li>
-<li>聚光灯</li>
-</ol>
-</li>
-<li>Shader中区分光源
-<ol>
-<li>平行光：<code>#ifdef USING_DIRECTIONAL_LIGHT</code></li>
-<li>点光源：<code>#if defined (POINT)</code></li>
-<li>聚光灯：<code>defined (SPOT)</code></li>
-</ol>
-</li>
-</ol>
-<h4 id="unity的光照衰减">Unity的光照衰减</h4>
-<ol>
-<li>使用衰减纹理：Unity默认方式。一般而言，性能提升，效果大部分是良好的。
-<ol>
-<li>优点：计算简单</li>
-<li>缺点：
-<ol>
-<li>需要预先采样纹理，&amp;纹理大小也会影响衰减精度</li>
-<li>不直观，且一旦使用就无发使用其他的公式</li>
-</ol>
-</li>
-<li>Shader中纹理的关键字：_LightTexture0（如果光源使用了cookies，那么应该使用_LightTextureB0）</li>
-</ol>
-</li>
-</ol>
-<h4 id="阴影">阴影</h4>
-<ol>
-<li>阴影是如何实现的
-<ol>
-<li>Shadow Map：将摄像机位置与 光源位置重合，那么摄像机看不到的地方就是应该显示阴影的地方。（Unity使用的是这种技术）</li>
-</ol>
-</li>
-<li>前向渲染中，如果平行光开启了阴影，则Unity会为光源计算它的阴影映射纹理。这个纹理是一张 深度图，记录了从光源位置出发，能看到的场景中最近的表面位置（深度信息）。
-<ol>
-<li>如何记录表面位置信息
-<ol>
-<li>将摄像机放到光源位置，然后走正常的渲染流，得到深度信息。（但这种方式有性能浪费）</li>
-<li>使用特殊的Pass，Tag标记LightMode为ShadowCaster。</li>
-</ol>
-</li>
-<li>如何判定一个点在阴影里面：将点转换到光源空间下，对阴影纹理进行采样，如果采样的深度小于该点的深度，则这个点在阴影里面。</li>
-</ol>
-</li>
-<li>Unity是如何显示最终的阴影的
-<ol>
-<li>屏幕空间的阴影映射技术（需要显卡支持，有些移动平台不支持这种特性）（原本是延迟渲染的阴影方法）</li>
-<li>步骤：
-<ol>
-<li>调用ShadowCaster的Pass，生成光源的阴影纹理和摄像机的深度纹理</li>
-<li>根据上面两个纹理生成屏幕空间的阴影图。如果摄像机的深度图中记录的表面深度大于转换到阴影映射纹理中的深度值，则说明表面虽然是可见的，但处于阴影中。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>物体之间阴影的显示
-<ol>
-<li>想要接收：需要对阴影映射纹理进行采样，将采样的结果与最后的光照结果相乘。</li>
-<li>想要投射：将物体加入到光源的阴影映射纹理计算中。（ShadowCaster的Pass）</li>
-</ol>
-</li>
-<li>Unity中阴影的设置
-<ol>
-<li>Light检视面板：ShadowType选项，可以决定当前光源是否开启阴影</li>
-<li>MeshRenderer检视面板：CastShadows和ReceiveShadows，决定是否产生和接收阴影。其中CastShadows还有TwoSided选项，可以决定该模型是否双面都产生阴影。</li>
-</ol>
-</li>
-<li>UnityShader中阴影的三个关键字
-<ol>
-<li>SHADOW_COORDS(x)：用于Struct v2f中定义阴影深度纹理。其中x要看我们的TEXCOORD使用了几个，比如我已经用了TEXCOORD0，TEXCOORD1，那么x就写2</li>
-<li>TRANSFER_SHADOW(o)：用于顶点着色器中生成阴影深度纹理</li>
-<li>SHADOW_ATTENUATION(i)：用于片元着色器中读取阴影颜色（用来和最终颜色相乘）</li>
-</ol>
-</li>
-<li>默认Shader中已经实现了阴影深度纹理的采集，可以直接使用Fallback来避免重复代码</li>
-<li>半透明物体的阴影
-<ol>
-<li>Unity默认半透明物体不产生阴影。</li>
-<li>可以设置FallBack上的Shader，将其改为不透明物体使用的Shader，来让它强制产生阴影。</li>
-</ol>
-</li>
-</ol>
-<h3 id="第十章-高级纹理">第十章 高级纹理</h3>
-<h4 id="立方体纹理">立方体纹理</h4>
-<ol>
-<li>使用原理：使用立方体纹理需要一个三维矢量。这个矢量以立方体中心为原点，发出的射线与立方体面相交的点即为采样点。</li>
-<li>优点：实现简单快速，效果也比较好</li>
-<li>缺点：当场景中光源，物体发生变化时，往往需要重新生成立方体纹理。用于反射时，立方体不能模拟多次反射的效果。（因此尽量不要对凹面的物体使用立方体纹理）</li>
-<li>应用：
-<ol>
-<li>天空盒子：
-<ol>
-<li>Unity中可在LightSetting中设置当前场景的天空盒子</li>
-<li>如果摄像机想使用自己的天空盒子，可以往摄像机上添加SkyBox组建，再将天空盒子拖到对应的位置。</li>
-</ol>
-</li>
-<li>反射：基本算法就是根据视线方向和顶点法线，计算光线方向，然后使用入射方向在立方体纹理上采样，将采样后的颜色与原来光照的颜色进行混合/覆盖等操作。
-<ol>
-<li>立方纹理的采样方法：texCUBE(_TexName, i.xyz)</li>
-</ol>
-</li>
-<li>折射：
-<ol>
-<li>物理依据：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub><mi>s</mi><mi>i</mi><mi>n</mi><msub><mi>b</mi><mn>1</mn></msub><mo>=</mo><msub><mi>a</mi><mn>2</mn></msub><mi>s</mi><mi>i</mi><mi>n</mi><msub><mi>b</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">a_1sinb_1 = a_2sinb_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-<ol>
-<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">a_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">a_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：各自材质中的折射率</li>
-<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>b</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">b_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>b</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">b_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：光与法线的夹角</li>
-</ol>
-</li>
-<li>对透明物体来说，计算完折射方向直接采样是符合物理实际的，因为光线入射有折射，出射还以折射。但在实时计算中，计算二次折射比较复杂 ，所以通常只计算一次折射。</li>
-<li>使用：<code>refract(-normalize(o.worldViewDir), normalize(o.worldNormal), _RefractRatio)</code>可以计算折射，其中<code>_refractRatio</code>为折射率。</li>
-</ol>
-</li>
-<li>菲涅尔反射
-<ol>
-<li>物理现象：低头看水面，能看到水底；看水的远处，只能看到倒影</li>
-<li>近似公式：
-<ol>
-<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>v</mi><mo separator="true">,</mo><mi>n</mi><mo>)</mo><mo>=</mo><msub><mi>F</mi><mn>0</mn></msub><mo>+</mo><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>F</mi><mn>0</mn></msub><mo>)</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>v</mi><mo separator="true">⋅</mo><mi>n</mi><msup><mo>)</mo><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">F(v, n) = F_0 + (1 - F_0)(1 - v·n)^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>
-<ol>
-<li>v：视角方向</li>
-<li>n：表面法线</li>
-<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">F_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：反射系数</li>
-</ol>
-</li>
-<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>v</mi><mo separator="true">,</mo><mi>n</mi><mo>)</mo><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><mn>1</mn><mo separator="true">,</mo><mi>b</mi><mi>i</mi><mi>a</mi><mi>s</mi><mo>+</mo><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo separator="true">⋅</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>v</mi><mo separator="true">⋅</mo><mi>n</mi><msup><mo>)</mo><mrow><mi>p</mi><mi>o</mi><mi>w</mi><mi>e</mi><mi>r</mi></mrow></msup><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">F(v, n) = max(0, min(1,bias + scale·(1 - v · n)^{power}))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
-</ol>
-</li>
-<li>公式使用方法：
-<ol>
-<li><code>lerp(diffuse, reflection, saturate(fresnel)</code></li>
-<li>有些实现也会把fresnel与反射结果相乘，饭后叠加到漫反射上。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>立方体纹理的创建
-<ol>
-<li>使用特殊布局的纹理（比如立方体的展开图），然后将TextureShape设置成Cube，并在里面下拉出的选项进行相应设置。</li>
-<li>使用脚本来生成CubeMap。调用<code>Camera.RenderToCubeMap()</code>（经过测试，Mac上2018版本的Unity，一勾CubeMap的Readable就崩溃了）</li>
-<li>创建一个CubeMap（这个是旧版本方法），将6张图按顺序拖进去。</li>
-</ol>
-</li>
-</ol>
-<h4 id="渲染纹理中间缓冲">渲染纹理（中间缓冲）</h4>
-<ol>
-<li>Unity获取渲染纹理的方式
-<ol>
-<li>创建RenderTexture</li>
-<li>使用GrabPass或者OnRenderImage获取当前屏幕图像</li>
-</ol>
-</li>
-<li>应用：
-<ol>
-<li>镜子效果：使用一个新相机和RenderTexture实现。Shader里面UV的x进行一下左右翻转。</li>
-<li>玻璃效果：
-<ol>
-<li>使用GrabPass，抓取所有不透明的图像</li>
-<li>计算偏移，取折射值<pre><code class="language-shader">i.scrPos.xy = offset * i.scrPos.z + i.scrPos.xy;//离屏幕越远，偏移越大
-fixed3 refrCol = tex2D(_RefractionTex, i.scrPos.xy/i.scrPos.w).rgb;//透视除法得到真正的屏幕坐标。
-</code></pre>
-</li>
-<li>计算反射方向，采样，得到反射颜色值</li>
-<li>反射和折射进行混合。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>RenderTexture和GrabPass的对比
-<ol>
-<li>GrabPass：实现简单，但抓取的图像和设备分辨率一样，高分辨率设备影响尤其严重。</li>
-<li>RenderTexture：效率高。尽管需要额外的摄像机进行渲染，但我们可以设置渲染的层级，RenderTexture的质量等方式来减少消耗 。</li>
-</ol>
-</li>
-</ol>
-<h4 id="程序纹理">程序纹理</h4>
-<p>实际上就是代码创建Texture并且向其中每个像素填充颜色。</p>
-<h3 id="第11章-让画面动起来">第11章 让画面动起来</h3>
-<h4 id="应用">应用</h4>
-<ol>
-<li>序列帧动画</li>
-<li>滚动背景</li>
-<li>顶点动画
-<ol>
-<li>模型空间内坐标进行偏移</li>
-<li>需要额外设置标签&quot;DisableBatching&quot;，防止Unity批处理导致顶点动画不正确</li>
-</ol>
-</li>
-<li>广告牌：让它看起来总是对着摄像机。（比如角色血条）
-<ol>
-<li>视角方向和表面法线方向总有一个是固定的</li>
-<li>通过公式计算出变换矩阵
-<ol>
-<li>right = up X  normal</li>
-<li>up' = normal X right<br>
-<img src="https://singledigit9.github.io/post-images/1588677932028.jpeg" alt="" loading="lazy"></li>
-</ol>
-</li>
-<li>转换模型空间中顶点坐标</li>
-<li>需要额外设置标签&quot;DisableBatching&quot;，防止Unity批处理导致顶点动画不正确</li>
-</ol>
-</li>
-</ol>
-<h4 id="unity和批导致顶点动画不正确的原因">Unity和批导致顶点动画不正确的原因</h4>
-<p>Unity和批后，模型各自的模型空间会丢失。</p>
-<h4 id="一些注意事项">一些注意事项</h4>
-<ol>
-<li>尽量避免使用模型空间下的一些绝对位置做计算。</li>
-<li>有顶点动画的阴影效果往往需要自己额外实现</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
