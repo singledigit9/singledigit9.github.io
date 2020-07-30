@@ -1,0 +1,434 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>《游戏编程模式》读书笔记——基础设计模式 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="《游戏编程模式》读书笔记——基础设计模式 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="写在前面
+这本书是半个月前开始看的吧，主要是觉得作者是一个资深的游戏开发，有些设计模式的东西游戏确实和其他的一些应用软件不一样，看下来应该会有所收获。
+此外个人觉得，设计模式这个东西，不在于死记硬背生搬硬套。而在于当遇到某个问题的时候，设计..." />
+  <meta property="og:title" content="《游戏编程模式》读书笔记——基础设计模式 - 资料库">
+  <meta property="og:description" content="写在前面
+这本书是半个月前开始看的吧，主要是觉得作者是一个资深的游戏开发，有些设计模式的东西游戏确实和其他的一些应用软件不一样，看下来应该会有所收获。
+此外个人觉得，设计模式这个东西，不在于死记硬背生搬硬套。而在于当遇到某个问题的时候，设计..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-ji-chu-she-ji-mo-shi/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="《游戏编程模式》读书笔记——基础设计模式 - 资料库">
+  <meta name="twitter:description" content="写在前面
+这本书是半个月前开始看的吧，主要是觉得作者是一个资深的游戏开发，有些设计模式的东西游戏确实和其他的一些应用软件不一样，看下来应该会有所收获。
+此外个人觉得，设计模式这个东西，不在于死记硬背生搬硬套。而在于当遇到某个问题的时候，设计...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-ji-chu-she-ji-mo-shi/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          《游戏编程模式》读书笔记——基础设计模式
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-07-30 · 6 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/8EcVz9hnG/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              框架
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/UjKOtFN6l/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              读书笔记
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h1 id="写在前面">写在前面</h1>
+<p>这本书是半个月前开始看的吧，主要是觉得作者是一个资深的游戏开发，有些设计模式的东西游戏确实和其他的一些应用软件不一样，看下来应该会有所收获。<br>
+此外个人觉得，设计模式这个东西，不在于死记硬背生搬硬套。而在于当遇到某个问题的时候，设计模式能够给你一个原始的思路，使你的代码实现能够尽可能满足需求和未来可能的变化。<br>
+ps. 这些设计模式是在新模块制作的时候用的，一般写业务逻辑大概率用不上，注意可复用的逻辑代码和表现代码分离就好了。</p>
+<!-- more -->
+<h1 id="命令模式">命令模式</h1>
+<h2 id="个人理解">个人理解</h2>
+<p>就是将要执行的具体行为进行封装，交由想执行这个行为的角色执行，而不是直接执行。</p>
+<h2 id="优点">优点</h2>
+<p>将具体的行为进行封装，从而使目标和目标的行为进行分离，方便对目标行为进行扩展。</p>
+<h2 id="能够做什么">能够做什么</h2>
+<ol>
+<li>输入系统</li>
+<li>AI系统（和输入系统一样，只不过触发方式变了一下）</li>
+<li>能够方便的进行撤销操作。（每个Command实现撤销方法，然后使用List记录Command顺序）</li>
+<li>回放系统。</li>
+</ol>
+<h1 id="原型模式">原型模式</h1>
+<p>这个书里面讲的感觉不是很好，绕晕了。</p>
+<h2 id="个人理解-2">个人理解</h2>
+<p>每个对象实现自己的clone方法，然后使用获取器对缓存的对象进行<strong>复制</strong>。</p>
+<h2 id="与工厂模式的区别">与工厂模式的区别</h2>
+<p>工厂模式直接<code>new</code>对象，并对它进行初始化设置。<br>
+原型模式直接使用已经有的对象进行<strong>复制</strong>。<br>
+一个是创建，一个是复制。</p>
+<h2 id="适用范围">适用范围</h2>
+<p>大对象的创建。大的对象往往复制会比创建更快。</p>
+<h1 id="状态模式">状态模式</h1>
+<h2 id="优点-2">优点</h2>
+<p>状态模式将各种不同状态的操作进行隔离，避免大量的标记量和if判断。</p>
+<h2 id="包含内容">包含内容</h2>
+<p>状态Node的进入，离开，触发，以及当前Node可以去的Node。（Node的图的连接方向，这个之前自己写的东西没有弄这个）</p>
+<h2 id="有限状态机">有限状态机</h2>
+<ol>
+<li>预先知道所有状态的集合</li>
+<li>同一时间只能有一个状态</li>
+<li>Node核心要素：
+<ol>
+<li>状态：</li>
+<li>输入：对外部输入作出反应，比如执行纯逻辑，或者切换状态什么的</li>
+<li>转移：知道自己能够切换到哪个Node上去</li>
+</ol>
+</li>
+</ol>
+<h2 id="分层状态机">分层状态机</h2>
+<p>状态机中的Node使用继承。当前Node如果处理不了当前状态的话，将处理丢给父类。</p>
+<h2 id="下推状态机">下推状态机</h2>
+<p>将有限状态机中的当前状态的保存换为一个栈，这样当当前栈顶的状态执行完毕后，可以恢复到上一个状态。（实际上就是额外增加了一个记录）</p>
+<h2 id="个人理解-3">个人理解</h2>
+<p>状态模式这个东西用的很多了。一般情况下，有限状态机足够用了。其余的有些奇奇怪怪需求的稍微变种一下就可以。</p>
+<h1 id="享元模式">享元模式</h1>
+<ol>
+<li>享元模式不是什么简单的对象池，而是多个对象共享相同的一个对象数据。</li>
+<li>通过共享部分数据，减少数据的创建和数据的冗余。</li>
+</ol>
+<h1 id="观察者模式">观察者模式</h1>
+<ol>
+<li>这个粗暴些描述就是C#中的event。平时总是各种用，就不再细写了。</li>
+<li>需要注意的就是注册过后要及时解注册，不然可能会有一些对象因为异常引用而无法释放。</li>
+</ol>
+<h1 id="单例模式">单例模式</h1>
+<h2 id="使用单例模式的原因">使用单例模式的原因</h2>
+<ol>
+<li>没被使用时，不用初始化创建对象。</li>
+<li>运行时初始化，可以控制初始化顺序。</li>
+<li>可以使用可继承单例来实现一些特殊功能。比如不同平台的加载系统Log系统。</li>
+</ol>
+<h2 id="不使用单例的原因">不使用单例的原因</h2>
+<ol>
+<li>增加理解代码的难度。
+<ol>
+<li><strong>只使用局部变量的函数叫纯函数，纯函数往往利于理解，利于编译器优化。</strong></li>
+<li>如果使用了全局变量，一旦因为全局变量出现了Bug，那么你就得在几十上百个引用中查找究竟是哪一个引用导致了全局变量的错误。</li>
+</ol>
+</li>
+<li>增加代码耦合的可能性。做新功能的时候，往往会因为代码不熟悉或者想懒得动手动脑而采取最简单的方式来做东西。但这种情况下，单例模式因为提供了全局的访问接口，所以可以在各个系统中进行访问，从而导致一些不该有依赖关系的系统产生依赖关系。
+<ol>
+<li>比如《群星守卫》中，Server数据处理的位置有些地方和界面耦合，严谨些写的话应该拆开的。比如HandleServerMsg里面调用两个函数，一个HandleServerData，一个HandleServerView。不过毕竟还是少，这么写还算能够理解。</li>
+</ol>
+</li>
+<li>对并行不友好。</li>
+</ol>
+<h2 id="单例的问题所在">单例的问题所在</h2>
+<ol>
+<li>存在唯一的实例和对所有人开方访问是两个完全不相关的问题。但单例把这两个强行绑定了。</li>
+<li>延迟创建确实用起来很方便，但也某种意义上让我们丧失了对单例对象的创建的控制。</li>
+</ol>
+<h2 id="避免滥用单例的方法">避免滥用单例的方法</h2>
+<ol>
+<li>去除没有必要的管理类。数量过多的管理类只能说明作者对oop不够熟悉。<strong>oop的核心就是让对象自己管好自己</strong>。</li>
+<li>可使用<code>assert</code>之类的断言来防止多个创建。（不该多个创建的地方多个创建了，说明这块使用的有问题，有问题就应该直接报错，暴露出来解决掉。）</li>
+<li>将对象作为参数传进来。</li>
+<li>将对象的访问从基类进行继承。</li>
+<li>让不能避免的全局入口携带对象。（这个看个人习惯，不能完全照搬）</li>
+</ol>
+<h2 id="个人感想">个人感想</h2>
+<p>单例一样特别常用，但说实话，我个人并不喜欢。<br>
+游戏中的单例往往都是游戏初始化时创建，然后游戏结束销毁。<br>
+但既然它全局存在，为啥不用静态类呢？写代码的时候少敲一个GetInstance不舒服么？</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2">写在前面</a></li>
+<li><a href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F">命令模式</a>
+<ul>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3">个人理解</a></li>
+<li><a href="#%E4%BC%98%E7%82%B9">优点</a></li>
+<li><a href="#%E8%83%BD%E5%A4%9F%E5%81%9A%E4%BB%80%E4%B9%88">能够做什么</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F">原型模式</a>
+<ul>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3-2">个人理解</a></li>
+<li><a href="#%E4%B8%8E%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB">与工厂模式的区别</a></li>
+<li><a href="#%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4">适用范围</a></li>
+</ul>
+</li>
+<li><a href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F">状态模式</a>
+<ul>
+<li><a href="#%E4%BC%98%E7%82%B9-2">优点</a></li>
+<li><a href="#%E5%8C%85%E5%90%AB%E5%86%85%E5%AE%B9">包含内容</a></li>
+<li><a href="#%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA">有限状态机</a></li>
+<li><a href="#%E5%88%86%E5%B1%82%E7%8A%B6%E6%80%81%E6%9C%BA">分层状态机</a></li>
+<li><a href="#%E4%B8%8B%E6%8E%A8%E7%8A%B6%E6%80%81%E6%9C%BA">下推状态机</a></li>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3-3">个人理解</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F">享元模式</a></li>
+<li><a href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F">观察者模式</a></li>
+<li><a href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F">单例模式</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E5%9B%A0">使用单例模式的原因</a></li>
+<li><a href="#%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%8D%95%E4%BE%8B%E7%9A%84%E5%8E%9F%E5%9B%A0">不使用单例的原因</a></li>
+<li><a href="#%E5%8D%95%E4%BE%8B%E7%9A%84%E9%97%AE%E9%A2%98%E6%89%80%E5%9C%A8">单例的问题所在</a></li>
+<li><a href="#%E9%81%BF%E5%85%8D%E6%BB%A5%E7%94%A8%E5%8D%95%E4%BE%8B%E7%9A%84%E6%96%B9%E6%B3%95">避免滥用单例的方法</a></li>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E6%84%9F%E6%83%B3">个人感想</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

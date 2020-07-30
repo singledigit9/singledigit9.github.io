@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-07-15T18:09:51.508Z</updated>
+    <updated>2020-07-30T03:38:44.657Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,118 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[《游戏编程模式》读书笔记——基础设计模式]]></title>
+        <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-ji-chu-she-ji-mo-shi/</id>
+        <link href="https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-ji-chu-she-ji-mo-shi/">
+        </link>
+        <updated>2020-07-30T03:05:58.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="写在前面">写在前面</h1>
+<p>这本书是半个月前开始看的吧，主要是觉得作者是一个资深的游戏开发，有些设计模式的东西游戏确实和其他的一些应用软件不一样，看下来应该会有所收获。<br>
+此外个人觉得，设计模式这个东西，不在于死记硬背生搬硬套。而在于当遇到某个问题的时候，设计模式能够给你一个原始的思路，使你的代码实现能够尽可能满足需求和未来可能的变化。<br>
+ps. 这些设计模式是在新模块制作的时候用的，一般写业务逻辑大概率用不上，注意可复用的逻辑代码和表现代码分离就好了。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="写在前面">写在前面</h1>
+<p>这本书是半个月前开始看的吧，主要是觉得作者是一个资深的游戏开发，有些设计模式的东西游戏确实和其他的一些应用软件不一样，看下来应该会有所收获。<br>
+此外个人觉得，设计模式这个东西，不在于死记硬背生搬硬套。而在于当遇到某个问题的时候，设计模式能够给你一个原始的思路，使你的代码实现能够尽可能满足需求和未来可能的变化。<br>
+ps. 这些设计模式是在新模块制作的时候用的，一般写业务逻辑大概率用不上，注意可复用的逻辑代码和表现代码分离就好了。</p>
+<!-- more -->
+<h1 id="命令模式">命令模式</h1>
+<h2 id="个人理解">个人理解</h2>
+<p>就是将要执行的具体行为进行封装，交由想执行这个行为的角色执行，而不是直接执行。</p>
+<h2 id="优点">优点</h2>
+<p>将具体的行为进行封装，从而使目标和目标的行为进行分离，方便对目标行为进行扩展。</p>
+<h2 id="能够做什么">能够做什么</h2>
+<ol>
+<li>输入系统</li>
+<li>AI系统（和输入系统一样，只不过触发方式变了一下）</li>
+<li>能够方便的进行撤销操作。（每个Command实现撤销方法，然后使用List记录Command顺序）</li>
+<li>回放系统。</li>
+</ol>
+<h1 id="原型模式">原型模式</h1>
+<p>这个书里面讲的感觉不是很好，绕晕了。</p>
+<h2 id="个人理解-2">个人理解</h2>
+<p>每个对象实现自己的clone方法，然后使用获取器对缓存的对象进行<strong>复制</strong>。</p>
+<h2 id="与工厂模式的区别">与工厂模式的区别</h2>
+<p>工厂模式直接<code>new</code>对象，并对它进行初始化设置。<br>
+原型模式直接使用已经有的对象进行<strong>复制</strong>。<br>
+一个是创建，一个是复制。</p>
+<h2 id="适用范围">适用范围</h2>
+<p>大对象的创建。大的对象往往复制会比创建更快。</p>
+<h1 id="状态模式">状态模式</h1>
+<h2 id="优点-2">优点</h2>
+<p>状态模式将各种不同状态的操作进行隔离，避免大量的标记量和if判断。</p>
+<h2 id="包含内容">包含内容</h2>
+<p>状态Node的进入，离开，触发，以及当前Node可以去的Node。（Node的图的连接方向，这个之前自己写的东西没有弄这个）</p>
+<h2 id="有限状态机">有限状态机</h2>
+<ol>
+<li>预先知道所有状态的集合</li>
+<li>同一时间只能有一个状态</li>
+<li>Node核心要素：
+<ol>
+<li>状态：</li>
+<li>输入：对外部输入作出反应，比如执行纯逻辑，或者切换状态什么的</li>
+<li>转移：知道自己能够切换到哪个Node上去</li>
+</ol>
+</li>
+</ol>
+<h2 id="分层状态机">分层状态机</h2>
+<p>状态机中的Node使用继承。当前Node如果处理不了当前状态的话，将处理丢给父类。</p>
+<h2 id="下推状态机">下推状态机</h2>
+<p>将有限状态机中的当前状态的保存换为一个栈，这样当当前栈顶的状态执行完毕后，可以恢复到上一个状态。（实际上就是额外增加了一个记录）</p>
+<h2 id="个人理解-3">个人理解</h2>
+<p>状态模式这个东西用的很多了。一般情况下，有限状态机足够用了。其余的有些奇奇怪怪需求的稍微变种一下就可以。</p>
+<h1 id="享元模式">享元模式</h1>
+<ol>
+<li>享元模式不是什么简单的对象池，而是多个对象共享相同的一个对象数据。</li>
+<li>通过共享部分数据，减少数据的创建和数据的冗余。</li>
+</ol>
+<h1 id="观察者模式">观察者模式</h1>
+<ol>
+<li>这个粗暴些描述就是C#中的event。平时总是各种用，就不再细写了。</li>
+<li>需要注意的就是注册过后要及时解注册，不然可能会有一些对象因为异常引用而无法释放。</li>
+</ol>
+<h1 id="单例模式">单例模式</h1>
+<h2 id="使用单例模式的原因">使用单例模式的原因</h2>
+<ol>
+<li>没被使用时，不用初始化创建对象。</li>
+<li>运行时初始化，可以控制初始化顺序。</li>
+<li>可以使用可继承单例来实现一些特殊功能。比如不同平台的加载系统Log系统。</li>
+</ol>
+<h2 id="不使用单例的原因">不使用单例的原因</h2>
+<ol>
+<li>增加理解代码的难度。
+<ol>
+<li><strong>只使用局部变量的函数叫纯函数，纯函数往往利于理解，利于编译器优化。</strong></li>
+<li>如果使用了全局变量，一旦因为全局变量出现了Bug，那么你就得在几十上百个引用中查找究竟是哪一个引用导致了全局变量的错误。</li>
+</ol>
+</li>
+<li>增加代码耦合的可能性。做新功能的时候，往往会因为代码不熟悉或者想懒得动手动脑而采取最简单的方式来做东西。但这种情况下，单例模式因为提供了全局的访问接口，所以可以在各个系统中进行访问，从而导致一些不该有依赖关系的系统产生依赖关系。
+<ol>
+<li>比如《群星守卫》中，Server数据处理的位置有些地方和界面耦合，严谨些写的话应该拆开的。比如HandleServerMsg里面调用两个函数，一个HandleServerData，一个HandleServerView。不过毕竟还是少，这么写还算能够理解。</li>
+</ol>
+</li>
+<li>对并行不友好。</li>
+</ol>
+<h2 id="单例的问题所在">单例的问题所在</h2>
+<ol>
+<li>存在唯一的实例和对所有人开方访问是两个完全不相关的问题。但单例把这两个强行绑定了。</li>
+<li>延迟创建确实用起来很方便，但也某种意义上让我们丧失了对单例对象的创建的控制。</li>
+</ol>
+<h2 id="避免滥用单例的方法">避免滥用单例的方法</h2>
+<ol>
+<li>去除没有必要的管理类。数量过多的管理类只能说明作者对oop不够熟悉。<strong>oop的核心就是让对象自己管好自己</strong>。</li>
+<li>可使用<code>assert</code>之类的断言来防止多个创建。（不该多个创建的地方多个创建了，说明这块使用的有问题，有问题就应该直接报错，暴露出来解决掉。）</li>
+<li>将对象作为参数传进来。</li>
+<li>将对象的访问从基类进行继承。</li>
+<li>让不能避免的全局入口携带对象。（这个看个人习惯，不能完全照搬）</li>
+</ol>
+<h2 id="个人感想">个人感想</h2>
+<p>单例一样特别常用，但说实话，我个人并不喜欢。<br>
+游戏中的单例往往都是游戏初始化时创建，然后游戏结束销毁。<br>
+但既然它全局存在，为啥不用静态类呢？写代码的时候少敲一个GetInstance不舒服么？</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[C++视频学习笔记（一）]]></title>
         <id>https://singledigit9.github.io/post/cshi-pin-xue-xi-bi-ji-yi/</id>
@@ -52,137 +164,6 @@
 <li>Debug模式，编译器会插入许多代码来帮助Debug</li>
 <li>Obj的可读模式中，函数名会编程一系列编码，因为程序需要各种函数是唯一的。</li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[《游戏编程模式》读书笔记（二）]]></title>
-        <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-er/</id>
-        <link href="https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-er/">
-        </link>
-        <updated>2020-07-15T17:38:09.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="享元模式">享元模式</h1>
-<ol>
-<li>享元模式不是什么简单的对象池，而是多个对象共享相同的一个对象数据。</li>
-<li>通过共享部分数据，减少数据的创建和数据的冗余。</li>
-</ol>
-<h1 id="观察者模式">观察者模式</h1>
-<ol>
-<li>这个粗暴些描述就是C#中的event。平时总是各种用，就不再细写了。</li>
-<li>需要注意的就是注册过后要及时解注册，不然可能会有一些对象因为异常引用而无法释放。</li>
-</ol>
-<h1 id="单例模式">单例模式</h1>
-<h2 id="使用单例模式的原因">使用单例模式的原因</h2>
-<ol>
-<li>没被使用时，不用初始化创建对象。</li>
-<li>运行时初始化，可以控制初始化顺序。</li>
-<li>可以使用可继承单例来实现一些特殊功能。比如不同平台的加载系统Log系统。</li>
-</ol>
-<h2 id="不使用单例的原因">不使用单例的原因</h2>
-<ol>
-<li>增加理解代码的难度。
-<ol>
-<li><strong>只使用局部变量的函数叫纯函数，纯函数往往利于理解，利于编译器优化。</strong></li>
-<li>如果使用了全局变量，一旦因为全局变量出现了Bug，那么你就得在几十上百个引用中查找究竟是哪一个引用导致了全局变量的异常。</li>
-</ol>
-</li>
-<li>增加代码耦合的可能性。
-<ol>
-<li>做新功能的时候，往往会因为代码不熟悉或者想懒得动手动脑而采取最简单的方式来做东西。但这种情况下，单例模式因为提供了全局的访问接口，所以可以在各个系统中进行访问，从而导致一些不该有依赖关系的系统产生依赖关系。</li>
-</ol>
-</li>
-<li>对并行不友好。</li>
-</ol>
-<h2 id="单例的问题所在">单例的问题所在</h2>
-<ol>
-<li>存在唯一的实例和对所有人开方访问是两个完全不相关的问题。但单例把这两个强行绑定了。</li>
-<li>延迟创建确实用起来很方便，但也某种意义上让我们丧失了对单例对象的创建的控制。</li>
-</ol>
-<h2 id="避免滥用单例的方法">避免滥用单例的方法</h2>
-<ol>
-<li>去除没有必要的管理类。数量过多的管理类只能说明作者对oop不够熟悉。<strong>oop的核心就是让对象自己管好自己</strong>。</li>
-<li>可是使用<code>assert</code>之类的断言来防止多个创建。（不该多个创建的地方多个创建了，说明这块使用的有问题，有问题就应该暴露出来解决掉。）</li>
-<li>将对象作为参数传进来。</li>
-<li>将对象的访问从基类进行继承。</li>
-<li>让不能避免的全局入口携带对象。（这个看个人习惯，不能完全照搬）</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[《游戏编程模式》读书笔记 命令模式]]></title>
-        <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-yi/</id>
-        <link href="https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-yi/">
-        </link>
-        <updated>2020-07-05T13:23:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>代码语言是C#，但只是简单的实例，有一些地方有语法错误，意会即可。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>代码语言是C#，但只是简单的实例，有一些地方有语法错误，意会即可。</p>
-<!-- more -->
-<h1 id="命令模式">命令模式</h1>
-<h2 id="定义">定义</h2>
-<p>命令是<strong>具现化的方法</strong>调用。</p>
-<h2 id="个人理解">个人理解</h2>
-<p>就是将要执行的具体行为进行封装，交由想执行这个行为的角色执行，而不是直接执行。</p>
-<h2 id="例子">例子</h2>
-<p>要实现一个输入控制系统——比如按下W键前进，S键后退之类的。<br>
-首先想到的就是：</p>
-<pre><code class="language-c#">if (xxx) action1();
-if (yyy) action2();
-</code></pre>
-<p>其中xxx，yyy就是输入满足条件的判断，action1()，action2()就是具体执行的逻辑。</p>
-<p>然后要支持玩家改键，那这样写就有些问题了。需要把具体执行的逻辑进行一下封装</p>
-<pre><code class="language-c#">public abstract class Command
-{
-    public abstract void Do();
-}
-
-public class MoveUp : Command
-{
-    public override void Do() { }
-}
-</code></pre>
-<p>具体的什么按键执行什么东西封装好了，之后我们需要一个能够获取我们想要的命令对象的工具</p>
-<pre><code class="language-c#">public class CommandTool
-{
-    public Command Get(Type commandType) { }
-}
-</code></pre>
-<p>还需要一个根据按键获取对应命令类型的字典</p>
-<pre><code class="language-c#">Dictionary&lt;KeyCode, Type&gt; map;
-</code></pre>
-<p>最后改造出来是这样</p>
-<pre><code class="language-c#">KeyCode keyCode = Input.GetCurrentPressedKeyCode();
-if (keyCode != null)
-{
-    Command command = CommandTool.Get(map[keyCode]);
-    command.Do();
-}
-</code></pre>
-<p>再然后想让玩家能够用这套输入控制系统控制不同的角色，那么就需要将玩家要控制的角色作为参数传入进去。</p>
-<pre><code class="language-c#">public abstract class Command
-{
-    public abstract void Do(Avatar avatar);
-}
-
-public class MoveUp : Command
-{
-    public override void Do(Avatar avatar) { }
-}
-
-KeyCode keyCode = Input.GetCurrentPressedKeyCode();
-if (keyCode != null)
-{
-    Command command = CommandTool.Get(map[keyCode]);
-    command.Do(avatar);
-}
-</code></pre>
-<p>到此，命令模式基本完成。</p>
-<h1 id="总结">总结</h1>
-<p>命令模式，就是将具体的行为操作进行封装，从而让目标和目标的行为，以及执行行为的角色进行分离。从而让程序能够在不修改角色代码和执行行为的代码的情况下，不断的扩展角色的行为。<br>
-上面的最终例子中，命令由第三方执行，命令中行动的具体角色由第三方指定。从而能够实现一套命令代码，能够应用到这个类型对象的所有角色身上去。<br>
-因此，上面的例子不只能够在输入控制系统中使用，AI中也能够使用——只是决定使用哪一个命令的地方不一致罢了。</p>
-<p>此外，命令模式还能方便的进行<strong>撤销</strong>操作。可以在基类中实现撤销的接口，然后其余命令进行实现，就能够完成撤销操作。<br>
-如果想连续撤销，可以将当前所执行过的命令使用一个List进行存储，记录当前命令所在的索引值。撤销时，当前命令执行撤销操作，索引值减一，就能够实现。</p>
-<p>游戏中另外一个常用的地方就是<strong>回放</strong>。如果直接将场景中的数据按帧完全存储下来，那么所消耗的内存会相当大。因此可以将场景中每一帧执行了什么命令存储下来，回放时，相当于每帧执行相对应的命令，实现方式和实现效果要好很多。</p>
 ]]></content>
     </entry>
     <entry>
@@ -1228,6 +1209,15 @@ foreach(string dependency in dependencies)
 <li>可以使用变体，将不同变体的贴图分别打在一个AssetBundle里面，根据情况进行加载。（需要贴图设置正确）</li>
 <li><code>SystemInfo.SupportedTextureFormat</code>可以使用这个API来检测设备支持什么格式的贴图</li>
 </ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Unity Shader的内置时间变量]]></title>
+        <id>https://singledigit9.github.io/post/unity-shader-de-nei-zhi-shi-jian-bian-liang/</id>
+        <link href="https://singledigit9.github.io/post/unity-shader-de-nei-zhi-shi-jian-bian-liang/">
+        </link>
+        <updated>2020-05-05T11:06:44.000Z</updated>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://singledigit9.github.io/post-images/1588676867160.jpeg" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
