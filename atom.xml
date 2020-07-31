@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-07-30T03:38:44.657Z</updated>
+    <updated>2020-07-31T06:11:56.060Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,39 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[《游戏设计模式》读书笔记——序列模式]]></title>
+        <id>https://singledigit9.github.io/post/lesslessyou-xi-she-ji-mo-shi-greatergreater-du-shu-bi-ji-xu-lie-mo-shi/</id>
+        <link href="https://singledigit9.github.io/post/lesslessyou-xi-she-ji-mo-shi-greatergreater-du-shu-bi-ji-xu-lie-mo-shi/">
+        </link>
+        <updated>2020-07-31T05:53:03.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="写在前面">写在前面</h1>
+<p>这部分主要是介绍了一些游戏中有关时序之类的设计模式。现在的引擎封装的都很好，基本上用不到这些。<br>
+但还是需要做一些了解，万一有需求需要的话知道大概该怎么做。</p>
+<h1 id="双缓冲模式">双缓冲模式</h1>
+<h2 id="个人理解">个人理解</h2>
+<p>为了解决不同线程见访问同一块内存数据，有可能获取到错误数据的问题。<br>
+但对内存苛刻的设备上就不好用这个了。</p>
+<h2 id="简单描述">简单描述</h2>
+<p>保存了下一个缓冲和当前缓冲。读取始终从当前缓冲读取。写入都写入下一个缓冲，写入完毕后将下一个缓冲和当前缓冲进行交换。</p>
+<h2 id="注意事项">注意事项</h2>
+<ol>
+<li>双缓冲模式是位于底层的，外部不应该接触到双缓冲的内部逻辑</li>
+<li>两个缓冲交换是需要一定时间的，一般是直接交换指针（引用）。如果交换的时间过长，那么双缓冲就失去意义了。</li>
+<li>需要注意浅复制，不要让外部的代码存储对双缓冲的永久引用。</li>
+</ol>
+<h1 id="游戏循环">游戏循环</h1>
+<h2 id="定义">定义</h2>
+<p>游戏循环在游戏运行过程中不断运行。每次循环，都能够无阻塞的处理玩家输入，更新游戏状态，渲染状态。并且能够控制游戏速度。</p>
+<h2 id="其他">其他</h2>
+<p>每一帧中处理的数据不要过大，不然会影响游戏的运行速度。</p>
+<h1 id="更新方法">更新方法</h1>
+<h2 id="定义-2">定义</h2>
+<p>每个对象实现一个更新方法来模拟当前对象在这一帧中的行为状态。</p>
+<h2 id="个人理解-2">个人理解</h2>
+<p>这个东西就比较常用了，Unity中的Update和自己平时写的其他的好多代码都用到了这个东西。还是尽可能让对象自己管自己的。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《游戏编程模式》读书笔记——基础设计模式]]></title>
         <id>https://singledigit9.github.io/post/lesslessyou-xi-bian-cheng-mo-shi-greatergreater-du-shu-bi-ji-ji-chu-she-ji-mo-shi/</id>
@@ -1209,15 +1242,6 @@ foreach(string dependency in dependencies)
 <li>可以使用变体，将不同变体的贴图分别打在一个AssetBundle里面，根据情况进行加载。（需要贴图设置正确）</li>
 <li><code>SystemInfo.SupportedTextureFormat</code>可以使用这个API来检测设备支持什么格式的贴图</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unity Shader的内置时间变量]]></title>
-        <id>https://singledigit9.github.io/post/unity-shader-de-nei-zhi-shi-jian-bian-liang/</id>
-        <link href="https://singledigit9.github.io/post/unity-shader-de-nei-zhi-shi-jian-bian-liang/">
-        </link>
-        <updated>2020-05-05T11:06:44.000Z</updated>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://singledigit9.github.io/post-images/1588676867160.jpeg" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
