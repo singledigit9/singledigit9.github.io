@@ -1,0 +1,389 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>LockStepFramework 帧同步框架学习 - 资料库</title>
+<link rel="shortcut icon" href="https://singledigit9.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="https://singledigit9.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="LockStepFramework 帧同步框架学习 - 资料库 - Atom Feed" href="https://singledigit9.github.io/atom.xml">
+
+    
+
+  <meta name="description" content="写在前面
+最近说实话比较咸鱼，同时又有些沉迷魔兽无法自拔，所以自我学习的进度上，相比之前有些放缓。
+但好在还没有停下，断断续续学了一些东西，虽然也有记笔记，但只是简单的记录了一下而已，没有进一步的消化吸收，这里就二次整理一下。
+也简单说一下..." />
+  <meta property="og:title" content="LockStepFramework 帧同步框架学习 - 资料库">
+  <meta property="og:description" content="写在前面
+最近说实话比较咸鱼，同时又有些沉迷魔兽无法自拔，所以自我学习的进度上，相比之前有些放缓。
+但好在还没有停下，断断续续学了一些东西，虽然也有记笔记，但只是简单的记录了一下而已，没有进一步的消化吸收，这里就二次整理一下。
+也简单说一下..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://singledigit9.github.io/post/lockstepframework-zheng-tong-bu-kuang-jia-xue-xi/" />
+  <meta property="og:image" content="https://singledigit9.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="LockStepFramework 帧同步框架学习 - 资料库">
+  <meta name="twitter:description" content="写在前面
+最近说实话比较咸鱼，同时又有些沉迷魔兽无法自拔，所以自我学习的进度上，相比之前有些放缓。
+但好在还没有停下，断断续续学了一些东西，虽然也有记笔记，但只是简单的记录了一下而已，没有进一步的消化吸收，这里就二次整理一下。
+也简单说一下...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://singledigit9.github.io/post/lockstepframework-zheng-tong-bu-kuang-jia-xue-xi/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://singledigit9.github.io/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://singledigit9.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      资料库
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          LockStepFramework 帧同步框架学习
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-09-12 · 5 min read</div>
+          
+            <a href="https://singledigit9.github.io/tag/acPMtgep4/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              帧同步
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/8EcVz9hnG/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              框架
+            </a>
+          
+            <a href="https://singledigit9.github.io/tag/KiOXxT9KY/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              经验总结
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="写在前面">写在前面</h2>
+<p>最近说实话比较咸鱼，同时又有些沉迷魔兽无法自拔，所以自我学习的进度上，相比之前有些放缓。<br>
+但好在还没有停下，断断续续学了一些东西，虽然也有记笔记，但只是简单的记录了一下而已，没有进一步的消化吸收，这里就二次整理一下。<br>
+也简单说一下为什么要看帧同步这块的东西吧，主要是因为工作中的物理同步，确实写的有很大问题，但项目已经到了末期，没法改了，只能各种吐槽&amp;&amp;捏着鼻子用了。加上这块我确实之前没有搞过，所以上网搜了下帧同步的一些东西，找到了这个框架。</p>
+<!-- more -->
+<h2 id="资料地址">资料地址</h2>
+<p>https://github.com/SnpM/LockstepFramework.git</p>
+<h2 id="正文内容">正文内容</h2>
+<p>首先来说，Unity内置的PhyX是做不了帧同步的，因为PhyX，相同的初始条件，在不同的机器上计算结果可能不一样。这个我是做过测试的，一个方块平抛撞墙落地上，输出落地坐标。PC包和Unity编辑器的结果是一样的，APK包在模拟器上跑的结果就不一样了。想要帧同步，就需要找另一个物理引擎或者自己根据需求写一个。<br>
+其次，计算一定要用定点数。下面正式开始笔记内容。</p>
+<h3 id="定点数的实现">定点数的实现</h3>
+<ol>
+<li>使用<code>long</code>，高16位为整数部分，低16位为小数部分</li>
+<li>定点数之间的运算，大多使用位运算，增加运算效率。</li>
+</ol>
+<p>之前自己对定点数的想法只是简单的将数字放大多少倍发送出去，然后另外一边将接收数字再缩小相同倍数之后计算。这个想法是错误的，有问题的。浮点数计算不准确的原因就是在于计算的过程中使用了浮点数，而我的之前的想法中实际计算的时候还是浮点数进行的计算。此外，简单的将数字放大，然后用整数计算，最后再缩小也是有问题的，中间涉及到乘除的时候，缩小倍数就不好确定了。</p>
+<h2 id="fastcollection">FastCollection</h2>
+<p>这是一个第三方的集合库，内部把list什么的都实现了一遍。但是，我对比了一下C#的list代码和这个库的list代码，发现内部逻辑都是一样的啊。内部建立数组，然后填充数据不够的时候对内部数组进行扩容。所以我不是很理解为什么要用这个库。但还是有个东西很不错值得记录一下的。</p>
+<ol>
+<li>有个BiDictionary实现的特别好，就是那种Key值heValue值需要互相索引的字典，这个字典继承了原字典，然后将value值key值在存储一份。获取方便。</li>
+</ol>
+<h2 id="message">Message</h2>
+<ol>
+<li>和自己平常写的订阅发布相比，每个类型的Message进行了单独的封装<code>messageChannel</code>，用来管理自己这个消息的分发等等。就是把<code>Dictionary&lt;key,List&lt;value&gt;&gt;</code>的结构数据结构化了一下。<code>Manager</code>使用字符串作为<code>key</code>值索引<code>messageChannel</code>。</li>
+</ol>
+<h2 id="数据读取写入">数据读取写入</h2>
+<p>框架中的数据解析是从byte中直接流式读取的，自己记录当前byte数组中的读取位置，相比与传统的json解析什么的效率更高。</p>
+<h2 id="数据收发">数据收发</h2>
+<h3 id="流程">流程</h3>
+<ol>
+<li>发送就是正常的每帧发送同步数据</li>
+<li>因为自己实现了<code>byte[]</code>读取写入的东西，所以收发直接用的<code>byte[]</code></li>
+<li>tick中每两帧处理一次接收的数据（向内部转发处理），同时将接收的数据清除。</li>
+<li>发送的原始数据到数据处理端进行处理。（数据的处理）
+<ol>
+<li>校验，长度不够的直接舍弃。</li>
+<li>提取帧数信息，当前是第几帧。</li>
+<li>使用剩余的字节提取当前帧数命令信息。
+<ol>
+<li><code>Activator.CreateInstance</code>根据类型直接创建对象（当前帧的Command类型是直接发过来的，然后解析byte数组解析出类型，再使用这个类型直接创建Command对象）</li>
+<li>读取数据（Command内部有读取数据接口，读取数组数据内容，填充自己，并将当前的索引位置进行记录返回）</li>
+</ol>
+</li>
+<li>将命令添加到当前帧数中（解析完一个Command就将一个Command加入一个帧对象中）</li>
+</ol>
+</li>
+<li>将当前帧放入帧数管理器
+<ol>
+<li>如果已经有当前的帧数Id了，则新的帧数数据直接舍弃</li>
+</ol>
+</li>
+<li>在FixUpdate中执行当期帧的所有命令</li>
+</ol>
+<h3 id="简单的数据结构包含关系">简单的数据结构包含关系</h3>
+<ul>
+<li>Frame
+<ul>
+<li>Id</li>
+<li>Command</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2">写在前面</a></li>
+<li><a href="#%E8%B5%84%E6%96%99%E5%9C%B0%E5%9D%80">资料地址</a></li>
+<li><a href="#%E6%AD%A3%E6%96%87%E5%86%85%E5%AE%B9">正文内容</a>
+<ul>
+<li><a href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0">定点数的实现</a></li>
+</ul>
+</li>
+<li><a href="#fastcollection">FastCollection</a></li>
+<li><a href="#message">Message</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E5%86%99%E5%85%A5">数据读取写入</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91">数据收发</a>
+<ul>
+<li><a href="#%E6%B5%81%E7%A8%8B">流程</a></li>
+<li><a href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB">简单的数据结构包含关系</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://singledigit9.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://singledigit9.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'eXsFKOTvcqH1AMduAwWFwSxB-gzGzoHsz',
+    appKey: '01Wiv0MyEtpmkgIz8o9Y9ccM',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

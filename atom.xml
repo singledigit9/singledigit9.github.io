@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://singledigit9.github.io</id>
     <title>资料库</title>
-    <updated>2020-07-31T06:11:56.060Z</updated>
+    <updated>2020-09-12T16:32:24.306Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://singledigit9.github.io"/>
     <link rel="self" href="https://singledigit9.github.io/atom.xml"/>
@@ -10,6 +10,81 @@
     <logo>https://singledigit9.github.io/images/avatar.png</logo>
     <icon>https://singledigit9.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 资料库</rights>
+    <entry>
+        <title type="html"><![CDATA[LockStepFramework 帧同步框架学习]]></title>
+        <id>https://singledigit9.github.io/post/lockstepframework-zheng-tong-bu-kuang-jia-xue-xi/</id>
+        <link href="https://singledigit9.github.io/post/lockstepframework-zheng-tong-bu-kuang-jia-xue-xi/">
+        </link>
+        <updated>2020-09-12T15:51:55.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="写在前面">写在前面</h2>
+<p>最近说实话比较咸鱼，同时又有些沉迷魔兽无法自拔，所以自我学习的进度上，相比之前有些放缓。<br>
+但好在还没有停下，断断续续学了一些东西，虽然也有记笔记，但只是简单的记录了一下而已，没有进一步的消化吸收，这里就二次整理一下。<br>
+也简单说一下为什么要看帧同步这块的东西吧，主要是因为工作中的物理同步，确实写的有很大问题，但项目已经到了末期，没法改了，只能各种吐槽&amp;&amp;捏着鼻子用了。加上这块我确实之前没有搞过，所以上网搜了下帧同步的一些东西，找到了这个框架。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="写在前面">写在前面</h2>
+<p>最近说实话比较咸鱼，同时又有些沉迷魔兽无法自拔，所以自我学习的进度上，相比之前有些放缓。<br>
+但好在还没有停下，断断续续学了一些东西，虽然也有记笔记，但只是简单的记录了一下而已，没有进一步的消化吸收，这里就二次整理一下。<br>
+也简单说一下为什么要看帧同步这块的东西吧，主要是因为工作中的物理同步，确实写的有很大问题，但项目已经到了末期，没法改了，只能各种吐槽&amp;&amp;捏着鼻子用了。加上这块我确实之前没有搞过，所以上网搜了下帧同步的一些东西，找到了这个框架。</p>
+<!-- more -->
+<h2 id="资料地址">资料地址</h2>
+<p>https://github.com/SnpM/LockstepFramework.git</p>
+<h2 id="正文内容">正文内容</h2>
+<p>首先来说，Unity内置的PhyX是做不了帧同步的，因为PhyX，相同的初始条件，在不同的机器上计算结果可能不一样。这个我是做过测试的，一个方块平抛撞墙落地上，输出落地坐标。PC包和Unity编辑器的结果是一样的，APK包在模拟器上跑的结果就不一样了。想要帧同步，就需要找另一个物理引擎或者自己根据需求写一个。<br>
+其次，计算一定要用定点数。下面正式开始笔记内容。</p>
+<h3 id="定点数的实现">定点数的实现</h3>
+<ol>
+<li>使用<code>long</code>，高16位为整数部分，低16位为小数部分</li>
+<li>定点数之间的运算，大多使用位运算，增加运算效率。</li>
+</ol>
+<p>之前自己对定点数的想法只是简单的将数字放大多少倍发送出去，然后另外一边将接收数字再缩小相同倍数之后计算。这个想法是错误的，有问题的。浮点数计算不准确的原因就是在于计算的过程中使用了浮点数，而我的之前的想法中实际计算的时候还是浮点数进行的计算。此外，简单的将数字放大，然后用整数计算，最后再缩小也是有问题的，中间涉及到乘除的时候，缩小倍数就不好确定了。</p>
+<h2 id="fastcollection">FastCollection</h2>
+<p>这是一个第三方的集合库，内部把list什么的都实现了一遍。但是，我对比了一下C#的list代码和这个库的list代码，发现内部逻辑都是一样的啊。内部建立数组，然后填充数据不够的时候对内部数组进行扩容。所以我不是很理解为什么要用这个库。但还是有个东西很不错值得记录一下的。</p>
+<ol>
+<li>有个BiDictionary实现的特别好，就是那种Key值heValue值需要互相索引的字典，这个字典继承了原字典，然后将value值key值在存储一份。获取方便。</li>
+</ol>
+<h2 id="message">Message</h2>
+<ol>
+<li>和自己平常写的订阅发布相比，每个类型的Message进行了单独的封装<code>messageChannel</code>，用来管理自己这个消息的分发等等。就是把<code>Dictionary&lt;key,List&lt;value&gt;&gt;</code>的结构数据结构化了一下。<code>Manager</code>使用字符串作为<code>key</code>值索引<code>messageChannel</code>。</li>
+</ol>
+<h2 id="数据读取写入">数据读取写入</h2>
+<p>框架中的数据解析是从byte中直接流式读取的，自己记录当前byte数组中的读取位置，相比与传统的json解析什么的效率更高。</p>
+<h2 id="数据收发">数据收发</h2>
+<h3 id="流程">流程</h3>
+<ol>
+<li>发送就是正常的每帧发送同步数据</li>
+<li>因为自己实现了<code>byte[]</code>读取写入的东西，所以收发直接用的<code>byte[]</code></li>
+<li>tick中每两帧处理一次接收的数据（向内部转发处理），同时将接收的数据清除。</li>
+<li>发送的原始数据到数据处理端进行处理。（数据的处理）
+<ol>
+<li>校验，长度不够的直接舍弃。</li>
+<li>提取帧数信息，当前是第几帧。</li>
+<li>使用剩余的字节提取当前帧数命令信息。
+<ol>
+<li><code>Activator.CreateInstance</code>根据类型直接创建对象（当前帧的Command类型是直接发过来的，然后解析byte数组解析出类型，再使用这个类型直接创建Command对象）</li>
+<li>读取数据（Command内部有读取数据接口，读取数组数据内容，填充自己，并将当前的索引位置进行记录返回）</li>
+</ol>
+</li>
+<li>将命令添加到当前帧数中（解析完一个Command就将一个Command加入一个帧对象中）</li>
+</ol>
+</li>
+<li>将当前帧放入帧数管理器
+<ol>
+<li>如果已经有当前的帧数Id了，则新的帧数数据直接舍弃</li>
+</ol>
+</li>
+<li>在FixUpdate中执行当期帧的所有命令</li>
+</ol>
+<h3 id="简单的数据结构包含关系">简单的数据结构包含关系</h3>
+<ul>
+<li>Frame
+<ul>
+<li>Id</li>
+<li>Command</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《游戏设计模式》读书笔记——序列模式]]></title>
         <id>https://singledigit9.github.io/post/lesslessyou-xi-she-ji-mo-shi-greatergreater-du-shu-bi-ji-xu-lie-mo-shi/</id>
@@ -780,468 +855,6 @@ fixed4 fragExtractBright(v2f i) : SV_Target {
 </ol>
 </li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AssetBundle官方文档学习笔记]]></title>
-        <id>https://singledigit9.github.io/post/assetbundle-guan-fang-wen-dang-xue-xi-bi-ji/</id>
-        <link href="https://singledigit9.github.io/post/assetbundle-guan-fang-wen-dang-xue-xi-bi-ji/">
-        </link>
-        <updated>2020-05-13T14:14:06.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="文档版本地址">文档版本&amp;地址</h1>
-<p>2019.3 <a href="https://docs.unity3d.com/Manual/AssetBundlesIntro.html">https://docs.unity3d.com/Manual/AssetBundlesIntro.html</a></p>
-<h1 id="官方工具">官方工具</h1>
-<p><a href="https://docs.unity3d.com/Packages/com.unity.addressables@1.8/manual/index.html">Unity Addressable Asset system</a><br>
-<a href="https://github.com/Unity-Technologies/AssetBundles-Browser">Unity Asset Bundle Browser tool</a><br>
-<a href="https://docs.unity3d.com/Manual/AssetBundles-Browser.html">Unity Asset Bundle Browser tool文档</a></p>
-<h1 id="基础介绍">基础介绍</h1>
-<h2 id="assetbundle的特性">AssetBundle的特性</h2>
-<ul>
-<li>AssetBundle能够互相依赖。例如，一个AssetBundle中的材质球能够引用另一个AssetBundle上的贴图。</li>
-<li>AssetBundle能够使用Unity内置的算法进行压缩，以提高传输效率。</li>
-</ul>
-<h2 id="assetbundle能够做什么">AssetBundle能够做什么</h2>
-<ul>
-<li>DLC的更新</li>
-<li>减少初始安装包大小</li>
-<li>减小运行时内存压力</li>
-<li>针对用户的终端（手机）加载优化资源</li>
-</ul>
-<h2 id="assetbundle文件和assetbundle对象">AssetBundle文件和AssetBundle对象</h2>
-<ul>
-<li>AssetBundle文件中包含的是打入其中的各种资源。</li>
-<li>AssetBundle对象中有一个Key值为路径，Value值为对应资源的字典。</li>
-</ul>
-<h1 id="工作流程">工作流程</h1>
-<h2 id="资源的设置">资源的设置</h2>
-<ol>
-<li>选中要打包的资源，在检视面板的最下面可以看到AssetBundle配置选项。</li>
-<li>第一个配置：要将这个资源打进哪一个AssetBundle<strong>待测试</strong></li>
-<li>第二个配置：这个资源的变体<strong>待测试</strong></li>
-</ol>
-<h2 id="资源的打包">资源的打包</h2>
-<p>官网提供了示例代码<strong>待测试</strong></p>
-<pre><code>using UnityEditor;
-using System.IO;
-
-public class CreateAssetBundles
-{
-    [MenuItem(&quot;Assets/Build AssetBundles&quot;)]
-    static void BuildAllAssetBundles()
-    {
-        string assetBundleDirectory = &quot;Assets/AssetBundles&quot;;
-        if(!Directory.Exists(assetBundleDirectory))
-        {
-            Directory.CreateDirectory(assetBundleDirectory);
-        }
-        BuildPipeline.BuildAssetBundles(assetBundleDirectory, 
-                                        BuildAssetBundleOptions.None, 
-                                        BuildTarget.StandaloneWindows);
-    }
-}
-</code></pre>
-<h2 id="加载assetbundle和assetbundle里面的资源">加载AssetBundle和AssetBundle里面的资源</h2>
-<h3 id="加载本地文件">加载本地文件</h3>
-<p>官网示例代码<strong>待测试</strong></p>
-<pre><code>public class LoadFromFileExample : MonoBehaviour {
-    function Start() {
-        var myLoadedAssetBundle 
-            = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, &quot;myassetBundle&quot;));
-        if (myLoadedAssetBundle == null) {
-            Debug.Log(&quot;Failed to load AssetBundle!&quot;);
-            return;
-        }
-        var prefab = myLoadedAssetBundle.LoadAsset&lt;GameObject&gt;(&quot;MyObject&quot;);
-        Instantiate(prefab);
-    }
-}
-</code></pre>
-<h3 id="加载网络文件">加载网络文件</h3>
-<pre><code>IEnumerator InstantiateObject()
-{
-    string url = &quot;file:///&quot; + Application.dataPath + &quot;/AssetBundles/&quot; + assetBundleName;        
-    UnityEngine.Networking.UnityWebRequest request 
-        = UnityEngine.Networking.UnityWebRequest.GetAssetBundle(url, 0);
-    yield return request.Send();
-    AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
-    GameObject cube = bundle.LoadAsset&lt;GameObject&gt;(&quot;Cube&quot;);
-    GameObject sprite = bundle.LoadAsset&lt;GameObject&gt;(&quot;Sprite&quot;);
-    Instantiate(cube);
-    Instantiate(sprite);
-}
-</code></pre>
-<h1 id="打包策略">打包策略</h1>
-<ul>
-<li>开发人员应该明确知道在什么时候什么位置使用什么资源。明确了这个问题后才能够决定使用什么打包策略。</li>
-</ul>
-<h2 id="依据实体打包">依据实体打包</h2>
-<ul>
-<li>举例：
-<ul>
-<li>将一个UIPrefab和它所用到的贴图打包在一起</li>
-<li>将一个模型和这个模型的材质球，贴图，动画文件打包在一起</li>
-<li>将一个场景和这个场景所用到的资源打包在一起</li>
-</ul>
-</li>
-<li>特点
-<ul>
-<li>每个实体的AssetBundle是分开的，更新单独的实体时不用更新其他没有改变的资源</li>
-</ul>
-</li>
-</ul>
-<h2 id="依据资源类型打包">依据资源类型打包</h2>
-<ul>
-<li>特点
-<ul>
-<li>不同平台下压缩格式相同的资源AssetBundle可以在不同平台下重用</li>
-</ul>
-</li>
-</ul>
-<h2 id="选择正确的打包策略">选择正确的打包策略</h2>
-<ul>
-<li>AssetBundle是有依赖关系的。如果你的AssetBundle打包策略不好，可能会出现想加载一个GameObject而需要加载多个AssetBundle的情况。</li>
-<li>上面两种策略当然也可以混合使用。这需要根据具体的项目需求来进行选择。</li>
-</ul>
-<h3 id="关键点">关键点</h3>
-<ul>
-<li>将经常变化的资源和很少变化的资源分开打包。</li>
-<li>理清资源依赖关系，避免复杂的相互依赖。比如将通用的依赖资源移到Common中。</li>
-<li>不可能同时加载使用的资源不要打进一个AssetBundle里</li>
-<li>如果一个AssetBundle中只有一部分资源被频繁的加载，那么需要把这个AssetBundle进行拆分</li>
-<li>将同时频繁加载的小（资源数少于5-10）的AssetBundle合并到一起。</li>
-<li>不同版本的同一物体，可以考虑使用变体 <strong>变体具体是什么待测试</strong></li>
-</ul>
-<h1 id="打包assetbundle">打包AssetBundle</h1>
-<h2 id="buildassetbundleoptions">BuildAssetBundleOptions</h2>
-<ul>
-<li>关于打AssetBundle的各种设置  <strong>待测试</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>API</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>None</td>
-<td>没有特殊设置。使用LZMA进行压缩</td>
-</tr>
-<tr>
-<td>UncompressedAssetBundle</td>
-<td>不对AssetBundle进行压缩</td>
-</tr>
-<tr>
-<td>DisableWriteTypeTree</td>
-<td>AssetBundle中不包含类型信息</td>
-</tr>
-<tr>
-<td>DeterministicAssetBundle</td>
-<td>确保相同的资源打进AssetBundle里面后，哈希值不会变化</td>
-</tr>
-<tr>
-<td>ForceRebuildAssetBundle</td>
-<td>强制重新打AssetBundle</td>
-</tr>
-<tr>
-<td>IgnoreTypeTreeChanges</td>
-<td>增量打包时忽略类型树变化</td>
-</tr>
-<tr>
-<td>AppendHashToAssetBundleName</td>
-<td>将Hash值添加到AssetBundle名字之后，能够从名字直接看出AssetBundle是否有变化</td>
-</tr>
-<tr>
-<td>ChunkBasedCompression</td>
-<td>使用LZ4格式压缩</td>
-</tr>
-<tr>
-<td>StrictMode</td>
-<td>打包过程中报错则中断打包</td>
-</tr>
-<tr>
-<td>DryRunBuild</td>
-<td>Do a dry run build.</td>
-</tr>
-<tr>
-<td>DisableLoadAssetByFileName</td>
-<td>不允许使用文件名字加载资源</td>
-</tr>
-<tr>
-<td>DisableLoadAssetByFileNameWithExtension</td>
-<td>不允许使用带后缀的文件名字加载资源</td>
-</tr>
-<tr>
-<td>AssetBundleStripUnityVersion</td>
-<td>构建时删除Unity版本号</td>
-</tr>
-</tbody>
-</table>
-<h2 id="关于压缩格式">关于压缩格式</h2>
-<ul>
-<li>默认情况下，使用LZMA格式创建，使用LZ4格式缓存</li>
-</ul>
-<h3 id="压缩格式类型">压缩格式类型</h3>
-<ul>
-<li>LZMA：
-<ul>
-<li>打出的AssetBundle最小，但加载时间也会更长（加载资源之前需要先将资源所在的AssetBundle整个进行解压）。</li>
-<li>资源解压后，会使用LZ4格式重新压缩。</li>
-<li>推荐在初始资源下载时使用这个格式。</li>
-<li>通过<code>UnityWebRequestAssetBundle</code>加载的LZMA格式的AssetBundle会自动解压并重新压缩为LZ4，缓存到本地。如果是使用其他方式下载的Assetbundle,则可以使用<code>AssetBundle.RecompressAssetBundleAsync</code>对其进行重新压缩</li>
-</ul>
-</li>
-<li>LZ4：
-<ul>
-<li>加载资源前不必对整个AssetBundle进行解压</li>
-<li>允许以块的形式加载资源。解压单个块，即使当前AssetBund中其他的块没有解压，也能使用当前块中的资源</li>
-<li>这种压缩模式下<code>AssetBundle.LoadFromFile</code>只在内存里加载Bundle的资源目录，而不是Bundle本身</li>
-</ul>
-</li>
-<li>完全不压缩：
-<ul>
-<li>文件大，加载快</li>
-</ul>
-</li>
-</ul>
-<h2 id="打包生成的文件">打包生成的文件</h2>
-<ul>
-<li>
-<p>AssetBundle文件</p>
-<ul>
-<li>场景Bundle和其他一般资源Bundle里面的结构略有不同。场景的Bundle有一些特殊优化。<br>
-<img src="https://singledigit9.github.io/post-images/1589379363606.png" alt="" loading="lazy"></li>
-</ul>
-</li>
-<li>
-<p>Manifest文件</p>
-<ul>
-<li>包含了当前AssetBundle的资源信息以及资源的依赖信息</li>
-</ul>
-</li>
-</ul>
-<h1 id="assetbundle依赖">AssetBundle依赖</h1>
-<ul>
-<li>一个Bundle中的资源引用另一个Bundle中的资源会产生依赖；一个Bundle中的资源引用一个不在Bundle中的资源不会产生依赖。</li>
-<li>如果Bundle中资源A引用不在Bundle中的资源B，则资源B会被复制并打进A的Bundle中。</li>
-<li>如果多个Bundle中的资源引用不在Bundle中的资源B，则资源B会被复制并打进每一个Bundle中。</li>
-<li>如果要加载的Bundle A中的资源依赖Bundle B，那么加载这个资源前要先将Bundle B加载好。</li>
-</ul>
-<h2 id="跨assetbundle的重复信息">跨AssetBundle的重复信息</h2>
-<ul>
-<li>如果一个Bundle中有一个预制，都引用了不在Bundle中的材质球和贴图
-<ul>
-<li>影响最终打出来的Bundle大小增加</li>
-<li>运行时内存占用增加</li>
-<li>影响Unity自动批处理。Unity把不同Bundle中的材质球都看作是唯一的。</li>
-</ul>
-</li>
-</ul>
-<h2 id="编辑器下依赖关系的查询">编辑器下依赖关系的查询</h2>
-<ul>
-<li><code>AssetDatabase</code>：查询依赖关系</li>
-<li><code>AssetImporter</code>：查询资源分配到了哪个AssetBundle</li>
-</ul>
-<h2 id="几种依赖关系的处理方法">几种依赖关系的处理方法</h2>
-<ul>
-<li>共同的依赖资源集中到一个Bundle里面（不适用于复杂交叉依赖的情况）</li>
-<li>确保同一时间，不会有任何一个Bundle有多重被依赖。（适用于基于Level的游戏，但这样做仍然会增加AssetBundle的文件大小）</li>
-<li>确保所有依赖的资源都在自己的AssetBundle里面。但这样做机制比较复杂。</li>
-</ul>
-<h1 id="assetbundle的使用">AssetBundle的使用</h1>
-<h2 id="加载assetbundle">加载AssetBundle</h2>
-<ul>
-<li><code>AssetBundle.LoadFromMemoryAsync</code>
-<ul>
-<li>从内存异步加载AssetBundle</li>
-<li>参数为Bundle文件的字节流</li>
-<li>使用示例：</li>
-</ul>
-</li>
-</ul>
-<pre><code>using UnityEngine;
-using System.Collections;
-using System.IO;
-
-public class Example : MonoBehaviour
-{
-    IEnumerator LoadFromMemoryAsync(string path)
-    {
-        AssetBundleCreateRequest createRequest = AssetBundle.LoadFromMemoryAsync(File.ReadAllBytes(path));
-        yield return createRequest;
-        AssetBundle bundle = createRequest.assetBundle;
-        var prefab = bundle.LoadAsset&lt;GameObject&gt;(&quot;MyObject&quot;);
-        Instantiate(prefab);
-    }
-}
-</code></pre>
-<ul>
-<li><code>AssetBundle.LoadFromFile</code>
-<ul>
-<li>未压缩和LZ4格式压缩的AssetBundle，会直接从硬盘中加载。加载LZMA格式的AssetBundle时，会先解压，然后再加载。</li>
-<li>加载本地的未压缩资源效率很高。</li>
-<li>Unity5.3以及以前版本，Android平台使用这个API加载StreamingAssets文件夹中的AssetBundle会失败。因为StreamingAssets文件夹中的内容会在一个压缩的.jar文件中。</li>
-<li>Unity5.4以及更新的版本能够正常的使用这个API.</li>
-<li>使用示例：</li>
-</ul>
-</li>
-</ul>
-<pre><code>public class LoadFromFileExample : MonoBehaviour {
-    function Start() {
-        var myLoadedAssetBundle 
-            = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, &quot;myassetBundle&quot;));
-        
-        if (myLoadedAssetBundle == null) {
-            Debug.Log(&quot;Failed to load AssetBundle!&quot;);
-            return;
-        }
-        var prefab = myLoadedAssetBundle.LoadAsset.&lt;GameObject&gt;(&quot;MyObject&quot;);
-        Instantiate(prefab);
-    }
-}
-</code></pre>
-<ul>
-<li><code>UnityWebRequest</code>
-<ul>
-<li>相当于原来的<code>WWW</code>类的升级版。</li>
-<li>能够方便的处理下载以及HTTP的Get/POST请求。</li>
-<li>使用示例：</li>
-</ul>
-</li>
-</ul>
-<pre><code>IEnumerator InstantiateObject()
-{
-    string uri = &quot;file:///&quot; + Application.dataPath + &quot;/AssetBundles/&quot; + assetBundleName; 
-    UnityEngine.Networking.UnityWebRequest request 
-        = UnityEngine.Networking.UnityWebRequest.GetAssetBundle(uri, 0);
-    yield return request.Send();
-    AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
-    GameObject cube = bundle.LoadAsset&lt;GameObject&gt;(&quot;Cube&quot;);
-    GameObject sprite = bundle.LoadAsset&lt;GameObject&gt;(&quot;Sprite&quot;);
-    Instantiate(cube);
-    Instantiate(sprite);
-}
-</code></pre>
-<ul>
-<li><code>WWW.LoadFromCacheOrDownload</code>[已淘汰，直接跳过]</li>
-</ul>
-<h2 id="加载assetbundle中的资源">加载AssetBundle中的资源</h2>
-<ul>
-<li><code>T objectFromBundle = bundleObject.LoadAsset&lt;T&gt;(assetName);</code></li>
-<li><code>Unity.Object[] objectArray = loadedAssetBundle.LoadAllAssets();</code></li>
-<li></li>
-</ul>
-<pre><code>AssetBundleRequest request = loadedAssetBundleObject.LoadAssetAsync&lt;GameObject&gt;(assetName);
-yield return request;
-var loadedAsset = request.asset;
-</code></pre>
-<ul>
-<li></li>
-</ul>
-<pre><code>AssetBundleRequest request = loadedAssetBundle.LoadAllAssetsAsync();
-yield return request;
-var loadedAssets = request.allAssets;
-</code></pre>
-<h2 id="加载manifest文件">加载Manifest文件</h2>
-<ul>
-<li>加载Manifest文件是为了解决依赖问题</li>
-<li>加载Manifest文件的示例代码</li>
-</ul>
-<pre><code>AssetBundle assetBundle = AssetBundle.LoadFromFile(manifestFilePath);
-AssetBundleManifest manifest = assetBundle.LoadAsset&lt;AssetBundleManifest&gt;(&quot;AssetBundleManifest&quot;);
-</code></pre>
-<ul>
-<li>查询并加载依赖的示例代码</li>
-</ul>
-<pre><code>AssetBundle assetBundle = AssetBundle.LoadFromFile(manifestFilePath);
-AssetBundleManifest manifest = assetBundle.LoadAsset&lt;AssetBundleManifest&gt;(&quot;AssetBundleManifest&quot;);
-string[] dependencies = manifest.GetAllDependencies(&quot;assetBundle&quot;); //Pass the name of the bundle you want the dependencies for.
-foreach(string dependency in dependencies)
-{
-    AssetBundle.LoadFromFile(Path.Combine(assetBundlePath, dependency));
-}
-</code></pre>
-<h1 id="管理加载的assetbundle">管理加载的AssetBundle</h1>
-<ul>
-<li>不正确的卸载AssetBundle可能导致复制内存中的object或者其他问题，比如贴图丢失。</li>
-</ul>
-<h2 id="assetbundleunloadbool"><code>AssetBundle.Unload(bool)</code></h2>
-<ul>
-<li>卸载AssetBundle的头部信息</li>
-</ul>
-<h3 id="参数详细说明">参数详细说明</h3>
-<ul>
-<li>参数为true时 也卸载AssetBundle所有的实例化对象，这个实例化对象不包含对象的复制（复制的资源不是AssetBundle里面的资源）。</li>
-<li>多数情况下，会使用true来保证内存中没有重复的对象</li>
-<li>如果参数必须为false的话，内存中无法访问的资源只能通过以下方式卸载
-<ul>
-<li>手动调用<code>Resources.UnloadUnusedAssets</code></li>
-<li>非添加方式加载场景，会自动调用<code>Resources.UnloadUnusedAssets</code></li>
-</ul>
-</li>
-</ul>
-<h4 id="详细例子">详细例子</h4>
-<ul>
-<li>从AssetBundle中加载的一个GameObject资源，true卸载时，会把这个GameObject资源卸载掉，而不会把Instantiate的GameObject也卸载掉。</li>
-<li>现在从AssetBundle中加载一个材质球在活动场景中使用
-<ul>
-<li>使用Unload(true)卸载时，材质球在场景中的所有实例一样会被卸载和销毁。<strong>这里有个疑问待测试：Instantiate的材质球会不会也被销毁</strong></li>
-<li>使用Unload(false)卸载时，会打断当前材质球和AssetBundle的链接。如果AssetBundle重新加载，它并不会链接到已经存在的材质球。此时加载该材质球时，会复制一个新的。</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://singledigit9.github.io/post-images/1589379410371.png" alt="" loading="lazy"><br>
-<img src="https://singledigit9.github.io/post-images/1589379417761.png" alt="" loading="lazy"><br>
-<img src="https://singledigit9.github.io/post-images/1589379424865.png" alt="" loading="lazy"></p>
-<h2 id="保证资源不重复的方法">保证资源不重复的方法</h2>
-<ul>
-<li>在恰当的时机卸载暂时加载的AssetBundle，比如Loading时</li>
-<li>记录资源加载的引用计数，避免重复加载资源和异常卸载资源</li>
-</ul>
-<h1 id="assetbundle缓存">AssetBundle缓存</h1>
-<ul>
-<li>Unity维护两个缓存，分别是内存缓存和硬盘缓存。</li>
-<li>将AssetBundle中加载到内存中，会消耗大量的内存空间。除非有特别频繁快速访问AssetBundle中内容的需求，否则请使用磁盘缓存。</li>
-<li>如果你向<code>UnityWebRequest</code>提供了一个版本参数（版本号挥着Hash），Unity会将AssetBundle数据存储到本地硬盘。如果不提供参数，Unity将会使用内存缓存。</li>
-<li><code>Caching.compressionEnabled</code>设置为true时，存储到本地的AssetBundle文件会以LZ4的格式进行压缩；设置为false时，则存储到本地的文件不会压缩。</li>
-<li>使用LZMA格式初始加载会耗费比较长的时间。因为它需要先解压，然后以指定格式存储到硬盘缓存。之后加载会直接使用缓存来加载。</li>
-<li>推荐使用<code>UnityWebRequest</code>，因为<code>AssetBundle.LoadFromFile</code>和<code>AssetBundle.LoadFromFileAsync</code>加载LZMA后会使用内存中的缓存。如果不能使用<code>UnityWebRequest</code>，可以使用<code>AssetBundle.RecompressAssetBundleAsync</code>手动将AssetBundle数据写到硬盘缓存上。</li>
-<li>内部测试表明，使用磁盘缓存和内存缓存存在着一个数量级的差异。需要根据项目的需求自己权衡。</li>
-</ul>
-<h2 id="缓存类型">缓存类型</h2>
-<ol>
-<li>内存缓存：AssetBundle为不压缩格式</li>
-<li>硬盘缓存：在可写空间以指定格式压缩保存AssetBundle文件</li>
-</ol>
-<h1 id="assetbundle补丁">AssetBundle补丁</h1>
-<ul>
-<li>下载一个新的AssetBundle来替换现有的AssetBundle</li>
-<li>使用<code>UnityWebRequest</code>API时，会根据传入的版本参数自动触发下载新的AssetBundle</li>
-<li>Unity使用固定方式生成AssetBundle文件，也就是说，资源不变，生成的AssetBundle也是不变的。正因为这样，可以自定义下载器来区分补丁差异。</li>
-<li>Unity内部并没有实现差分补丁的功能，如果有差分补丁的需求的话，需要手动实现。（差分补丁：新AssetBundle和旧AssetBundle进行比较生成补丁。客户端下载补丁并经过处理生成新AssetBundle）</li>
-</ul>
-<h2 id="如何确定要替换的assetbundle">如何确定要替换的AssetBundle</h2>
-<ul>
-<li>从服务器获取要下载的资源列表和版本信息。和本地的资源列表版本信息做对比。如果本地资源缺失或者版本号不对，则需要下载替换这个AssetBundle。</li>
-<li>也可以自定义系统来检测AssetBundle变化，比如MD5，JSON等。</li>
-</ul>
-<h1 id="常见问题">常见问题</h1>
-<h2 id="自动生成的图集">自动生成的图集</h2>
-<ul>
-<li>如果一个图集的所有sprite都打进同一个Bundle，则自动生成的图集将会打进这个Bundle。</li>
-<li>如果sprite被打进多个Bundle，那么图集会复制多分分别打进对应的Bundle。</li>
-<li>如果sprite没有被打进Bundle，那么图集也不会被打进Bundle</li>
-<li>Unity5.2.2p3以及以前的版本对图集打Bundle的支持有问题。</li>
-</ul>
-<h2 id="android-texture">Android Texture</h2>
-<ul>
-<li>Android设备碎片化问题严重，需要将贴图压缩成对应的格式。</li>
-<li>ETC1没有透明通道，但基本上所有设备都支持</li>
-<li>ETC2，旧设备可能不支持</li>
-<li>可以使用变体，将不同变体的贴图分别打在一个AssetBundle里面，根据情况进行加载。（需要贴图设置正确）</li>
-<li><code>SystemInfo.SupportedTextureFormat</code>可以使用这个API来检测设备支持什么格式的贴图</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
